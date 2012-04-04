@@ -21,9 +21,13 @@ class Reference extends Attribute {
 	}
 	
 	public function getSQL() {
-		return "$name $dataType::getSQL(), " .
-			"FOREIGN KEY ($name) REFERENCES $referencedModel::getName() (id) " .
-			"ON DELETE $propagate ON UPDATE $propagate";
+		return "{$this->getName()} {$this->getDataType()->getSQL()}, " .
+			"FOREIGN KEY ({$this->getName()}) REFERENCES {$this->referencedModel->getName()} (id) " .
+			"ON DELETE $this->propagate ON UPDATE $this->propagate";
+	}
+	
+	public function getReference() {
+		
 	}
 }
 ?>

@@ -13,12 +13,14 @@ abstract class DataType {
 	}
 	
 	protected function getNullableSQL() {
-		if ($nullable)
+		if ($this->nullable)
 			return "";
 		else
 			return "NOT NULL";
 	}
 	
 	public abstract function getSQL();
+	
+	public abstract function isValidValue($value);
 }
 ?>

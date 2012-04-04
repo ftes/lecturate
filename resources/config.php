@@ -8,24 +8,39 @@
 	you'll only need to update it here.
 */
 
-$config = array(
-	"db" => array(
-		"dbname" => "lecturate",
-		"username" => "lecturate",
-		"password" => "pagnia",
-		"host" => "localhost"
-	),
-	"urls" => array(
-		"baseUrl" => "localhost"
-	),
-	"paths" => array(
-		"resources" => realpath(dirname(__FILE__)),
-		"images" => array(
-			"content" => $_SERVER["DOCUMENT_ROOT"] . "/images/content",
-			"layout" => $_SERVER["DOCUMENT_ROOT"] . "/images/layout"
-		)
-	)
-);
+final class Config {	
+	public static $db = array(
+			"dbname" => "lecturate",
+			"username" => "lecturate",
+			"password" => "pagnia",
+			"host" => "localhost"
+	);
+	
+	public static $urls = array(
+			"baseUrl" => "localhost"
+	);
+	
+	public static $paths;
+		
+	public static function staticInit() {
+		Config::$paths = array(
+				"resources" => realpath(dirname(__FILE__)),
+				"images" => array(
+						"content" => $_SERVER["DOCUMENT_ROOT"] . "/images/content",
+						"layout" => $_SERVER["DOCUMENT_ROOT"] . "/images/layout"
+					)	
+			);
+	}
+	
+	private function __construct() {}
+	
+	public static function getDbConn() {
+		$dbConn = new mysqli(Config::$db["host"], Config::$db["username"], Config::$db["password"]);
+		$dbConn->select_db(Config::$db["dbname"]);
+		
+		return $dbConn;
+	}
+} Config::StaticInit();
 
 /*
 	I will usually place the following in a bootstrap file or some type of environment

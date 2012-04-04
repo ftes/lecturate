@@ -12,7 +12,12 @@ class Varchar extends DataType {
 	}
 	
 	public function getSQL() {
-		return "$this->sqlType ($maxLength) $this::getNullableSQL()";
+		return "{$this->sqlType} ($this->maxLength) {$this->getNullableSQL()}";
+	}
+	
+	public function isValidValue($value) {
+		if (! is_string($value) || strlen($value) > $maxLength) return false;
+		return true;
 	}
 }
 ?>
