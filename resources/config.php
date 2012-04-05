@@ -1,4 +1,13 @@
 <?php
+function __autoload($class) {
+	$paths = array(CONTROLLERS_PATH, LIBRARY_PATH, PERSISTENCE_PATH, MODELS_PATH);
+	foreach ($paths as $path) {
+		if (file_exists($path . "/$class.class.php")) {
+			require_once($path . "/$class.class.php");
+			break;
+		}
+	}
+}
 
 /*
  The important thing to realize is that the config file should be included in every
@@ -53,11 +62,18 @@ just as well in your config file if it's in php (some alternatives to php are xm
  Creating constants for heavily used paths makes things a lot easier.
 ex. require_once(LIBRARY_PATH . "Paginator.php")
 */
+
 defined("RESOURCES_PATH")
 or define("RESOURCES_PATH", realpath(dirname(__FILE__)));
 
 defined("LIBRARY_PATH")
 or define("LIBRARY_PATH", realpath(dirname(__FILE__) . '/library'));
+
+defined("CONTROLLERS_PATH")
+or define("CONTROLLERS_PATH", realpath(dirname(__FILE__) . '/controllers'));
+
+defined("PERSISTENCE_PATH")
+or define("PERSISTENCE_PATH", LIBRARY_PATH. '/persistence');
 
 defined("TEMPLATES_PATH")
 or define("TEMPLATES_PATH", realpath(dirname(__FILE__) . '/templates'));

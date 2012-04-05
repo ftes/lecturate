@@ -1,4 +1,5 @@
 <?php
+require_once(LIBRARY_PATH . "/persistence/Model.class.php");
 class Module extends Model {
 	private $id;
 	private $token;
@@ -18,6 +19,12 @@ class Module extends Model {
 	public static function findById($id) {
 		$query = "SELECT id, token FROM module WHERE id='%d'";
 		$values = array($id);
+		return self::findBy($query, $values, "Module");
+	}
+	
+	public static function findAll() {
+		$query = "SELECT id, token FROM module";
+		$values = array();
 		return self::findBy($query, $values, "Module");
 	}
 }
