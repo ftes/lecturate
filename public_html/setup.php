@@ -12,4 +12,5 @@ echo $mod->getSql();
 
 $mod->setValue("name", "ab");
 $errors = $mod->persist();
+echo $errors[0][1];
 ?>

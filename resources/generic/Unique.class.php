@@ -19,10 +19,14 @@ class Unique extends Constraint {
 		}
 		$comps = substr($comps, 0, strlen($comps) - 5);
 		
-		$sql = Sql::execute("SELECT $attrs FROM $modelName WHERE $comps", $values);
+		$sql = Sql::execute("SELECT $names FROM $modelName WHERE $comps", $values);
 		
 		//If count > 0: not unique
-		if (count($sql->getResult()) > 0) throw new Exception("Attributes are not unique");
+		if (count($sql->getResult()) > 0) {
+			$result = $sql->getResult();
+			echo $result[0];
+			throw new Exception("Attributes are not unique");
+		}
 		
 		return true;
 	}

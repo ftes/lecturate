@@ -53,7 +53,7 @@ class Model {
 		$errors = array();
 		foreach ($this->attributes as $attribute)
 			try {
-				$attribute->isValidValue();
+				$attribute->checkValue();
 			} catch (Exception $e) {
 				array_push($errors, array($attribute->getName, $e->getMessage()));
 			}

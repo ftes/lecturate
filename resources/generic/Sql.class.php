@@ -22,10 +22,12 @@ class Sql {
 	public function exec() {
 		$dbConn = self::getDbConn();
 		$this->result = $dbConn->query($this->sql);
-		$dbConn->close();
+		
 		
 		$this->numAffectedRows = $dbConn->affected_rows;
 		$this->lastId = $dbConn->insert_id;
+		
+		$dbConn->close();
 	}
 
 	public function getLastId() {
@@ -56,7 +58,7 @@ class Sql {
 	
 	public static function execute($sql, array $params = array()) {
 		$obj = new Sql($sql, $params);
-		$obj->execute();
+		$obj->exec();
 		return $obj;
 	}
 
