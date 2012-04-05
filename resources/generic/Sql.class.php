@@ -21,8 +21,7 @@ class Sql {
 
 	public function exec() {
 		$dbConn = self::getDbConn();
-		$this->result = $dbConn->query($this->sql);
-		
+		$this->result = $dbConn->query($this->sql);		
 		
 		$this->numAffectedRows = $dbConn->affected_rows;
 		$this->lastId = $dbConn->insert_id;

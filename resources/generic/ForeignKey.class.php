@@ -41,7 +41,7 @@ class ForeignKey extends Constraint{
 		
 		$refModName = $this->referencedModel->getName();
 		$sql = Sql::execute("SELECT $names FROM $refModName WHERE $comps", $values);
-		
+
 		if (! count($sql->getResult()) > 0) throw new Exception("No matching foreign dataset found");
 		
 		return true;

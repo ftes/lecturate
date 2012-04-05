@@ -23,6 +23,7 @@ class Varchar extends DataType {
 	public function checkValue($value) {
 		if (is_null($value) && $this->nullable) return true;
 		if (! is_string($value)) throw new Exception("Not a string");
+		
 		if (strlen($value) > $this->maxLength) throw new Exception("Maximum Length ($this->maxLength) exceeded");
 		if (strlen($value) < $this->minLength) throw new Exception("Minimum Length ($this->minLength) undercut");
 		return true;

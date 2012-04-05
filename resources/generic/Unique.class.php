@@ -4,7 +4,7 @@ class Unique extends Constraint {
 		$attrs = Enum::enum($this->attributes, "getName");
 		return "UNIQUE ($attrs)";
 	}
-	
+
 	public function check($modelName) {
 		//Nothing changed? Still satisfied
 		if (count($this->getAlteredAttributes()) == 0) return true;
@@ -18,7 +18,7 @@ class Unique extends Constraint {
 			array_push($values, $attribute->getValue());
 		}
 		$comps = substr($comps, 0, strlen($comps) - 5);
-		
+
 		$sql = Sql::execute("SELECT $names FROM $modelName WHERE $comps", $values);
 		
 		//If count > 0: not unique
