@@ -1,18 +1,64 @@
-#container{width:780px; margin:0 auto;}
-#topbar{width:auto; display:block; height:80px; background-color: grey;}
-#navbar{width:auto; display:block; height:24px; background-color: lightgrey; padding: 5px;}
+#container {
+	width: 780px;
+	margin: 0 auto;
+}
 
-#main{width:auto; display:block; height: auto; overflow : hidden;}
-#column_left{width:560px; margin-right:20px; float:left;}
-#column_right{background-color: lightgrey; float: right; width: 180px; overflow:hidden; padding: 10px}
+#topbar {
+	width: auto;
+	display: block;
+	height: 80px;
+	background-color: grey;
+}
+
+#navbar {
+	width: auto;
+	display: block;
+	height: 24px;
+	background-color: lightgrey;
+	padding: 5px;
+}
+
+#main {
+	width: auto;
+	display: block;
+	height: auto;
+	overflow: hidden;
+}
+
+#content {
+	width: 560px;
+	margin-right: 20px;
+	float: left;
+}
+
+#column_right {
+	background-color: lightgrey;
+	float: right;
+	width: 180px;
+	overflow: hidden;
+	padding: 10px
+}
 
 /* 
 div.spacer, solve an issue with #container height
 in css 2 column layout. 
 */
+div.spacer {
+	clear: both;
+	height: 10px;
+	display: block;
+}
 
-div.spacer{clear:both; height:10px; display:block;}
+#footer {
+	width: 780px;
+	position: absolute;
+	bottom: 0px;
+	display: block;
+	height: 50px;
+	background-color: grey;
+}
 
-#footer{width:780px; position: absolute; bottom: 0px; display:block; height:50px; background-color:grey;}
-
-#flash {font-weight: boild; background-color:rgb(255,100,100);}
+#flash {
+	font-weight: boild;
+	background-color: rgb(255, 100, 100);
+}

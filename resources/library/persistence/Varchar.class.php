@@ -16,6 +16,14 @@ class Varchar extends DataType {
 		$this->maxLength = $maxLength;
 	}
 	
+	public function getMinLength() {
+		return getMinLength();
+	}
+	
+	public function getMaxLength() {
+		return getMaxLength();
+	}
+	
 	public function getSQL() {
 		return "{$this->sqlType} ($this->maxLength)" . $this->getNullableSQL();
 	}
