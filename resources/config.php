@@ -53,6 +53,9 @@ just as well in your config file if it's in php (some alternatives to php are xm
  Creating constants for heavily used paths makes things a lot easier.
 ex. require_once(LIBRARY_PATH . "Paginator.php")
 */
+defined("RESOURCES_PATH")
+or define("RESOURCES_PATH", realpath(dirname(__FILE__)));
+
 defined("LIBRARY_PATH")
 or define("LIBRARY_PATH", realpath(dirname(__FILE__) . '/library'));
 

@@ -6,12 +6,13 @@ class Attribute {
 	private $oldValue = null;
 	private $altered = false;
 	
-	public function __construct($name, DataType $dataType) {
+	public function __construct($name, DataType $dataType, $value=null) {
 		if (! is_string($name))
 			throw new Exception("Attribute: \$name has to be STRING");
 		
 		$this->name = $name;
 		$this->dataType = $dataType;
+		$this->value = $value;
 	}
 	
 	public function getSql() {
@@ -32,7 +33,7 @@ class Attribute {
 	
 	public function setValue($value) {
 		if ($this->value == $value) return false;
-		if ($this->dataType->getAutoIncrement()) throw new Exception("Do not alter autoincrement attribute");
+// 		if ($this->dataType->getAutoIncrement()) throw new Exception("Do not alter autoincrement attribute");
 		
 		if (! $this->altered) {
 			$this->altered = true;
@@ -50,12 +51,25 @@ class Attribute {
 		return $this->altered;
 	}
 	
+	public function getOldValue() {
+		if ($this->altered) return $this->oldValue;
+		return $this->value;
+	}
+	
 	public function checkValue() {
 		$this->dataType->checkValue($this->value);
 	}
 	
 	public function getError() {
 		
+	}
+	
+	public function getComparator() {
+		return $this->name . "='" . $this->getDataType()->getFormatter() . "'";
+	}
+	
+	public function getFormatter() {
+		return $this->dataType->getFormatter();
 	}
 }
 ?>

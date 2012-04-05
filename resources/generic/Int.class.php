@@ -16,7 +16,7 @@ class Int extends DataType {
 	}
 	
 	public static function getFormatter() {
-		return "%i";
+		return "%d";
 	}
 }
 ?>

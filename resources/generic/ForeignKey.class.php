@@ -29,20 +29,16 @@ class ForeignKey extends Constraint{
 		//Valid FK?
 		$names = Enum::enum($this->referencedAttributes, "getName");
 		
-		$comps = "";
-		$values = array();
+		$values = Enum::getArray($this->attributes, "getValue");
 		//we can use $this->attributes, as data format should be the same to FK table
-		foreach ($this->attributes as $attribute) {
-			$comps .= $attribute->getName() . "=" . $attribute->getDataType()->getFormatter() . " AND ";
-			array_push($values, $attribute->getValue());
-		}
-		$comps = substr($comps, 0, strlen($comps) - 5);
+		$comps = Enum::enum($this->attributes, "getComparator", " AND ");
 		
 		
 		$refModName = $this->referencedModel->getName();
 		$sql = Sql::execute("SELECT $names FROM $refModName WHERE $comps", $values);
 
-		if (! count($sql->getResult()) > 0) throw new Exception("No matching foreign dataset found");
+		if ($sql->getResult()->num_rows < 1)
+			throw new Exception("No matching foreign dataset found");
 		
 		return true;
 	}	

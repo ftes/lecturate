@@ -18,5 +18,9 @@ abstract class Constraint {
 		
 		return $array;
 	}
+	
+	public function getAttributes() {
+		return $this->attributes;
+	}
 }
 ?>

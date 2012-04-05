@@ -11,23 +11,14 @@ class Unique extends Constraint {
 		
 		$names = Enum::enum($this->attributes, "getName");
 		
-		$comps = "";
-		$values = array();
-		foreach ($this->attributes as $attribute) {
-			$comps .= $attribute->getName() . "=" . $attribute->getDataType()->getFormatter() . " AND ";
-			array_push($values, $attribute->getValue());
-		}
-		$comps = substr($comps, 0, strlen($comps) - 5);
+		$values = Enum::getArray($this->attributes, "getValue");
+		$comps = Enum::enum($this->attributes, "getComparator", " AND ");
 
 		$sql = Sql::execute("SELECT $names FROM $modelName WHERE $comps", $values);
 		
 		//If count > 0: not unique
-		if (count($sql->getResult()) > 0) {
-			$result = $sql->getResult();
-			echo $result[0];
+		if ($sql->getResult()->num_rows > 0)
 			throw new Exception("Attributes are not unique");
-		}
-		
 		return true;
 	}
 }

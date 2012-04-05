@@ -1,9 +1,10 @@
 <?php
-class Model {
-	private $name;
-	private $attributes = array();
-	private $primaryKey = null;
-	private $constraints = array();
+abstract class Model {
+	protected $name;
+	protected $attributes = array();
+	protected $primaryKey = null;
+	protected $constraints = array();
+	protected $new = true;
 
 	public function __construct($name) {
 		if (! is_string($name))
@@ -43,37 +44,122 @@ class Model {
 	public function getAttributes() {
 		return $attributes;
 	}
+	
+	public function getNonAutoIncrementAttributes() {
+		$attrs = array();
+		foreach ($this->attributes as $attribute)
+			if (! $attribute->getDataType()->getAutoIncrement())
+				array_push($attrs, $attribute);
+		return $attrs;
+	}
 
 	public function setValue($attributeName, $value) {
 		$attribute = $this->attributes[$attributeName];
 		$attribute->setValue($value);
+	}
+	
+	public function getValue($attributeName) {
+		$attribute = $this->attributes[$attributeName];
+		return $attribute->getValue();
+	}
+	
+	public function getAttrList() {
+		return Enum::enum($this->attributes, "getName");
 	}
 
 	public function persist() {
 		$errors = array();
 		foreach ($this->attributes as $attribute)
 			try {
-				$attribute->checkValue();
-			} catch (Exception $e) {
-				array_push($errors, array($attribute->getName, $e->getMessage()));
-			}
+			$attribute->checkValue();
+		} catch (Exception $e) {
+			array_push($errors, array($attribute->getName, $e->getMessage()));
+		}
 		foreach ($this->constraints as $constraint)
 			try {
-				$constraint->check($this->name);
-			} catch (Exception $e) {
-				array_push($errors, array(get_class($constraint), $e->getMessage()));
-			}
-			 array_push($errors, $constraint);
+			$constraint->check($this->name);
+		} catch (Exception $e) {
+			array_push($errors, array(get_class($constraint), $e->getMessage()));
+		}
 
 		if (count($errors) == 0) {
-			//Insert or Update?
-// 			$sql = Sql::execute("SELECT");
+			//Insert
+			if ($this->new) {
+				$attrs = $this->getNonAutoIncrementAttributes();
+				
+				$values = Enum::getArray($attrs, "getValue");
+				$names = Enum::enum($attrs, "getName");
+				$formatters = Enum::enum($attrs, "getFormatter", ",", "'", "'");
 
-// 			foreach ($this->attributes as $attribute) $attribute->unalter();
+				$sql = Sql::execute("INSERT INTO $this->name ($names) VALUES ($formatters)", $values);
+
+				if ($sql->getResult() == false) {
+					$errors["Persistance"] = "Error when persisting";
+					return $errors;
+				}
+
+				$this->new = false;
+				$attrs = $this->primaryKey->getAttributes();
+				if ($attrs[0]->getDataType()->getAutoIncrement()) {
+					$attrs[0]->setValue($sql->getLastId());
+				}
+				//Update
+			} else {
+				$valuesOld = Enum::getArray($this->primaryKey->getAttributes(), "getOldValue");
+				$compsOld = Enum::enum($this->primaryKey->getAttributes(), "getComparator", " AND ");
+
+				$valuesNew = Enum::getArray($this->attributes, "getValue");
+				$setsNew = Enum::enum($this->attributes, "getComparator", ",");
+
+				$values = array_merge($valuesNew, $valuesOld);
+				$sql = Sql::execute("UPDATE $this->name SET $setsNew WHERE $compsOld",$values);
+
+				if ($sql->getResult() == false) {
+					$errors["Persistance"] = "Error when persisting";
+					return $errors;
+				}
+			}
+
+			foreach ($this->attributes as $attribute) $attribute->unalter();
 			return true;
 		}
 
 		return $errors;
+	}
+
+	public function delete() {
+		if ($this->new) return array("Delete" => "Wasn't yet persisted");
+		
+		$values = Enum::getArray($this->primaryKey->getAttributes(), "getValue");
+		$comps = Enum::enum($this->primaryKey->getAttributes(), "getComparator", " AND ");
+		
+		$sql = Sql::execute("DELETE FROM $this->name WHERE $comps", $values);
+		
+		if ($sql->getResult() == false) return array("Delete" => "Error when deleting");
+		
+		return true;
+	}
+
+	protected static function findBy($query, array $values, $type) {
+		$sql = Sql::execute($query, $values);
+		$result = $sql->getResult();
+		
+		if ($result == false) throw new Exception("Error in Finder");
+		if ($result->num_rows == 0) return false;
+		
+		$arr = array();
+		while (($row = $result->fetch_assoc()) != null) {
+			$model = new $type;
+			$model->new = false;
+			
+			foreach($row as $key => $value)
+				$model->setValue($key, $value);
+			
+			array_push($arr, $model);
+		}
+		
+		if (count($arr) == 1) return $arr[0];
+		return $arr;
 	}
 }
 ?>

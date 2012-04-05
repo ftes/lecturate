@@ -4,7 +4,7 @@ class Sql {
 	private $lastId = 0;
 	//0 if none affected
 	private $numAffectedRows = 0;
-	//false on failure, array on select, true otherwise
+	//false on failure, object on select, true otherwise
 	private $result = false;
 	
 	private $sql;
@@ -17,6 +17,15 @@ class Sql {
 		
 		array_unshift($params, $sql);
 		$this->sql = call_user_func_array("sprintf", $params);
+		
+		self::log($this->sql);
+	}
+	
+	public static function log($text) {
+		$file = RESOURCES_PATH . "/log.txt";
+		$fh = fopen($file, 'a') or die("can't open file");
+		fwrite($fh, $text . "\n");
+		fclose($fh);
 	}
 
 	public function exec() {
@@ -59,6 +68,10 @@ class Sql {
 		$obj = new Sql($sql, $params);
 		$obj->exec();
 		return $obj;
+	}
+	
+	public function getSql() {
+		return $this->sql;
 	}
 
 }
