@@ -81,13 +81,18 @@ abstract class Model {
 	public function getAttrList() {
 		return Enum::enum($this->attributes, "getName");
 	}
+	
+	private function inSync() {
+		foreach ($this->attributes as $attribute)
+			$attribute->unalter();
+		$this->new = false; 
+	}
 
 	public function persist() {
 		$this->errors = array();
 		$attrError = false;
 		
 		foreach ($this->attributes as $attribute)
-			//Don't check constraints if there are invalid attributes
 			if (! $attribute->isValid()) $attrError = true;
 		foreach ($this->constraints as $constraint) {
 			$error = $constraint->getError($this->name);
@@ -111,7 +116,6 @@ abstract class Model {
 				return false;
 			}
 
-			$this->new = false;
 			$attrs = $this->primaryKey->getAttributes();
 			if ($attrs[0]->getAutoIncrement()) {
 				$attrs[0]->setValue($sql->getLastId());
@@ -133,19 +137,19 @@ abstract class Model {
 			}
 		}
 
-		foreach ($this->attributes as $attribute) $attribute->unalter();
+		$this->inSync();
 		return true;
 	}
 
 	public function delete() {
-		if ($this->new) return array("Delete" => "Wasn't yet persisted");
+		if ($this->new) return false;
 
 		$values = Enum::getArray($this->primaryKey->getAttributes(), "getValue");
 		$comps = Enum::enum($this->primaryKey->getAttributes(), "getComparator", " AND ");
 
 		$sql = Sql::execute("DELETE FROM $this->name WHERE $comps", $values);
 
-		if ($sql->getResult() == false) return array("Delete" => "Error when deleting");
+		if ($sql->getResult() == false) return false;
 
 		return true;
 	}
@@ -160,10 +164,11 @@ abstract class Model {
 		$arr = array();
 		while (($row = $result->fetch_assoc()) != null) {
 			$model = new $type;
-			$model->new = false;
 				
 			foreach($row as $key => $value)
 				$model->setValue($key, $value);
+			
+			$model->inSync();
 				
 			array_push($arr, $model);
 		}

@@ -13,5 +13,5 @@
 	<h1>Lecturate</h1>
 </div>
 <div id="navbar">
-<a href="modul.php">Module</a>
+<a href="<?=T::href("module", "index"); ?>">Module</a>
 </div>

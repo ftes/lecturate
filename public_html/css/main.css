@@ -1,6 +1,7 @@
 #container {
 	width: 780px;
 	margin: 0 auto;
+	padding: 0px;
 }
 
 #topbar {
@@ -22,10 +23,11 @@
 	width: auto;
 	display: block;
 	overflow: hidden;
+	padding: 0px;
 }
 
 #content {
-	width: 560px;
+	width: 520px;
 	margin-right: 20px;
 	float: left;
 }
@@ -60,8 +62,23 @@ div.spacer {
 #flash {
 	font-weight: bold;
 	background-color: rgb(255, 100, 100);
+	padding: 0px 10px;
 }
 
 .error {
-	background-color: rgb(255, 100, 100);
+	color: rgb(200, 0, 0);
+}
+
+table {
+	border-collapse: collapse;
+
+}
+
+td, th {
+	border: 1px solid black;
+	padding: 2px 5px;
+}
+
+div {
+	padding: 10px;
 }

@@ -22,10 +22,9 @@ class Sql {
 	}
 	
 	public static function log($text) {
-		$file = RESOURCES_PATH . "/log.txt";
-		$fh = fopen($file, 'a') or die("can't open file");
-		fwrite($fh, $text . "\n");
-		fclose($fh);
+		$text = date('m.d.Y H:i:s') . ": $text\n";
+		$text .= file_get_contents(SQLLOG);
+		file_put_contents(SQLLOG, $text);
 	}
 
 	public function exec() {

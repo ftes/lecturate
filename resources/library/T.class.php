@@ -4,6 +4,8 @@ require_once(realpath(dirname(__FILE__) . "/../config.php"));
 class T {
 	const CANCEL = "cancel";
 	const SAVE = "submit";
+	
+	private static $errorHTML = "";
 
 	private static $editable = true;
 	private static $uids = array();
@@ -71,13 +73,22 @@ class T {
 			$html = "<input $id type=\"number\" $name $min $max $readonly $value\>";
 		}
 		
-		$html .= "<span class=\"error\" id=\"$errorUid\">";
+		self::$errorHTML = "";
+		self::$errorHTML .= "<span class=\"error\" id=\"$errorUid\">";
 		foreach ($attribute->getErrors() as $error)
-			$html .= "$error<br>";
-		$html .= "</span>";
+			self::$errorHTML .= "$error<br>";
+		self::$errorHTML .= "</span>";
+		
 		$attribute->getErrors();
 		
 		return $html;
+	}
+	
+	public static function error() {
+		$errorHTML = self::$errorHTML;
+		self::$errorHTML = "";
+		return $errorHTML;
+		
 	}
 
 	public static function button($type) {

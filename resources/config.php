@@ -84,6 +84,9 @@ or define("VIEWS_PATH", realpath(dirname(__FILE__) . '/views'));
 defined("MODELS_PATH")
 or define("MODELS_PATH", realpath(dirname(__FILE__) . '/models'));
 
+defined("SQLLOG")
+or define("SQLLOG", RESOURCES_PATH . '/log.txt');
+
 /*
  Error reporting.
 */

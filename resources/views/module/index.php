@@ -1,9 +1,13 @@
-<h1>Module List</h2>
+<h1>Modules</h2>
 
-<table border="0">
+<table>
 	<tr>
 		<th>ID</th>
 		<th>Token</th>
+		<th>Inti</th>
+		<th></th>
+		<th></th>
+		<th></th>
 	</tr>
 	<?php foreach($models as $model): ?>
 	<tr>

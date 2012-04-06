@@ -16,7 +16,7 @@ class ForeignKey extends Constraint{
 		return "FOREIGN KEY ($cols) REFERENCES $refMod ($refAttrs)";
 	}
 	
-	public function getErrors($modelName) {		
+	public function getError($modelName) {		
 		//Nullable and all are Null -> satisfied
 		if ($this->attributes[0]->getNullable()) {
 			$null = true;

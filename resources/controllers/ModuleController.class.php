@@ -32,7 +32,7 @@ class ModuleController extends AbstractController {
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, "Module \"".$_POST["model"]["token"]."\" was saved");
+				self::view($_GET, $_POST, "Module \"".$model->getValue("token")."\" was saved");
 				die();
 			} else {
 				$flash = "Module could not be saved";
@@ -46,15 +46,50 @@ class ModuleController extends AbstractController {
 				"flash" => $flash,
 				"model" => $model);
 		T::render("module/create.php", "module/nav.php", $variables);
-		
 	}
 	
 	public static function edit(array $_GET, array $_POST, $flash=false) {
-		echo "Hier";
+		$model = false;
+		
+		if (get($_POST, T::SAVE, false)) {
+			$model = Module::findById($_POST["model"]["id"]);
+			
+			foreach ($_POST["model"] as $key => $value)
+				$model->setValue($key, $value);
+			
+			if ($model->persist()) {
+				self::index($_GET, $_POST, "Module \"".$model->getValue("token")."\" was saved");
+				die();
+			} else {
+				$flash = "Module could not be saved";
+				foreach ($model->getErrors() as $name => $error)
+					$flash .= "<br> - $name: $error";
+			}			
+		} elseif (get($_POST, T::CANCEL, false))
+			self::index($_GET, $_POST);
+		elseif ($id = get($_GET, "id", false))
+			$model = Module::findById($id);
+		
+		if (! $model) {
+			self::index($_GET, $_POST, "Module could not be found");
+			die();
+		}
+		$variables = array(
+				"flash" => $flash,
+				"model" => $model);
+		T::render("module/edit.php", "module/nav.php", $variables);
 	}
 	
 	public static function delete(array $_GET, array $_POST, $flash=false) {
-		echo "Hier";
+		
+		if ($id = get($_GET, "id", false)) {
+			$model = Module::findById($id);
+			if ($model && $model->delete())
+				$flash = "Module {$model->getValue("token")} was deleted";
+			else $flash = "Couldn't delete module";
+		}
+		
+		self::index($_GET, $_POST, $flash);		
 	}
 }
 
