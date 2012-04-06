@@ -4,7 +4,7 @@ class ForeignKey extends Constraint{
 	private $referencedModel;
 	
 	public function __construct(array $attributes, Model $referencedModel, array $referencedAttributes) {
-		parent::__construct($attributes);
+		parent::__construct("FK " . $referencedModel->getName(), $attributes);
 		$this->referencedModel = $referencedModel;
 		$this->referencedAttributes = $referencedAttributes;
 	}
@@ -16,14 +16,13 @@ class ForeignKey extends Constraint{
 		return "FOREIGN KEY ($cols) REFERENCES $refMod ($refAttrs)";
 	}
 	
-	public function check($modelName) {
+	public function getErrors($modelName) {		
 		//Nullable and all are Null -> satisfied
-		if ($this->attributes[0]->getDataType()->getNullable()) {
-			$allNull = true;
+		if ($this->attributes[0]->getNullable()) {
+			$null = true;
 			foreach ($this->attributes as $attribute)
-				if (! is_null($attribute->getValue()))
-					$allNull = false;
-			if ($allNull) return true;
+				if (! is_null($attribute->getValue())) $null = false;
+			if ($null) return false;
 		}
 		
 		//Valid FK?
@@ -38,9 +37,9 @@ class ForeignKey extends Constraint{
 		$sql = Sql::execute("SELECT $names FROM $refModName WHERE $comps", $values);
 
 		if ($sql->getResult()->num_rows < 1)
-			throw new Exception("No matching foreign dataset found");
+			return "Foreign Key not satisfied";
 		
-		return true;
+		return false;
 	}	
 }
 

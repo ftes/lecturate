@@ -5,13 +5,14 @@
 		<th>ID</th>
 		<th>Token</th>
 	</tr>
-	<?php foreach($models as $key => $model): ?>
+	<?php foreach($models as $model): ?>
 	<tr>
-		<td><?=$model['id']; ?></td>
-		<td><?=$model['token']; ?></td>
-		<td><a href="<?=T::href("module", "view", array("id"=>$model['id'])); ?>">View</a></td>
-		<td><a href="<?=T::href("module", "edit", array("id"=>$model['id'])); ?>">Edit</a></td>
-		<td><a href="<?=T::href("module", "delete", array("id"=>$model['id'])); ?>">X</a></td>
+		<td><?=$model->getValue("id"); ?></td>
+		<td><?=$model->getValue('token'); ?></td>
+		<td><?=$model->getValue('inti'); ?></td>
+		<td><a href="<?=T::href("module", "view", array("id"=>$model->getValue("id"))); ?>">View</a></td>
+		<td><a href="<?=T::href("module", "edit", array("id"=>$model->getValue("id"))); ?>">Edit</a></td>
+		<td><a href="<?=T::href("module", "delete", array("id"=>$model->getValue("id"))); ?>">X</a></td>
 	</tr>
 	<?php endforeach; ?>
 </table>

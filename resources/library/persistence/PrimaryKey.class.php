@@ -1,9 +1,9 @@
 <?php
 class PrimaryKey extends Unique{
 	public function __construct(array $attributes) {
-		parent::__construct($attributes);
+		parent::__construct("PK", $attributes);
 		foreach ($attributes as $attribute)
-			$attribute->getDataType()->setNullable(false);
+			$attribute->setNullable(false);
 	}
 	
 	public function getSQL() {

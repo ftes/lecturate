@@ -1,7 +1,16 @@
 <table border="0">
-<form method="POST">
-<tr><th>Name</th><td><?php formElement("name", $modul->getNameDef()); ?></td></tr>
-<tr><th></th><td><?php submitButton(); ?></td></tr>
-<tr><th></th><td><?php quitButton(); ?></td></tr>
-</form>
+	<form method="POST">
+		<tr>
+			<th>Token</th>
+			<td><?=T::input($model->getAttribute("token")); ?></td>
+		</tr>
+		<tr>
+			<th>Int</th>
+			<td><?=T::input($model->getAttribute("inti")); ?></td>
+		</tr>
+		<tr>
+			<th></th>
+			<td><?=T::button(T::CANCEL) ?><?=T::button(T::SAVE) ?></td>
+		</tr>
+	</form>
 </table>

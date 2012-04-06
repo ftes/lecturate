@@ -1,43 +1,43 @@
 <?php
-class Varchar extends DataType {
+class Varchar extends Attribute {
 	private $maxLength;
 	private $minLength;
 	
-	public function __construct($minLength=-1, $maxLength=-1, $nullable=type) {
-		parent::__construct("VARCHAR", $nullable);
-		
-		if (! is_int($minLength))
-			throw new Exception("Varchar: \$minLength has to be INT");
-		
-		if (! is_int($maxLength))
-			throw new Exception("Varchar: \$maxLength has to be INT");
+	public function __construct($name, $nullable=true, $minLength=false, $maxLength=false) {
+		parent::__construct($name, "VARCHAR", $nullable);
 		
 		$this->minLength = $minLength;
 		$this->maxLength = $maxLength;
 	}
 	
 	public function getMinLength() {
-		return getMinLength();
+		return $this->minLength;
 	}
 	
 	public function getMaxLength() {
-		return getMaxLength();
+		return $this->maxLength;
 	}
 	
 	public function getSQL() {
 		return "{$this->sqlType} ($this->maxLength)" . $this->getNullableSQL();
 	}
 	
-	public function checkValue($value) {
-		if (is_null($value) && $this->nullable) return true;
-		if (! is_string($value)) throw new Exception("Not a string");
-		
-		if (strlen($value) > $this->maxLength) throw new Exception("Maximum Length ($this->maxLength) exceeded");
-		if (strlen($value) < $this->minLength) throw new Exception("Minimum Length ($this->minLength) undercut");
-		return true;
+	public function generateErrors() {
+		$this->errors = array();
+		if (is_null($this->value)) {
+			if (! $this->nullable)
+				array_push($this->errors, "Cannot be empty");
+		} else {
+			if (! is_string($this->value)) {
+				array_push($this->errors, "'$this->value' is not a text");
+			} else {
+				if ($this->maxLength && strlen($this->value) > $this->maxLength) array_push($this->errors, "Too long (max. {$this->maxLength})");
+				if ($this->minLength && strlen($this->value) < $this->minLength) array_push($this->errors, "Too short (min. {$this->minLength})");
+			}
+		}
 	}
 	
-	public static function getFormatter() {
+	public function getFormatter() {
 		return "%s";
 	}
 }

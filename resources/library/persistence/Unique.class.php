@@ -1,13 +1,14 @@
 <?php
 class Unique extends Constraint {
+	
 	public function getSQL() {
 		$attrs = Enum::enum($this->attributes, "getName");
 		return "UNIQUE ($attrs)";
 	}
 
-	public function check($modelName) {
+	public function getError($modelName) {		
 		//Nothing changed? Still satisfied
-		if (count($this->getAlteredAttributes()) == 0) return true;
+		if (count($this->getAlteredAttributes()) == 0) return false;
 		
 		$names = Enum::enum($this->attributes, "getName");
 		
@@ -18,7 +19,8 @@ class Unique extends Constraint {
 		
 		//If count > 0: not unique
 		if ($sql->getResult()->num_rows > 0)
-			throw new Exception("Attributes are not unique");
-		return true;
+			return "Already exists";
+		
+		return false;
 	}
 }

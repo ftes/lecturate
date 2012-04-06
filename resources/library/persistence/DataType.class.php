@@ -1,5 +1,5 @@
 <?php
-abstract class DataType {
+abstract class DataTypeOLD {
 	protected $sqlType;
 	protected $nullable;
 	protected $autoIncrement;
@@ -43,7 +43,7 @@ abstract class DataType {
 	
 	public abstract function getSql();
 	
-	public abstract function checkValue($value);
+	public abstract function getErrors($value);
 	
 	public static abstract function getFormatter();
 }

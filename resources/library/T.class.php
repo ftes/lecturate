@@ -2,11 +2,11 @@
 require_once(realpath(dirname(__FILE__) . "/../config.php"));
 
 class T {
-	const SUBMITTYPE = "submit";
-	const QUIT = "quit";
-	const SUBMIT = "submit";
+	const CANCEL = "cancel";
+	const SAVE = "submit";
 
 	private static $editable = true;
+	private static $uids = array();
 
 	public static function render($contentFile, $navFile, $variables = array()) {
 		$contentFileFullPath = VIEWS_PATH . "/" . $contentFile;
@@ -26,28 +26,63 @@ class T {
 	public static function setEditable($bool) {
 		self::$editable = $bool;
 	}
-
-	public static function input(Attribute $attribute){
-		$name = $attribute->getName();
-		$dataType = $attribute->getDataType();
-		$nullable = $dataType->getNullable();
-		$value = $attribute->getValue();
-		$readonly = self::$editable ? "" : "readonly";
-
-		if ($dataType instanceof Varchar) {
-			$max = $dataType->getMaxLength() < 0 ? 100 : $dataType->getMaxLength();
-			$min = $dataType->getMinLength() < 0 ? 0 : $dataType->getMinLength();
-
-			echo "<input type=\"text\" name=\"$name\" maxlength=\"$max\" $readonly value=\"$value\">";
-
-		} elseif ($dataType instanceof Int) {
-			if ($dataType->getAutoIncrement()) $readonly = "readonly";
-			echo "<input type=\"numer\" name=\"$name\" $readonly value=\"$value\">";
-		}
+	
+	private static function uid() {
+		$length = 10;
+		$characters = "0123456789abcdefghijklmnopqrstuvwxyz";
+		$uid = "";
+		
+		do {
+		for ($i=0; $i<$length; $i++)
+			$uid .= $characters[mt_rand(0, strlen($characters) - 1)];
+		} while (array_key_exists($uid, self::$uids));
+		
+		return $uid;
 	}
 
-	public static function button($type, $name, $value) {
-		echo "<input type='$type' name='$name' value='$value'>";
+	public static function input(Attribute $attribute){
+		$name = "name=\"model[{$attribute->getName()}]\"";
+		$nullable = $attribute->getNullable();
+		$value = "value=\"{$attribute->getValue()}\"";
+		$readonly = self::$editable ? "" : "readonly";
+		$inputUid = self::uid();
+		$id = "id=\"$inputUid\"";
+		$errorUid = self::uid();
+		$onchange = "onchange=\"var value=getElementById('$inputUid').value;var error = '';";
+		$onchangeEnd = "getElementById('$errorUid').innerHTML=error;\"";
+				
+		$html = "";
+
+		if ($attribute instanceof Varchar) {
+			$min = $attribute->getMinLength();
+			$max = $attribute->getMaxLength();
+			$maxlength = $max ? "maxlength=\"$max\"" : "";
+			
+			$onchange .= "";
+			if ($min) $onchange .= "if (value.length < $min) error += 'Too short (min. $min)';";
+			$onchange .= $onchangeEnd;
+
+			$html = "<input $id type=\"text\" $name $maxlength $readonly $onchange $value>";
+
+		} elseif ($attribute instanceof Int) {
+			$min = "min=\"{$attribute->getMin()}\"";
+			$max = "max=\"{$attribute->getMax()}\"";
+			if ($attribute->getAutoIncrement()) $readonly = "readonly";
+			$html = "<input $id type=\"number\" $name $min $max $readonly $value\>";
+		}
+		
+		$html .= "<span class=\"error\" id=\"$errorUid\">";
+		foreach ($attribute->getErrors() as $error)
+			$html .= "$error<br>";
+		$html .= "</span>";
+		$attribute->getErrors();
+		
+		return $html;
+	}
+
+	public static function button($type) {
+		$value = ucfirst($type);
+		return "<input type='submit' name='$type' value='$value'>";
 	}
 	
 	public static function href($controller, $action, $array=array()) {

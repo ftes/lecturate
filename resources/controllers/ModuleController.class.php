@@ -25,13 +25,26 @@ class ModuleController extends AbstractController {
 	}
 	
 	public static function create(array $_GET, array $_POST, $flash=false) {
-		if (get($_POST, T::SUBMIT)) {
-			//try to save and deal with it not working (pass error messages on)
-			die();
-		}
+		$model = new Module();
+
+		if (get($_POST, T::SAVE, false)) {
+			foreach ($_POST["model"] as $key => $value)
+				$model->setValue($key, $value);
+			
+			if ($model->persist()) {
+				self::index($_GET, $_POST, "Module \"".$_POST["model"]["token"]."\" was saved");
+				die();
+			} else {
+				$flash = "Module could not be saved";
+				foreach ($model->getErrors() as $name => $error)
+					$flash .= "<br> - $name: $error";
+			}			
+		} elseif (get($_POST, T::CANCEL, false))
+			self::index($_GET, $_POST);
 		
 		$variables = array(
-				"flash" => $flash);
+				"flash" => $flash,
+				"model" => $model);
 		T::render("module/create.php", "module/nav.php", $variables);
 		
 	}

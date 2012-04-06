@@ -21,7 +21,6 @@
 #main {
 	width: auto;
 	display: block;
-	height: auto;
 	overflow: hidden;
 }
 
@@ -51,7 +50,7 @@ div.spacer {
 
 #footer {
 	width: 780px;
-	position: absolute;
+	position: fixed;
 	bottom: 0px;
 	display: block;
 	height: 50px;
@@ -59,6 +58,10 @@ div.spacer {
 }
 
 #flash {
-	font-weight: boild;
+	font-weight: bold;
+	background-color: rgb(255, 100, 100);
+}
+
+.error {
 	background-color: rgb(255, 100, 100);
 }
