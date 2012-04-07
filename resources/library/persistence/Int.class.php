@@ -19,7 +19,7 @@ class Int extends Attribute {
 	}
 	
 	public function getSql() {
-		return $this->sqlType . $this->getNullableSql() . $this->getAutoIncrementSql();
+		return "`$this->name` $this->sqlType" . $this->getNullableSql() . $this->getAutoIncrementSql();
 	}
 	
 	public function generateErrors() {

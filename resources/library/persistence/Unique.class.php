@@ -1,8 +1,8 @@
 <?php
 class Unique extends Constraint {
 	
-	public function getSQL() {
-		$attrs = Enum::enum($this->attributes, "getName");
+	public function getSql() {
+		$attrs = Enum::enum($this->attributes, "getName", "," ,"`", "`");
 		return "UNIQUE ($attrs)";
 	}
 

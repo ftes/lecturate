@@ -67,7 +67,7 @@ abstract class Attribute {
 	}
 	
 	public function getComparator() {
-		return $this->name . "='" . $this->getFormatter() . "'";
+		return "`$this->name`='" . $this->getFormatter() . "'";
 	}
 	
 	public abstract function getFormatter();

@@ -12,7 +12,7 @@ abstract class Constraint {
 		return $this->name;
 	}
 	
-	public abstract function getSQL();
+	public abstract function getSql();
 	
 	public abstract function getError($modelName);
 	

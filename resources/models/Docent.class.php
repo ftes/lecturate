@@ -1,23 +1,23 @@
 <?php
 require_once(LIBRARY_PATH . "/persistence/Model.class.php");
 
-class Module extends Model {
-	private static $name = "module";
-	
+class Docent extends Model {
+	private static $name = "docent";
+
 	public function __construct() {
 		parent::__construct(self::$name);
-		
+
 		$id = new Int("id", false, true, 0, false);
-		$token = new Varchar("token", false, 2, 10);
-		$inti = new Int("inti", true, false, 2, 10);
+		$firstname = new Varchar("firstname", false, 2, 30);
+		$lastname = new Varchar("lastname", false, 2, 30);
 		$this->addAttribute($id);
-		$this->addAttribute($token);
-		$this->addAttribute($inti);
-		
+		$this->addAttribute($firstname);
+		$this->addAttribute($lastname);
+
 		$this->addConstraint(new PrimaryKey(array($id)));
- 		$this->addConstraint(new Unique("Token", array($token)));
+		$this->addConstraint(new Unique("Name", array($firstname, $lastname)));
 	}
-	
+
 	public static function findById($id) {
 		$model = new self::$name;
 
@@ -29,7 +29,7 @@ class Module extends Model {
 	}
 	
 	public function toString() {
-		return $this->getValue("token");
+		return $this->getValue("firstname")." ".$this->getValue("lastname");
 	}
 
 	public static function findAll() {

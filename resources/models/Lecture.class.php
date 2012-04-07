@@ -1,23 +1,23 @@
 <?php
 require_once(LIBRARY_PATH . "/persistence/Model.class.php");
 
-class Module extends Model {
-	private static $name = "module";
-	
+class Lecture extends Model {
+	private static $name = "lecture";
+
 	public function __construct() {
 		parent::__construct(self::$name);
-		
+
 		$id = new Int("id", false, true, 0, false);
 		$token = new Varchar("token", false, 2, 10);
-		$inti = new Int("inti", true, false, 2, 10);
+		$name = new Varchar("name", true, 0, 100);
 		$this->addAttribute($id);
 		$this->addAttribute($token);
-		$this->addAttribute($inti);
-		
+		$this->addAttribute($name);
+
 		$this->addConstraint(new PrimaryKey(array($id)));
- 		$this->addConstraint(new Unique("Token", array($token)));
+		$this->addConstraint(new Unique("Name", array($token)));
 	}
-	
+
 	public static function findById($id) {
 		$model = new self::$name;
 

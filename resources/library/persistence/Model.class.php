@@ -1,6 +1,6 @@
 <?php
 abstract class Model {
-	protected $name;
+	private $name;
 	protected $attributes = array();
 	protected $primaryKey = null;
 	protected $constraints = array();
@@ -30,9 +30,11 @@ abstract class Model {
 
 		$this->constraints[$constraint->getName()] = $constraint;
 	}
+	
+	public abstract function toString();
 
 	public function getSql() {
-		$sql = "CREATE TABLE {$this->name} (";
+		$sql = "CREATE TABLE `{$this->name}` (";
 		$sql .= Enum::enum($this->attributes, "getSql");
 		$sql .= ",";
 		$sql .= Enum::enum($this->constraints, "getSql");
@@ -109,7 +111,7 @@ abstract class Model {
 			$names = Enum::enum($attrs, "getName");
 			$formatters = Enum::enum($attrs, "getFormatter", ",", "'", "'");
 
-			$sql = Sql::execute("INSERT INTO $this->name ($names) VALUES ($formatters)", $values);
+			$sql = Sql::execute("INSERT INTO `$this->name` ($names) VALUES ($formatters)", $values);
 
 			if ($sql->getResult() == false) {
 				$this->errors["Persistance"] = "Error when persisting";
@@ -129,7 +131,7 @@ abstract class Model {
 			$setsNew = Enum::enum($this->attributes, "getComparator", ",");
 
 			$values = array_merge($valuesNew, $valuesOld);
-			$sql = Sql::execute("UPDATE $this->name SET $setsNew WHERE $compsOld",$values);
+			$sql = Sql::execute("UPDATE `$this->name` SET $setsNew WHERE $compsOld",$values);
 
 			if ($sql->getResult() == false) {
 				$this->errors["Persistance"] = "Error when persisting";
@@ -147,7 +149,7 @@ abstract class Model {
 		$values = Enum::getArray($this->primaryKey->getAttributes(), "getValue");
 		$comps = Enum::enum($this->primaryKey->getAttributes(), "getComparator", " AND ");
 
-		$sql = Sql::execute("DELETE FROM $this->name WHERE $comps", $values);
+		$sql = Sql::execute("DELETE FROM `$this->name` WHERE $comps", $values);
 
 		if ($sql->getResult() == false) return false;
 
@@ -159,7 +161,7 @@ abstract class Model {
 		$result = $sql->getResult();
 
 		if ($result == false) throw new Exception("Error in Finder");
-		if ($result->num_rows == 0) return false;
+// 		if ($result->num_rows == 0) return array();
 
 		$arr = array();
 		while (($row = $result->fetch_assoc()) != null) {
@@ -173,7 +175,6 @@ abstract class Model {
 			array_push($arr, $model);
 		}
 
-		if (count($arr) == 1) return $arr[0];
 		return $arr;
 	}
 }

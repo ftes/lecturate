@@ -1,23 +1,27 @@
 <?php
 require_once(LIBRARY_PATH . "/persistence/Model.class.php");
 
-class Module extends Model {
-	private static $name = "module";
-	
+class DocentLecture extends Model {
+	private static $name = "docent_lecture";
+
 	public function __construct() {
 		parent::__construct(self::$name);
-		
+
 		$id = new Int("id", false, true, 0, false);
-		$token = new Varchar("token", false, 2, 10);
-		$inti = new Int("inti", true, false, 2, 10);
+		$dId = new Int("d_id", false, false, 0, false);
+		$lId = new Int("l_id", false, false, 0, false);
 		$this->addAttribute($id);
-		$this->addAttribute($token);
-		$this->addAttribute($inti);
-		
+		$this->addAttribute($dId);
+		$this->addAttribute($lId);
+
 		$this->addConstraint(new PrimaryKey(array($id)));
- 		$this->addConstraint(new Unique("Token", array($token)));
+		$this->addConstraint(new Unique("Docent holds Lecture", array($dId, $lId)));
+		$docent = new Docent();
+		$lecture = new Lecture();
+		$this->addConstraint(new ForeignKey(array($dId), $docent, array($docent->getAttribute("id"))));
+		$this->addConstraint(new ForeignKey(array($dId), $lecture, array($lecture->getAttribute("id"))));
 	}
-	
+
 	public static function findById($id) {
 		$model = new self::$name;
 
@@ -29,7 +33,7 @@ class Module extends Model {
 	}
 	
 	public function toString() {
-		return $this->getValue("token");
+		return $this->getValue("firstname")." ".$this->getValue("lastname");
 	}
 
 	public static function findAll() {

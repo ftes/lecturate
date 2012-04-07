@@ -6,8 +6,8 @@ class PrimaryKey extends Unique{
 			$attribute->setNullable(false);
 	}
 	
-	public function getSQL() {
-		$attrs = Enum::enum($this->attributes, "getName");
+	public function getSql() {
+		$attrs = Enum::enum($this->attributes, "getName", ",", "`", "`");
 		return "PRIMARY KEY ($attrs)";
 	}
 }

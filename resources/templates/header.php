@@ -14,4 +14,6 @@
 </div>
 <div id="navbar">
 <a href="<?=T::href("module", "index"); ?>">Module</a>
+<a href="<?=T::href("lecture", "index"); ?>">Lecture</a>
+<a href="<?=T::href("docent", "index"); ?>">Docent</a>
 </div>

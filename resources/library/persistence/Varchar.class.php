@@ -18,8 +18,8 @@ class Varchar extends Attribute {
 		return $this->maxLength;
 	}
 	
-	public function getSQL() {
-		return "{$this->sqlType} ($this->maxLength)" . $this->getNullableSQL();
+	public function getSql() {
+		return "`$this->name` $this->sqlType ($this->maxLength)" . $this->getNullableSQL();
 	}
 	
 	public function generateErrors() {

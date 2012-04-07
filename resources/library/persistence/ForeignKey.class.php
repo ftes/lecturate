@@ -4,16 +4,16 @@ class ForeignKey extends Constraint{
 	private $referencedModel;
 	
 	public function __construct(array $attributes, Model $referencedModel, array $referencedAttributes) {
-		parent::__construct("FK " . $referencedModel->getName(), $attributes);
+		parent::__construct($referencedModel->getName(), $attributes);
 		$this->referencedModel = $referencedModel;
 		$this->referencedAttributes = $referencedAttributes;
 	}
 	
-	public function getSQL() {
-		$attrs = Enum::enum($this->attributes, "getName");
-		$refAttrs = Enum::enum($this->referencedAttributes, "getName");
+	public function getSql() {
+		$attrs = Enum::enum($this->attributes, "getName", ",", "`", "`");
+		$refAttrs = Enum::enum($this->referencedAttributes, "getName", ",", "`", "`");
 		$refMod = $this->referencedModel->getName();
-		return "FOREIGN KEY ($cols) REFERENCES $refMod ($refAttrs)";
+		return "FOREIGN KEY ($attrs) REFERENCES `$refMod` ($refAttrs)";
 	}
 	
 	public function getError($modelName) {		
