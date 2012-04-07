@@ -21,5 +21,8 @@
 <a href="<?=T::href("advisor", "index"); ?>">Advisor</a>
 <a href="<?=T::href("classs", "index"); ?>">Class</a>
 <a href="<?=T::href("rating", "index"); ?>">Rating</a>
+<<<<<<< HEAD
 <a href="<?=T::href("classs_docent_lecture", "index"); ?>">ClassDocentLecture</a>
+=======
+>>>>>>> 76d2d51b203a84a61c64ab70c51f0b9542e92454
 </div>
