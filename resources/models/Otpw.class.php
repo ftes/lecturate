@@ -9,17 +9,21 @@ class Otpw extends Model {
 
 		$id = new Int("id", false, true, 0, false);
 		$otpw = new Varchar("otpw", false, 1, 30);
+		$dlId = new Int("dl_id", false, false, 0, false);
 		$used = new Bool("used", false, true, Bool::F);
 		$created = new Timestamp("created", true, false);
 		$usedTs = new Timestamp("used_ts", false, false);
 		$this->addAttribute($id);
 		$this->addAttribute($otpw);
+		$this->addAttribute($dlId);
 		$this->addAttribute($used);
 		$this->addAttribute($created);
 		$this->addAttribute($usedTs);
 
 		$this->addConstraint(new PrimaryKey(array($id)));
 		$this->addConstraint(new Unique("OTPW", array($otpw)));
+		$docentLecture = new DocentLecture();
+		$this->addConstraint(new ForeignKey(array($dlId), $docentLecture, array($docentLecture->getAttribute("id"))));
 	}
 	
 	public function setUsed() {
@@ -38,7 +42,7 @@ class Otpw extends Model {
 	}
 	
 	public function toString() {
-		return $this->getValue("token");
+		return $this->getValue("otpw");
 	}
 
 	public static function findAll() {

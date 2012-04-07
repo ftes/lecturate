@@ -8,12 +8,16 @@ class Classs extends Model {
 		parent::__construct(self::$name);
 
 		$id = new Int("id", false, true, 0, false);
-		$username = new Varchar("token", false, 2, 30);
+		$token = new Varchar("token", false, 2, 30);
+		$aId = new Int("a_id", false, false, 0, false);
 		$this->addAttribute($id);
 		$this->addAttribute($token);
+		$this->addAttribute($aId);
 
 		$this->addConstraint(new PrimaryKey(array($id)));
 		$this->addConstraint(new Unique("Token", array($token)));
+		$advisor = new Advisor();
+		$this->addConstraint(new ForeignKey(array($aId), $advisor, array($advisor->getAttribute("id"))));
 	}
 
 	public static function findById($id) {

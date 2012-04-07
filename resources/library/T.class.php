@@ -84,19 +84,26 @@ class T {
 		return $html;
 	}
 	
-	public static function select(Attribute $attribute, array $options) {
+	public static function select(Attribute $attribute, array $options, $array=false) {
 		$name = "name=\"model[{$attribute->getName()}]\"";
 		$nullable = $attribute->getNullable();
 		$value = "value=\"{$attribute->getValue()}\"";
 		$disabled = self::$editable ? "" : "disabled";
-		$size = "size=\"{count($options)}\"";
+		$size ="size=\"1\"";
 		
 		$html = "<select $name $size $disabled>";
-		foreach ($options as $option) {
-			$pk = $option->getPrimaryKey()->getAttributes();
-			$optionValue = "value=\"{$pk[0]->getValue()}\"";
-			$selected = ($attribute->getValue() == $pk[0]->getValue()) ? "selected" : "";
-			$html .= "<option $optionValue $selected>{$option->toString()}</option>";
+		foreach ($options as $key => $option) {
+			if ($array) {
+				$optionValue = "value=\"" . $key . "\"";
+				$selected = ($attribute->getValue() == $key) ? "selected" : "";
+				$html .= "<option $optionValue $selected>{$option}</option>";
+			} else {
+				$pk = $option->getPrimaryKey()->getAttributes();
+				$optionValue = "value=\"{$pk[0]->getValue()}\"";
+				$selected = ($attribute->getValue() == $pk[0]->getValue()) ? "selected" : "";
+				$html .= "<option $optionValue $selected>{$option->toString()}</option>";
+			}
+			
 		}
 		$html .= "</select";
 		

@@ -1,9 +1,23 @@
 <?php T::setEditable(true); ?>
 
-<h1>Create Docent</h1>
+<h1>Create Advisor</h1>
 
 <form method="POST">
 <table>
+		<tr>
+			<th>User name</th>
+			<td><?=T::input($model->getAttribute("username")); ?>
+			</td>
+			<td><?=T::error(); ?>
+			</td>
+		</tr>
+		<tr>
+			<th>Password</th>
+			<td><?=T::input($model->getAttribute("password")); ?>
+			</td>
+			<td><?=T::error(); ?>
+			</td>
+		</tr>
 		<tr>
 			<th>First name</th>
 			<td><?=T::input($model->getAttribute("firstname")); ?>

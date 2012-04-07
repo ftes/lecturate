@@ -1,4 +1,4 @@
-<h1>Modules</h2>
+<h1>Modules</h1>
 
 <table>
 	<tr>

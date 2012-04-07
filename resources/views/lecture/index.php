@@ -1,4 +1,4 @@
-<h1>Lectures</h2>
+<h1>Lectures</h1>
 
 <table>
 	<tr>

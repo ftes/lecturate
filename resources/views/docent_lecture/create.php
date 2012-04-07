@@ -1,6 +1,6 @@
 <?php T::setEditable(true); ?>
 
-<h1>Create DocentLecture</h2>
+<h1>Create DocentLecture</h1>
 
 <form method="POST">
 <table>

@@ -1,9 +1,16 @@
 <?php T::setEditable(true); ?>
 
-<h1>Create Module</h1>
-
+<h1>Edit Class</h1>
+	
 <form method="POST">
 <table>
+		<tr>
+			<th>ID</th>
+			<td><?=T::input($model->getAttribute("id")); ?>
+			</td>
+			<td><?=T::error(); ?>
+			</td>
+		</tr>
 		<tr>
 			<th>Token</th>
 			<td><?=T::input($model->getAttribute("token")); ?>
@@ -12,8 +19,8 @@
 			</td>
 		</tr>
 		<tr>
-			<th>Int</th>
-			<td><?=T::input($model->getAttribute("inti")); ?>
+			<th>Advisor</th>
+			<td><?=T::select($model->getAttribute("a_id"), $advisors); ?>
 			</td>
 			<td><?=T::error(); ?>
 			</td>

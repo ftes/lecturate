@@ -1,6 +1,6 @@
 <?php T::setEditable(true); ?>
 
-<h1>Edit DocentLecture</h2>
+<h1>Edit DocentLecture</h1>
 	
 <form method="POST">
 <table>
@@ -14,10 +14,12 @@
 		<tr>
 			<th>Docent</th>
 			<td><?=T::select($model->getAttribute("d_id"), $docents); ?></td>
+			<td></td>
 		</tr>		
 		<tr>
 			<th>Lecture</th>
 			<td><?=T::select($model->getAttribute("l_id"), $lectures); ?></td>
+			<td></td>
 		</tr>
 		<tr>
 			<th></th>
