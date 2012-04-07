@@ -10,12 +10,12 @@ class Unique extends Constraint {
 		//Nothing changed? Still satisfied
 		if (count($this->getAlteredAttributes()) == 0) return false;
 		
-		$names = Util::enum($this->attributes, "getName");
+		$names = Util::enum($this->attributes, "getName", ",", "`", "`");
 		
 		$values = Util::getArray($this->attributes, "getValue");
 		$comps = Util::enum($this->attributes, "getComparator", " AND ");
 
-		$sql = Sql::execute("SELECT $names FROM $modelName WHERE $comps", $values);
+		$sql = Sql::execute("SELECT $names FROM `$modelName` WHERE $comps", $values);
 		
 		//If count > 0: not unique
 		if ($sql->getResult()->num_rows > 0)

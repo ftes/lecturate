@@ -95,7 +95,7 @@ abstract class Model {
 		$attrError = false;
 		
 		foreach ($this->attributes as $attribute)
-			if (! $attribute->isValid()) $attrError = true;
+			if (! $attribute->isValid()) $attrError = true;			
 		foreach ($this->constraints as $constraint) {
 			$error = $constraint->getError($this->name);
 			if ($error) $this->errors[$constraint->getName()] = $error;

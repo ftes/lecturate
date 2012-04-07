@@ -47,6 +47,7 @@ class T {
 		$nullable = $attribute->getNullable();
 		$value = "value=\"{$attribute->getValue()}\"";
 		$readonly = self::$editable ? "" : "readonly";
+		if ($attribute->getAutoIncrement()) $readonly = "readonly";
 		$inputUid = self::uid();
 		$id = "id=\"$inputUid\"";
 		$errorUid = self::uid();
@@ -69,7 +70,6 @@ class T {
 		} elseif ($attribute instanceof Int) {
 			$min = "min=\"{$attribute->getMin()}\"";
 			$max = "max=\"{$attribute->getMax()}\"";
-			if ($attribute->getAutoIncrement()) $readonly = "readonly";
 			$html = "<input $id type=\"number\" $name $min $max $readonly $value\>";
 		}
 		
