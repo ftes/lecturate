@@ -10,8 +10,8 @@ class ForeignKey extends Constraint{
 	}
 	
 	public function getSql() {
-		$attrs = Enum::enum($this->attributes, "getName", ",", "`", "`");
-		$refAttrs = Enum::enum($this->referencedAttributes, "getName", ",", "`", "`");
+		$attrs = Util::enum($this->attributes, "getName", ",", "`", "`");
+		$refAttrs = Util::enum($this->referencedAttributes, "getName", ",", "`", "`");
 		$refMod = $this->referencedModel->getName();
 		return "FOREIGN KEY ($attrs) REFERENCES `$refMod` ($refAttrs)";
 	}
@@ -26,17 +26,17 @@ class ForeignKey extends Constraint{
 		}
 		
 		//Valid FK?
-		$names = Enum::enum($this->referencedAttributes, "getName");
+		$names = Util::enum($this->referencedAttributes, "getName");
 		
-		$values = Enum::getArray($this->attributes, "getValue");
+		$values = Util::getArray($this->attributes, "getValue");
 		//we can use $this->attributes, as data format should be the same to FK table
-		$comps = Enum::enum($this->attributes, "getComparator", " AND ");
+		$comps = Util::enum($this->referencedAttributes, "getComparator", " AND ");
 		
 		
 		$refModName = $this->referencedModel->getName();
 		$sql = Sql::execute("SELECT $names FROM $refModName WHERE $comps", $values);
 
-		if ($sql->getResult()->num_rows < 1)
+		if (! $sql->getResult() || $sql->getResult()->num_rows < 1)
 			return "Foreign Key not satisfied";
 		
 		return false;

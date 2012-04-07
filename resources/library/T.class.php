@@ -84,6 +84,25 @@ class T {
 		return $html;
 	}
 	
+	public static function select(Attribute $attribute, array $options) {
+		$name = "name=\"model[{$attribute->getName()}]\"";
+		$nullable = $attribute->getNullable();
+		$value = "value=\"{$attribute->getValue()}\"";
+		$disabled = self::$editable ? "" : "disabled";
+		$size = "size=\"{count($options)}\"";
+		
+		$html = "<select $name $size $disabled>";
+		foreach ($options as $option) {
+			$pk = $option->getPrimaryKey()->getAttributes();
+			$optionValue = "value=\"{$pk[0]->getValue()}\"";
+			$selected = ($attribute->getValue() == $pk[0]->getValue()) ? "selected" : "";
+			$html .= "<option $optionValue $selected>{$option->toString()}</option>";
+		}
+		$html .= "</select";
+		
+		return $html;
+	}
+	
 	public static function error() {
 		$errorHTML = self::$errorHTML;
 		self::$errorHTML = "";

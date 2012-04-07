@@ -16,4 +16,5 @@
 <a href="<?=T::href("module", "index"); ?>">Module</a>
 <a href="<?=T::href("lecture", "index"); ?>">Lecture</a>
 <a href="<?=T::href("docent", "index"); ?>">Docent</a>
+<a href="<?=T::href("docent_lecture", "index"); ?>">DocentLecture</a>
 </div>

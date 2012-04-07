@@ -35,9 +35,9 @@ abstract class Model {
 
 	public function getSql() {
 		$sql = "CREATE TABLE `{$this->name}` (";
-		$sql .= Enum::enum($this->attributes, "getSql");
+		$sql .= Util::enum($this->attributes, "getSql");
 		$sql .= ",";
-		$sql .= Enum::enum($this->constraints, "getSql");
+		$sql .= Util::enum($this->constraints, "getSql");
 		$sql .= ");";
 
 		return $sql;
@@ -81,7 +81,7 @@ abstract class Model {
 	}
 
 	public function getAttrList() {
-		return Enum::enum($this->attributes, "getName");
+		return Util::enum($this->attributes, "getName");
 	}
 	
 	private function inSync() {
@@ -107,9 +107,9 @@ abstract class Model {
 		if ($this->new) {
 			$attrs = $this->getNonAutoIncrementAttributes();
 
-			$values = Enum::getArray($attrs, "getValue");
-			$names = Enum::enum($attrs, "getName");
-			$formatters = Enum::enum($attrs, "getFormatter", ",", "'", "'");
+			$values = Util::getArray($attrs, "getValue");
+			$names = Util::enum($attrs, "getName");
+			$formatters = Util::enum($attrs, "getFormatter", ",", "'", "'");
 
 			$sql = Sql::execute("INSERT INTO `$this->name` ($names) VALUES ($formatters)", $values);
 
@@ -124,11 +124,11 @@ abstract class Model {
 			}
 			//Update
 		} else {
-			$valuesOld = Enum::getArray($this->primaryKey->getAttributes(), "getOldValue");
-			$compsOld = Enum::enum($this->primaryKey->getAttributes(), "getComparator", " AND ");
+			$valuesOld = Util::getArray($this->primaryKey->getAttributes(), "getOldValue");
+			$compsOld = Util::enum($this->primaryKey->getAttributes(), "getComparator", " AND ");
 
-			$valuesNew = Enum::getArray($this->attributes, "getValue");
-			$setsNew = Enum::enum($this->attributes, "getComparator", ",");
+			$valuesNew = Util::getArray($this->attributes, "getValue");
+			$setsNew = Util::enum($this->attributes, "getComparator", ",");
 
 			$values = array_merge($valuesNew, $valuesOld);
 			$sql = Sql::execute("UPDATE `$this->name` SET $setsNew WHERE $compsOld",$values);
@@ -142,12 +142,16 @@ abstract class Model {
 		$this->inSync();
 		return true;
 	}
+	
+	public function getPrimaryKey() {
+		return $this->primaryKey;
+	}
 
 	public function delete() {
 		if ($this->new) return false;
 
-		$values = Enum::getArray($this->primaryKey->getAttributes(), "getValue");
-		$comps = Enum::enum($this->primaryKey->getAttributes(), "getComparator", " AND ");
+		$values = Util::getArray($this->primaryKey->getAttributes(), "getValue");
+		$comps = Util::enum($this->primaryKey->getAttributes(), "getComparator", " AND ");
 
 		$sql = Sql::execute("DELETE FROM `$this->name` WHERE $comps", $values);
 
@@ -164,6 +168,7 @@ abstract class Model {
 // 		if ($result->num_rows == 0) return array();
 
 		$arr = array();
+		$type = Util::camelCase($type);
 		while (($row = $result->fetch_assoc()) != null) {
 			$model = new $type;
 				

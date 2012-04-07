@@ -19,11 +19,12 @@ class DocentLecture extends Model {
 		$docent = new Docent();
 		$lecture = new Lecture();
 		$this->addConstraint(new ForeignKey(array($dId), $docent, array($docent->getAttribute("id"))));
-		$this->addConstraint(new ForeignKey(array($dId), $lecture, array($lecture->getAttribute("id"))));
+		$this->addConstraint(new ForeignKey(array($lId), $lecture, array($lecture->getAttribute("id"))));
 	}
 
 	public static function findById($id) {
-		$model = new self::$name;
+		$class = Util::camelCase(self::$name);
+		$model = new $class;
 
 		$query = "SELECT {$model->getAttrList()} FROM `" . self::$name . "` WHERE `id`='%d'";
 		$values = array($id);
@@ -33,11 +34,14 @@ class DocentLecture extends Model {
 	}
 	
 	public function toString() {
-		return $this->getValue("firstname")." ".$this->getValue("lastname");
+		$docent = Docent::findById($this->getValue("d_id"))->toString();
+		$lecture = Lecture::findById($this->getValue("l_id"))->toString();
+		return "$docent - $lecture";
 	}
 
 	public static function findAll() {
-		$model = new self::$name;
+		$class = Util::camelCase(self::$name);
+		$model = new $class;
 
 		$query = "SELECT {$model->getAttrList()} FROM `" . self::$name . "`";
 		$values = array();

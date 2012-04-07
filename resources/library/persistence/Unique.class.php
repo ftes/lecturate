@@ -2,7 +2,7 @@
 class Unique extends Constraint {
 	
 	public function getSql() {
-		$attrs = Enum::enum($this->attributes, "getName", "," ,"`", "`");
+		$attrs = Util::enum($this->attributes, "getName", "," ,"`", "`");
 		return "UNIQUE ($attrs)";
 	}
 
@@ -10,10 +10,10 @@ class Unique extends Constraint {
 		//Nothing changed? Still satisfied
 		if (count($this->getAlteredAttributes()) == 0) return false;
 		
-		$names = Enum::enum($this->attributes, "getName");
+		$names = Util::enum($this->attributes, "getName");
 		
-		$values = Enum::getArray($this->attributes, "getValue");
-		$comps = Enum::enum($this->attributes, "getComparator", " AND ");
+		$values = Util::getArray($this->attributes, "getValue");
+		$comps = Util::enum($this->attributes, "getComparator", " AND ");
 
 		$sql = Sql::execute("SELECT $names FROM $modelName WHERE $comps", $values);
 		

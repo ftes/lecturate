@@ -7,7 +7,7 @@ class PrimaryKey extends Unique{
 	}
 	
 	public function getSql() {
-		$attrs = Enum::enum($this->attributes, "getName", ",", "`", "`");
+		$attrs = Util::enum($this->attributes, "getName", ",", "`", "`");
 		return "PRIMARY KEY ($attrs)";
 	}
 }

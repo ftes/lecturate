@@ -1,6 +1,7 @@
 <?php
 function __autoload($class) {
 	$paths = array(CONTROLLERS_PATH, LIBRARY_PATH, PERSISTENCE_PATH, MODELS_PATH);
+	$class = Util::camelCase($class);
 	foreach ($paths as $path) {
 		if (file_exists($path . "/$class.class.php")) {
 			require_once($path . "/$class.class.php");
@@ -37,19 +38,37 @@ $config = array(
 		)
 	);
 
-function getDbConn() {
-	global $config;
+final class Util {
+	private function __construct() {}
 	
-	$dbConn = new mysqli($config["db"]["host"], $config["db"]["username"], $config["db"]["password"]);
-
-	if (mysqli_connect_errno()) {
-		throw new Exception("Connect failed}");
-		exit();
+	public static function enum(array $array, $function, $space=",", $left="", $right="") {
+		$string = "";
+		foreach ($array as $element) {
+			$string .= $left . call_user_func(array($element, $function)) . $right . $space;
+		}
+		$string = substr($string, 0, strlen($string) - strlen($space));
+		return $string;
 	}
-
-	$dbConn->select_db($config["db"]["dbname"]);
-
-	return $dbConn;
+	
+	public static function getArray(array $array, $function) {
+		$arr = array();
+		foreach ($array as $element) {
+			array_push($arr, call_user_func(array($element, $function)));
+		}
+		return $arr;
+	}
+	
+	public static function camelCase($string) {
+		$string = ucfirst($string);
+		while ($pos = strpos($string, "_")) {
+			if (substr($string, $pos, 1) == "_") {
+				$front = substr($string, 0, $pos);
+				$rear = ucfirst(substr($string, $pos+1));
+				$string = $front . $rear;
+			}
+		}
+		return $string;
+	}
 }
 
 /*
