@@ -21,7 +21,7 @@ class AdminController extends AbstractController {
 		
 		$dbConn->select_db($config["db"]["dbname"]);
 		
-		$models = array(new Lecture(), new Docent(), new DocentLecture(), new Advisor(), new Classs(), new Otpw(), new Rating());
+		$models = array(new Lecture(), new Docent(), new DocentLecture(), new Advisor(), new Classs(), new ClasssDocentLecture(), new Otpw(), new Rating());
 		foreach ($models as $model) {
 			$name = $model->getName();			
 			$sql = $model->getSql();
