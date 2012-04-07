@@ -1,6 +1,6 @@
 <?php T::setEditable(true); ?>
 
-<h1>Edit Docent</h1>
+<h1>Edit Advisor</h1>
 	
 <form method="POST">
 <table>

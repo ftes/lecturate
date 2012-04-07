@@ -1,5 +1,5 @@
 <?php
 require_once(realpath(dirname(__FILE__) . "/../resources/config.php"));
 
-$m = new Classs();
+$m = new Rating();
 echo $m->getSql();
