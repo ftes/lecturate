@@ -13,6 +13,10 @@ abstract class Model {
 
 		$this->name = $name;
 	}
+	
+	public static function getModels() {
+		return self::$models;
+	}
 
 	public function addAttribute(Attribute $attribute) {
 		if (array_key_exists($attribute->getName(), $this->attributes))
