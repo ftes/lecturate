@@ -20,11 +20,11 @@
 		</tr>
 		<tr>
 			<th>Einmal-PW</th>
-			<td><?=T::select($model->getAttribute("o_id"), $otpws); ?></td>
+			<td><?=T::select($model->getAttribute("o_id"), array($otpw)); ?></td>
 		</tr>
 		<tr>
 			<th>Dozent hält Vorlesung</th>
-			<td><?=T::select($model->getAttribute("dl_id"), $docentLectures); ?>
+			<td><?=T::select($model->getAttribute("dl_id"), array($docentLecture)); ?>
 			</td>
 		</tr>
 		<tr>
