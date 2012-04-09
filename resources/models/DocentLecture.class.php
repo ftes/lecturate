@@ -15,7 +15,7 @@ class DocentLecture extends Model {
 		$this->addAttribute($lId);
 
 		$this->addConstraint(new PrimaryKey(array($id)));
-		$this->addConstraint(new Unique("Docent holds Lecture", array($dId, $lId)));
+		$this->addConstraint(new Unique("Dozent hält Vorlesung", array($dId, $lId)));
 		$docent = new Docent();
 		$lecture = new Lecture();
 		$this->addConstraint(new ForeignKey(array($dId), $docent, array($docent->getAttribute("id"))));

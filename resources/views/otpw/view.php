@@ -28,7 +28,7 @@
 			<td><?=$model->getAttribute("created")->getValue(); ?></td>
 		</tr>
 		<tr>
-			<th>Verwendetn (wann)</th>
+			<th>Verwendet (wann)</th>
 			<td><?=$model->getAttribute("used_ts")->getValue(); ?></td>
 		</tr>
 	</table>

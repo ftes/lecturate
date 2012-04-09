@@ -19,7 +19,7 @@ class Advisor extends Model {
 		$this->addAttribute($lastname);
 
 		$this->addConstraint(new PrimaryKey(array($id)));
-		$this->addConstraint(new Unique("UserName", array($username)));
+		$this->addConstraint(new Unique("Benutzername", array($username)));
 		$this->addConstraint(new Unique("Name", array($firstname, $lastname)));
 	}
 
