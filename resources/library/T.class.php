@@ -68,7 +68,7 @@ class T {
 			$maxlength = $max ? "maxlength=\"$max\"" : "";
 			
 			$onchange .= "";
-			if ($min) $onchange .= "if (value.length < $min) error += 'Too short (min. $min)';";
+			if ($min) $onchange .= "if (value.length < $min) error += 'Zu kurz (min. $min)';";
 			$onchange .= $onchangeEnd;
 
 			$html = "<input $id type=\"text\" $name $maxlength $readonly $onchange $value>";
