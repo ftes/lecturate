@@ -4,6 +4,7 @@
 	<tr>
 		<th>ID</th>
 		<th>Token</th>
+		<th>Size</th>
 		<th>Advisor</th>
 		<th></th>
 		<th></th>
@@ -13,6 +14,7 @@
 	<tr>
 		<td><?=$model->getValue("id"); ?></td>
 		<td><?=$model->getValue("token"); ?></td>
+		<td><?=$model->getValue("size"); ?></td>
 		<td><?=$advisors[$model->getValue("id")]; ?></td>
 		<td><a href="<?=T::href("classs", "view", array("id"=>$model->getValue("id"))); ?>">View</a></td>
 		<td><a href="<?=T::href("classs", "edit", array("id"=>$model->getValue("id"))); ?>">Edit</a></td>

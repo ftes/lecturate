@@ -9,9 +9,11 @@ class Classs extends Model {
 
 		$id = new Int("id", false, true, 0, false);
 		$token = new Varchar("token", false, 2, 30);
+		$size = new Int("size", false, false, 1, false);
 		$aId = new Int("a_id", false, false, 0, false);
 		$this->addAttribute($id);
 		$this->addAttribute($token);
+		$this->addAttribute($size);
 		$this->addAttribute($aId);
 
 		$this->addConstraint(new PrimaryKey(array($id)));

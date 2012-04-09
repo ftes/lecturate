@@ -12,6 +12,13 @@
 			</td>
 		</tr>
 		<tr>
+			<th>Size</th>
+			<td><?=T::input($model->getAttribute("size")); ?>
+			</td>
+			<td><?=T::error(); ?>
+			</td>
+		</tr>
+		<tr>
 			<th>Advisor</th>
 			<td><?=T::select($model->getAttribute("a_id"), $advisors); ?>
 			</td>

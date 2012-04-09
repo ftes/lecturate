@@ -13,7 +13,12 @@
 			<th>Token</th>
 			<td><?=T::input($model->getAttribute("token")); ?>
 			</td>
-		</tr>		
+		</tr>
+		<tr>
+			<th>Size</th>
+			<td><?=T::input($model->getAttribute("size")); ?>
+			</td>
+		</tr>			
 		<tr>
 			<th>Advisor</th>
 			<td><?=T::select($model->getAttribute("a_id"), array($advisor)); ?>
