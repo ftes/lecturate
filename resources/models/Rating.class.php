@@ -24,7 +24,7 @@ class Rating extends Model {
 		$this->addConstraint(new Unique("OTPW", array($oId)));
 		$otpw = new Otpw();
 		$docentLecture = new DocentLecture();
-		$this->addConstraint(new ForeignKey(array($oId), $otpw, array($otpw->getAttribute("id"))));
+		$this->addConstraint(new ForeignKey(array($oId, $dlId), $otpw, array($otpw->getAttribute("id"), $otpw->getAttribute("dl_id"))));
 		$this->addConstraint(new ForeignKey(array($dlId), $docentLecture, array($docentLecture->getAttribute("id"))));
 	}
 

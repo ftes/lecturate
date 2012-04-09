@@ -46,21 +46,17 @@ class RatingController extends AbstractController {
 		if (get($_POST, T::SAVE, false)) {
 			foreach ($_POST["model"] as $key => $value)
 				$model->setValue($key, $value);
-			
+				
 			$otpw = Otpw::findById($model->getValue("o_id"));
-			if ($otpw->getValue("dl_id") != $model->getValue("dl_id")) {
-				$flash = "OTPW is not meant for this DocentLecture";
-			}else {
-				if ($model->persist()) {
-					$otpw->setUsed();
-					$otpw->persist();
-					self::index($_GET, $_POST, "Rating \"{$model->toString()}\" was saved");
-					die();
-				} else {
-					$flash = "Rating could not be saved";
-					foreach ($model->getErrors() as $name => $error)
-						$flash .= "<br> - $name: $error";
-				}
+			if ($model->persist()) {
+				$otpw->setUsed();
+				$otpw->persist();
+				self::index($_GET, $_POST, "Rating \"{$model->toString()}\" was saved");
+				die();
+			} else {
+				$flash = "Rating could not be saved";
+				foreach ($model->getErrors() as $name => $error)
+					$flash .= "<br> - $name: $error";
 			}
 		} elseif (get($_POST, T::CANCEL, false))
 		self::index($_GET, $_POST);
@@ -76,60 +72,60 @@ class RatingController extends AbstractController {
 		T::render("rating/create.php", "rating/nav.php", $variables);
 	}
 
-// 	public static function edit(array $_GET, array $_POST, $flash=false) {
-// 		$model = false;
+	// 	public static function edit(array $_GET, array $_POST, $flash=false) {
+	// 		$model = false;
 
-// 		if (get($_POST, T::SAVE, false)) {
-// 			$model = Rating::findById($_POST["model"]["id"]);
+	// 		if (get($_POST, T::SAVE, false)) {
+	// 			$model = Rating::findById($_POST["model"]["id"]);
 
-// 			foreach ($_POST["model"] as $key => $value)
-// 				$model->setValue($key, $value);
+	// 			foreach ($_POST["model"] as $key => $value)
+		// 				$model->setValue($key, $value);
 
-// 			$otpw = Otpw::findById($model->getValue("o_id"));
-// 			if ($otpw->getValue("dl_id") != $model->getValue("dl_id")) {
-// 				$flash = "OTPW is not meant for this DocentLecture";
-// 			} else {
-					
-// 				if ($model->persist()) {
-// 					self::index($_GET, $_POST, "Rating \"{$model->toString()}\" was saved");
-// 					die();
-// 				} else {
-// 					$flash = "Rating could not be saved";
-// 					foreach ($model->getErrors() as $name => $error)
-// 						$flash .= "<br> - $name: $error";
-// 				}
-// 			}
-// 		} elseif (get($_POST, T::CANCEL, false))
-// 		self::index($_GET, $_POST);
-// 		elseif ($id = get($_GET, "id", false))
-// 		$model = Rating::findById($id);
+		// 			$otpw = Otpw::findById($model->getValue("o_id"));
+		// 			if ($otpw->getValue("dl_id") != $model->getValue("dl_id")) {
+		// 				$flash = "OTPW is not meant for this DocentLecture";
+		// 			} else {
+				
+			// 				if ($model->persist()) {
+			// 					self::index($_GET, $_POST, "Rating \"{$model->toString()}\" was saved");
+			// 					die();
+			// 				} else {
+			// 					$flash = "Rating could not be saved";
+			// 					foreach ($model->getErrors() as $name => $error)
+				// 						$flash .= "<br> - $name: $error";
+				// 				}
+				// 			}
+				// 		} elseif (get($_POST, T::CANCEL, false))
+				// 		self::index($_GET, $_POST);
+				// 		elseif ($id = get($_GET, "id", false))
+				// 		$model = Rating::findById($id);
 
-// 		if (! $model) {
-// 			self::index($_GET, $_POST, "Rating could not be found");
-// 			die();
-// 		}
+				// 		if (! $model) {
+				// 			self::index($_GET, $_POST, "Rating could not be found");
+				// 			die();
+				// 		}
 
-// 		$otpws = Otpw::findAll();
-// 		$docentLectures = DocentLecture::findAll();
+				// 		$otpws = Otpw::findAll();
+				// 		$docentLectures = DocentLecture::findAll();
 
-// 		$variables = array(
-// 				"otpws" => $otpws,
-// 				"docentLectures" => $docentLectures,
-// 				"flash" => $flash,
-// 				"model" => $model);
-// 		T::render("rating/edit.php", "rating/nav.php", $variables);
-// 	}
+				// 		$variables = array(
+						// 				"otpws" => $otpws,
+						// 				"docentLectures" => $docentLectures,
+						// 				"flash" => $flash,
+						// 				"model" => $model);
+				// 		T::render("rating/edit.php", "rating/nav.php", $variables);
+				// 	}
 
 
-	public static function delete(array $_GET, array $_POST, $flash=false) {
-		if ($id = get($_GET, "id", false)) {
-			$model = Rating::findById($id);
-			if ($model && $model->delete())
-				$flash = "Rating {$model->toString()} was deleted";
-			else $flash = "Couldn't delete rating";
-		}
+				public static function delete(array $_GET, array $_POST, $flash=false) {
+					if ($id = get($_GET, "id", false)) {
+						$model = Rating::findById($id);
+						if ($model && $model->delete())
+							$flash = "Rating {$model->toString()} was deleted";
+						else $flash = "Couldn't delete rating";
+					}
 
-		self::index($_GET, $_POST, $flash);
-	}
+					self::index($_GET, $_POST, $flash);
+				}
 }
 ?>

@@ -16,12 +16,6 @@
 			<td><?=T::error(); ?></td>
 		</tr>
 		<tr>
-			<th>Used</th>
-			<td><?=T::select($model->getAttribute("used"), $usedOptions, true); ?>
-			</td>
-			<td><?=T::error(); ?></td>
-		</tr>
-		<tr>
 			<th></th>
 			<td><?=T::button(T::CANCEL) ?> <?=T::button(T::SAVE) ?>
 			</td>
