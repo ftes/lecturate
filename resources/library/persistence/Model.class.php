@@ -41,7 +41,7 @@ abstract class Model {
 		$sql = "CREATE TABLE `{$this->name}` (";
 		$sql .= Util::enum($this->attributes, "getSql");
 		$sql .= ",";
-		$sql .= Util::enum($this->constraints, "getSql");
+		$sql .= Util::enum($this->constraints, "getSql", ",", "", "", false);
 		$sql .= ");";
 
 		return $sql;
@@ -118,7 +118,7 @@ abstract class Model {
 			$sql = Sql::execute("INSERT INTO `$this->name` ($names) VALUES ($formatters)", $values);
 
 			if ($sql->getResult() == false) {
-				$this->errors["Persistance"] = "Error when persisting";
+				$this->errors["Persistance"] = "Fehler beim Speichern";
 				return false;
 			}
 
@@ -138,7 +138,7 @@ abstract class Model {
 			$sql = Sql::execute("UPDATE `$this->name` SET $setsNew WHERE $compsOld",$values);
 
 			if ($sql->getResult() == false) {
-				$this->errors["Persistance"] = "Error when persisting";
+				$this->errors["Persistance"] = "Fehler beim Speichern";
 				return false;
 			}
 		}

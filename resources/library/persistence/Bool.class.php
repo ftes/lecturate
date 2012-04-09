@@ -24,13 +24,13 @@ class Bool extends Attribute {
 		$this->errors = array();
 		if (is_null($this->value)) {
 			if (! $this->nullable && ! $this->autoIncrement)
-				array_push($this->errors, "Cannot be empty");
+				array_push($this->errors, "Darf nicht leer sein");
 		} else {
 			if ($this->value != "0" && intval($this->value) == 0) {
-				array_push($this->errors, "'$this->value' is neither true nor false");
+				array_push($this->errors, "Weder wahr noch falsch");
 			} else {
 				$value = intval($this->value);
-				if ($this->value != 0 && $this->value != 1) array_push($this->errors, "Neither true nor false");
+				if ($this->value != 0 && $this->value != 1) array_push($this->errors, "Weder wahr noch falsch");
 			}
 		}
 	}

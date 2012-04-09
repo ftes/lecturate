@@ -19,7 +19,7 @@ class Unique extends Constraint {
 		
 		//If count > 0: not unique
 		if ($sql->getResult()->num_rows > 0)
-			return "Already exists";
+			return "existiert bereits";
 		
 		return false;
 	}

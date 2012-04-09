@@ -41,10 +41,12 @@ $config = array(
 final class Util {
 	private function __construct() {}
 	
-	public static function enum(array $array, $function, $space=",", $left="", $right="") {
+	public static function enum(array $array, $function, $space=",", $left="", $right="", $blanks=true) {
 		$string = "";
 		foreach ($array as $element) {
-			$string .= $left . call_user_func(array($element, $function)) . $right . $space;
+			$result = call_user_func(array($element, $function));
+			if ($result != "" || $blanks) 
+				$string .= $left . $result . $right . $space;
 		}
 		$string = substr($string, 0, strlen($string) - strlen($space));
 		return $string;

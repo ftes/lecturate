@@ -20,22 +20,22 @@ class AdvisorController extends AbstractController {
 			die();
 		}
 	
-		$flash = "Advisor not found";
+		$flash = "SGL konnte nicht gefunden werden";
 		self::index($_GET, $_POST, $flash);
 	}
 	
 	public static function create(array $_GET, array $_POST, $flash=false) {
 		$model = new Advisor();
 
-		if (get($_POST, T::SAVE, false)) {
+		if (get($_POST, T::SUBMIT, false)) {
 			foreach ($_POST["model"] as $key => $value)
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, "Advisor \"{$model->toString()}\" was saved");
+				self::index($_GET, $_POST, "SGL \"{$model->toString()}\" wurde gespeichert");
 				die();
 			} else {
-				$flash = "Advisor could not be saved";
+				$flash = "SGL konnte nicht gespeichert werden";
 				foreach ($model->getErrors() as $name => $error)
 					$flash .= "<br> - $name: $error";
 			}			
@@ -51,17 +51,17 @@ class AdvisorController extends AbstractController {
 	public static function edit(array $_GET, array $_POST, $flash=false) {
 		$model = false;
 		
-		if (get($_POST, T::SAVE, false)) {
+		if (get($_POST, T::SUBMIT, false)) {
 			$model = Advisor::findById($_POST["model"]["id"]);
 			
 			foreach ($_POST["model"] as $key => $value)
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, "Advisor \"{$model->toString()}\" was saved");
+				self::index($_GET, $_POST, "SGL \"{$model->toString()}\" wurde gespeichert");
 				die();
 			} else {
-				$flash = "Advisor could not be saved";
+				$flash = "SGL konnte nicht gespeichert werden";
 				foreach ($model->getErrors() as $name => $error)
 					$flash .= "<br> - $name: $error";
 			}			
@@ -71,7 +71,7 @@ class AdvisorController extends AbstractController {
 			$model = Advisor::findById($id);
 		
 		if (! $model) {
-			self::index($_GET, $_POST, "Advisor could not be found");
+			self::index($_GET, $_POST, "SGL konnte nicht gefunden werden");
 			die();
 		}
 		$variables = array(
@@ -84,8 +84,8 @@ class AdvisorController extends AbstractController {
 		if ($id = get($_GET, "id", false)) {
 			$model = Advisor::findById($id);
 			if ($model && $model->delete())
-				$flash = "Advisor {$model->toString()} was deleted";
-			else $flash = "Couldn't delete advisor";
+				$flash = "SGL {$model->toString()} wurde gelöscht";
+			else $flash = "SGL konnte nicht gelöscht werden";
 		}
 		
 		self::index($_GET, $_POST, $flash);		

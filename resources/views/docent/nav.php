@@ -1,2 +1,2 @@
-<a href="<?=T::href("docent", "index") ?>">Index</a><br>
-<a href="<?=T::href("docent", "create") ?>">Create</a><br>
+<?=T::iconButton(T::CREATE, "Hinzufügen", "docent", "create") ?>
+<?=T::iconButton(T::INDEX, "Liste", "docent") ?>

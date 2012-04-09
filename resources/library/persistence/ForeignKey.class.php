@@ -37,7 +37,7 @@ class ForeignKey extends Constraint{
 		$sql = Sql::execute("SELECT $names FROM $refModName WHERE $comps", $values);
 
 		if (! $sql->getResult() || $sql->getResult()->num_rows < 1)
-			return "Foreign Key not satisfied";
+			return "existiert nicht";
 		
 		return false;
 	}	

@@ -1,2 +1,2 @@
-<a href="<?=T::href("rating", "index") ?>">Index</a><br>
-<a href="<?=T::href("rating", "create") ?>">Create</a><br>
+<?=T::iconButton(T::CREATE, "Hinzufügen", "rating", "create") ?>
+<?=T::iconButton(T::INDEX, "Liste", "rating") ?>

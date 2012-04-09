@@ -21,7 +21,7 @@ class Otpw extends Model {
 		$this->addAttribute($usedTs);
 
 		$this->addConstraint(new PrimaryKey(array($id)));
-		$this->addConstraint(new Unique("OTPW", array($otpw)));
+		$this->addConstraint(new Unique("Einmal-PW", array($otpw)));
 		$docentLecture = new DocentLecture();
 		$this->addConstraint(new ForeignKey(array($dlId), $docentLecture, array($docentLecture->getAttribute("id"))));
 	}

@@ -3,7 +3,13 @@ require_once(realpath(dirname(__FILE__) . "/../config.php"));
 
 class T {
 	const CANCEL = "cancel";
-	const SAVE = "submit";
+	const SUBMIT = "submit";
+	
+	const VIEW = "view";
+	const EDIT = "edit";
+	const DELETE = "delete";
+	const CREATE= "create";
+	const INDEX = "index";
 	
 	private static $errorHTML = "";
 
@@ -117,17 +123,21 @@ class T {
 		
 	}
 
-	public static function button($type) {
-		$value = ucfirst($type);
-		return "<input type='submit' name='$type' value='$value'>";
+	public static function button($type, $text) {
+		return "<button type=\"submit\" name=\"$type\" value=\"$type\" class=\"button text $type\">$text</button>";
 	}
 	
-	public static function href($controller, $action, $array=array()) {
+	public static function href($controller, $action="index", $array=array()) {
 		$string = "";
 		foreach ($array as $key => $value)
 			$string .= "&$key=$value";
 		
 		return "controller.php?controller=$controller&action=$action" . $string;
+	}
+	
+	public static function iconButton($icon, $text, $controller, $action="index", $array=array()) {
+		$type = $text == false ? "notext" : "text";
+		return "<a href=\"" . self::href($controller, $action, $array) . "\" class=\"button $type $icon\">$text</a>";
 	}
 }
 ?>

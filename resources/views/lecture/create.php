@@ -1,11 +1,11 @@
 <?php T::setEditable(true); ?>
 
-<h1>Create Lecture</h1>
+<h1>Vorlesung hinzufügen</h1>
 
 <form method="POST">
-<table>
+	<table>
 		<tr>
-			<th>Token</th>
+			<th>Kürzel</th>
 			<td><?=T::input($model->getAttribute("token")); ?>
 			</td>
 			<td><?=T::error(); ?>
@@ -18,12 +18,7 @@
 			<td><?=T::error(); ?>
 			</td>
 		</tr>
-		<tr>
-			<th></th>
-			<td><?=T::button(T::CANCEL) ?>
-				<?=T::button(T::SAVE) ?>
-			</td>
-			<td></td>
-		</tr>
-</table>
+	</table>
+	<?=T::button(T::CANCEL, "Abbrechen"); ?>
+	<?=T::button(T::SUBMIT, "Speichern"); ?>
 </form>

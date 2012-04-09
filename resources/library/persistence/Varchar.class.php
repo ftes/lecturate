@@ -26,13 +26,13 @@ class Varchar extends Attribute {
 		$this->errors = array();
 		if (is_null($this->value)) {
 			if (! $this->nullable)
-				array_push($this->errors, "Cannot be empty");
+				array_push($this->errors, "Darf nicht leer sein");
 		} else {
 			if (! is_string($this->value)) {
-				array_push($this->errors, "'$this->value' is not a text");
+				array_push($this->errors, "Ist kein Text");
 			} else {
-				if ($this->maxLength && strlen($this->value) > $this->maxLength) array_push($this->errors, "Too long (max. {$this->maxLength})");
-				if ($this->minLength && strlen($this->value) < $this->minLength) array_push($this->errors, "Too short (min. {$this->minLength})");
+				if ($this->maxLength && strlen($this->value) > $this->maxLength) array_push($this->errors, "Zu lang (max. {$this->maxLength})");
+				if ($this->minLength && strlen($this->value) < $this->minLength) array_push($this->errors, "Zu kurz (min. {$this->minLength})");
 			}
 		}
 	}

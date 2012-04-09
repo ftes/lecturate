@@ -1,11 +1,11 @@
-<h1>Classes</h1>
+<h1>Kurse</h1>
 
 <table>
 	<tr>
 		<th>ID</th>
-		<th>Token</th>
-		<th>Size</th>
-		<th>Advisor</th>
+		<th>Kürzel</th>
+		<th>Größe</th>
+		<th>Studiengangsleiter</th>
 		<th></th>
 		<th></th>
 		<th></th>
@@ -16,9 +16,9 @@
 		<td><?=$model->getValue("token"); ?></td>
 		<td><?=$model->getValue("size"); ?></td>
 		<td><?=$advisors[$model->getValue("id")]; ?></td>
-		<td><a href="<?=T::href("classs", "view", array("id"=>$model->getValue("id"))); ?>">View</a></td>
-		<td><a href="<?=T::href("classs", "edit", array("id"=>$model->getValue("id"))); ?>">Edit</a></td>
-		<td><a href="<?=T::href("classs", "delete", array("id"=>$model->getValue("id"))); ?>">X</a></td>
+		<td><?=T::iconButton(T::VIEW, false, "classs", "view", array("id"=>$model->getValue("id")))?></td>
+		<td><?=T::iconButton(T::EDIT, false, "classs", "edit", array("id"=>$model->getValue("id")))?></td>
+		<td><?=T::iconButton(T::DELETE, false, "classs", "delete", array("id"=>$model->getValue("id")))?></td>
 	</tr>
 	<?php endforeach; ?>
 </table>

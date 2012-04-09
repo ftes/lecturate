@@ -17,7 +17,7 @@ class Classs extends Model {
 		$this->addAttribute($aId);
 
 		$this->addConstraint(new PrimaryKey(array($id)));
-		$this->addConstraint(new Unique("Token", array($token)));
+		$this->addConstraint(new Unique("Kürzel", array($token)));
 		$advisor = new Advisor();
 		$this->addConstraint(new ForeignKey(array($aId), $advisor, array($advisor->getAttribute("id"))));
 	}

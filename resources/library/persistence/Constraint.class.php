@@ -1,6 +1,6 @@
 <?php
 abstract class Constraint {
-	private $name;
+	protected $name;
 	protected $attributes;
 	
 	public function __construct($name, array $attributes) {

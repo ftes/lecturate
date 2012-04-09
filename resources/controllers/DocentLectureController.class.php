@@ -37,22 +37,22 @@ class DocentLectureController extends AbstractController {
 			die();
 		}
 	
-		$flash = "DocentLecture not found";
+		$flash = "Dozent hält Vorlesung konnte nicht gefunden werden";
 		self::index($_GET, $_POST, $flash);
 	}
 	
 	public static function create(array $_GET, array $_POST, $flash=false) {
 		$model = new DocentLecture();
 
-		if (get($_POST, T::SAVE, false)) {
+		if (get($_POST, T::SUBMIT, false)) {
 			foreach ($_POST["model"] as $key => $value)
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, "DocentLecture \"{$model->toString()}\" was saved");
+				self::index($_GET, $_POST, "Dozent hält Vorlesung \"{$model->toString()}\" wurde gespeichert");
 				die();
 			} else {
-				$flash = "DocentLecture could not be saved";
+				$flash = "Dozent hält Vorlesung konnte nicht gespeichert werden";
 				foreach ($model->getErrors() as $name => $error)
 					$flash .= "<br> - $name: $error";
 			}			
@@ -73,17 +73,17 @@ class DocentLectureController extends AbstractController {
 	public static function edit(array $_GET, array $_POST, $flash=false) {
 		$model = false;
 		
-		if (get($_POST, T::SAVE, false)) {
+		if (get($_POST, T::SUBMIT, false)) {
 			$model = DocentLecture::findById($_POST["model"]["id"]);
 			
 			foreach ($_POST["model"] as $key => $value)
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, "DocentLecture \"{$model->toString()}\" was saved");
+				self::index($_GET, $_POST, "Dozent hält Vorlesung \"{$model->toString()}\" wurde gespeichert");
 				die();
 			} else {
-				$flash = "DocentLecture could not be saved";
+				$flash = "Dozent hält Vorlesung konnte nicht gespeichert werden";
 				foreach ($model->getErrors() as $name => $error)
 					$flash .= "<br> - $name: $error";
 			}			
@@ -93,7 +93,7 @@ class DocentLectureController extends AbstractController {
 			$model = DocentLecture::findById($id);
 		
 		if (! $model) {
-			self::index($_GET, $_POST, "DocentLecture could not be found");
+			self::index($_GET, $_POST, "Dozent hält Vorlesung konnte nicht gefunden werden");
 			die();
 		}
 		
@@ -112,8 +112,8 @@ class DocentLectureController extends AbstractController {
 		if ($id = get($_GET, "id", false)) {
 			$model = DocentLecture::findById($id);
 			if ($model && $model->delete())
-				$flash = "DocentLecture {$model->toString()} was deleted";
-			else $flash = "Couldn't delete DocentLecture";
+				$flash = "Dozent hält Vorlesung {$model->toString()} wurde gelöscht";
+			else $flash = "Dozent hält Vorlesung konnte nicht gelöscht werden";
 		}
 		
 		self::index($_GET, $_POST, $flash);		

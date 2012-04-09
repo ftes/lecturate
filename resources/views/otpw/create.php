@@ -1,25 +1,21 @@
 <?php T::setEditable(true); ?>
 
-<h1>Create OTPW</h1>
+<h1>Einmal-PW hinzufügen</h1>
 
 <form method="POST">
 	<table>
 		<tr>
-			<th>OTPW</th>
+			<th>Einmal-PW</th>
 			<td><?=T::input($model->getAttribute("otpw")); ?></td>
 			<td><?=T::error(); ?></td>
 		</tr>
 		<tr>
-			<th>DocentLecture</th>
+			<th>Dozent hält Vorlesung</th>
 			<td><?=T::select($model->getAttribute("dl_id"), $docentLectures); ?>
 			</td>
 			<td><?=T::error(); ?></td>
 		</tr>
-		<tr>
-			<th></th>
-			<td><?=T::button(T::CANCEL) ?> <?=T::button(T::SAVE) ?>
-			</td>
-			<td></td>
-		</tr>
 	</table>
+	<?=T::button(T::CANCEL, "Abbrechen"); ?>
+	<?=T::button(T::SUBMIT, "Speichern"); ?>
 </form>

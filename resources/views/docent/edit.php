@@ -1,6 +1,6 @@
 <?php T::setEditable(true); ?>
 
-<h1>Edit Docent</h1>
+<h1>Dozent bearbeiten</h1>
 	
 <form method="POST">
 <table>
@@ -12,25 +12,20 @@
 			</td>
 		</tr>
 		<tr>
-			<th>First name</th>
+			<th>Vorname</th>
 			<td><?=T::input($model->getAttribute("firstname")); ?>
 			</td>
 			<td><?=T::error(); ?>
 			</td>
 		</tr>
 		<tr>
-			<th>Last name</th>
+			<th>Nachname</th>
 			<td><?=T::input($model->getAttribute("lastname")); ?>
 			</td>
 			<td><?=T::error(); ?>
 			</td>
 		</tr>
-		<tr>
-			<th></th>
-			<td><?=T::button(T::CANCEL) ?>
-				<?=T::button(T::SAVE) ?>
-			</td>
-			<td></td>
-		</tr>
 </table>
+	<?=T::button(T::CANCEL, "Abbrechen"); ?>
+	<?=T::button(T::SUBMIT, "Speichern"); ?>
 </form>

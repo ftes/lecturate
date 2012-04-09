@@ -1,9 +1,9 @@
 <?php T::setEditable(true); ?>
 
-<h1>Edit DocentLecture</h1>
-	
+<h1>Dozent hält Vorlesung bearbeiten</h1>
+
 <form method="POST">
-<table>
+	<table>
 		<tr>
 			<th>ID</th>
 			<td><?=T::input($model->getAttribute("id")); ?>
@@ -12,21 +12,16 @@
 			</td>
 		</tr>
 		<tr>
-			<th>Docent</th>
+			<th>Dozent</th>
 			<td><?=T::select($model->getAttribute("d_id"), $docents); ?></td>
 			<td></td>
-		</tr>		
+		</tr>
 		<tr>
-			<th>Lecture</th>
+			<th>Vorlesung</th>
 			<td><?=T::select($model->getAttribute("l_id"), $lectures); ?></td>
 			<td></td>
 		</tr>
-		<tr>
-			<th></th>
-			<td><?=T::button(T::CANCEL) ?>
-				<?=T::button(T::SAVE) ?>
-			</td>
-			<td></td>
-		</tr>
-</table>
+	</table>
+	<?=T::button(T::CANCEL, "Abbrechen"); ?>
+	<?=T::button(T::SUBMIT, "Speichern"); ?>
 </form>

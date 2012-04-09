@@ -1,2 +1,2 @@
-<a href="<?=T::href("otpw", "index") ?>">Index</a><br>
-<a href="<?=T::href("otpw", "create") ?>">Create</a><br>
+<?=T::iconButton(T::CREATE, "Hinzufügen", "otpw", "create") ?>
+<?=T::iconButton(T::INDEX, "Liste", "otpw") ?>

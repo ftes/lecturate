@@ -34,7 +34,7 @@ class Advisor extends Model {
 	}
 	
 	public function toString() {
-		return $this->getValue("username");
+		return $this->getValue("firstname") . " " . $this->getValue("lastname");
 	}
 
 	public static function findAll() {

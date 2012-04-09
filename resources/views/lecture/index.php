@@ -1,9 +1,9 @@
-<h1>Lectures</h1>
+<h1>Vorlesungen</h1>
 
 <table>
 	<tr>
 		<th>ID</th>
-		<th>Token</th>
+		<th>Kürzel</th>
 		<th>Name</th>
 		<th></th>
 		<th></th>
@@ -14,9 +14,9 @@
 		<td><?=$model->getValue("id"); ?></td>
 		<td><?=$model->getValue("token"); ?></td>
 		<td><?=$model->getValue("name"); ?></td>
-		<td><a href="<?=T::href("lecture", "view", array("id"=>$model->getValue("id"))); ?>">View</a></td>
-		<td><a href="<?=T::href("lecture", "edit", array("id"=>$model->getValue("id"))); ?>">Edit</a></td>
-		<td><a href="<?=T::href("lecture", "delete", array("id"=>$model->getValue("id"))); ?>">X</a></td>
+		<td><?=T::iconButton(T::VIEW, false, "lecture", "view", array("id"=>$model->getValue("id")))?></td>
+		<td><?=T::iconButton(T::EDIT, false, "lecture", "edit", array("id"=>$model->getValue("id")))?></td>
+		<td><?=T::iconButton(T::DELETE, false, "lecture", "delete", array("id"=>$model->getValue("id")))?></td>
 	</tr>
 	<?php endforeach; ?>
 </table>

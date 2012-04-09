@@ -1,1 +1,1 @@
-<a href="<?=T::href("admin", "initdb") ?>">Init DB</a>
+<?=T::iconButton(false, "DB initialisieren", "admin", "initdb")?>

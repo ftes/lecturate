@@ -8,7 +8,7 @@ class Rating extends Model {
 		parent::__construct(self::$name);
 
 		$id = new Int("id", false, true, 0, false);
-		$mark = new Int("mark", false, false, 0, 10);
+		$mark = new Int("mark", false, false, 1, 10);
 		$created = new Timestamp("created", true, false);
 		$oId = new Int("o_id", false, false, 0, false);
 		$dlId = new Int("dl_id", false, false, 0, false);
@@ -21,10 +21,11 @@ class Rating extends Model {
 		$this->addAttribute($comment);
 
 		$this->addConstraint(new PrimaryKey(array($id)));
-		$this->addConstraint(new Unique("OTPW", array($oId)));
+		$this->addConstraint(new Unique("Einmal-PW", array($oId)));
 		$otpw = new Otpw();
 		$docentLecture = new DocentLecture();
-		$this->addConstraint(new ForeignKey(array($oId, $dlId), $otpw, array($otpw->getAttribute("id"), $otpw->getAttribute("dl_id"))));
+		$this->addConstraint(new ForeignKey(array($oId), $otpw, array($otpw->getAttribute("id"))));
+		$this->addConstraint(new ForeignRow(array($oId, $dlId), $otpw, array($otpw->getAttribute("id"), $otpw->getAttribute("dl_id"))));
 		$this->addConstraint(new ForeignKey(array($dlId), $docentLecture, array($docentLecture->getAttribute("id"))));
 	}
 

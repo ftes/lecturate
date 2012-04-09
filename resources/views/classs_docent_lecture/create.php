@@ -1,22 +1,18 @@
 <?php T::setEditable(true); ?>
 
-<h1>Create ClassDocentLecture</h1>
+<h1>Kurs hört gehaltene Vorlesung hinzufügen</h1>
 
 <form method="POST">
 <table>
 		<tr>
-			<th>Class</th>
+			<th>Kurs</th>
 			<td><?=T::select($model->getAttribute("c_id"), $classses); ?></td>
 		</tr>		
 		<tr>
-			<th>DocentLecture</th>
+			<th>Dozent hält Vorlesung</th>
 			<td><?=T::select($model->getAttribute("dl_id"), $docentLectures); ?></td>
 		</tr>
-		<tr>
-			<th></th>
-			<td><?=T::button(T::CANCEL) ?>
-				<?=T::button(T::SAVE) ?>
-			</td>
-		</tr>
 </table>
+	<?=T::button(T::CANCEL, "Abbrechen"); ?>
+	<?=T::button(T::SUBMIT, "Speichern"); ?>
 </form>

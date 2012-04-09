@@ -1,6 +1,6 @@
 <?php T::setEditable(false); ?>
 
-<h1>View Lecture</h1>
+<h1>Vorlesung anzeigen</h1>
 
 <form method="POST">
 <table>
@@ -10,7 +10,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th>Token</th>
+			<th>Kürzel</th>
 			<td><?=T::input($model->getAttribute("token")); ?>
 			</td>
 		</tr>		
@@ -20,7 +20,6 @@
 			</td>
 		</tr>
 </table>
+<?=T::iconButton(T::EDIT, "Bearbeiten", "lecture", "edit", array("id"=>$model->getValue("id"))); ?>
+<?=T::iconButton(T::DELETE, "Löschen", "lecture", "delete", array("id"=>$model->getValue("id"))); ?>
 </form>
-
-<a href="<?=T::href("lecture", "edit", array("id" => $model->getValue("id"))); ?>">Edit</a>
-<a href="<?=T::href("lecture", "delete", array("id" => $model->getValue("id"))); ?>">Delete</a>

@@ -26,14 +26,14 @@ class Int extends Attribute {
 		$this->errors = array();
 		if (is_null($this->value)) {
 			if (! $this->nullable && ! $this->autoIncrement)
-				array_push($this->errors, "Cannot be empty");
+				array_push($this->errors, "Darf nicht leer sein");
 		} else {
 			if ($this->value != "0" && intval($this->value) == 0) {
-				array_push($this->errors, "'$this->value' is not a number");
+				array_push($this->errors, "Keine Zahl");
 			} else {
 				$value = intval($this->value);
-				if ($this->max && $this->value > $this->max) array_push($this->errors, "Too large (max. {$this->max})");
-				if ($this->min && $this->value < $this->min) array_push($this->errors, "Too small (min. {$this->min})");
+				if ($this->max && $this->value > $this->max) array_push($this->errors, "Zu klein (max. {$this->max})");
+				if ($this->min && $this->value < $this->min) array_push($this->errors, "Zu groß (min. {$this->min})");
 			}
 		}
 	}

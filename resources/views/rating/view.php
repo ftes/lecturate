@@ -1,44 +1,37 @@
 <?php T::setEditable(false); ?>
 
-<h1>View Rating</h1>
+<h1>Bewertung anzeigen</h1>
 
 <form method="POST">
-<table>
+	<table>
 		<tr>
 			<th>ID</th>
 			<td><?=T::input($model->getAttribute("id")); ?>
 			</td>
 		</tr>
 		<tr>
-			<th>Mark</th>
+			<th>Bewertung</th>
 			<td><?=T::input($model->getAttribute("mark")); ?>
 			</td>
 		</tr>
 		<tr>
-			<th>Created</th>
+			<th>Erzeugt (wann)</th>
 			<td><?=$model->getAttribute("created")->getValue(); ?></td>
 		</tr>
 		<tr>
-			<th>OTPW</th>
+			<th>Einmal-PW</th>
 			<td><?=T::select($model->getAttribute("o_id"), $otpws); ?></td>
 		</tr>
 		<tr>
-			<th>DocentLecture</th>
+			<th>Dozent hält Vorlesung</th>
 			<td><?=T::select($model->getAttribute("dl_id"), $docentLectures); ?>
 			</td>
 		</tr>
 		<tr>
-			<th>Comment</th>
+			<th>Kommentar</th>
 			<td><?=T::input($model->getAttribute("comment")); ?>
 			</td>
 		</tr>
-		<tr>
-			<th></th>
-			<td><?=T::button(T::CANCEL) ?> <?=T::button(T::SAVE) ?>
-			</td>
-		</tr>
-</table>
+	</table>
+	<?=T::iconButton(T::DELETE, "Löschen", "otpw", "delete", array("id"=>$model->getValue("id"))); ?>
 </form>
-
-<a href="<?=T::href("rating", "edit", array("id" => $model->getValue("id"))); ?>">Edit</a>
-<a href="<?=T::href("rating", "delete", array("id" => $model->getValue("id"))); ?>">Delete</a>

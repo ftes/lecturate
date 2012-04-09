@@ -1,10 +1,10 @@
-<h1>Docents</h1>
+<h1>Dozenten</h1>
 
 <table>
 	<tr>
 		<th>ID</th>
-		<th>First name</th>
-		<th>Last name</th>
+		<th>Vorname</th>
+		<th>Nachname</th>
 		<th></th>
 		<th></th>
 		<th></th>
@@ -14,9 +14,9 @@
 		<td><?=$model->getValue("id"); ?></td>
 		<td><?=$model->getValue("firstname"); ?></td>
 		<td><?=$model->getValue("lastname"); ?></td>
-		<td><a href="<?=T::href("docent", "view", array("id"=>$model->getValue("id"))); ?>">View</a></td>
-		<td><a href="<?=T::href("docent", "edit", array("id"=>$model->getValue("id"))); ?>">Edit</a></td>
-		<td><a href="<?=T::href("docent", "delete", array("id"=>$model->getValue("id"))); ?>">X</a></td>
+		<td><?=T::iconButton(T::VIEW, false, "docent", "view", array("id"=>$model->getValue("id")))?></td>
+		<td><?=T::iconButton(T::EDIT, false, "docent", "edit", array("id"=>$model->getValue("id")))?></td>
+		<td><?=T::iconButton(T::DELETE, false, "docent", "delete", array("id"=>$model->getValue("id")))?></td>
 	</tr>
 	<?php endforeach; ?>
 </table>

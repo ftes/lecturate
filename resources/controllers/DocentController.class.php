@@ -20,22 +20,22 @@ class DocentController extends AbstractController {
 			die();
 		}
 	
-		$flash = "Docent not found";
+		$flash = "Dozent konnte nicht gefunden werden";
 		self::index($_GET, $_POST, $flash);
 	}
 	
 	public static function create(array $_GET, array $_POST, $flash=false) {
 		$model = new Docent();
 
-		if (get($_POST, T::SAVE, false)) {
+		if (get($_POST, T::SUBMIT, false)) {
 			foreach ($_POST["model"] as $key => $value)
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, "Docent \"{$model->toString()}\" was saved");
+				self::index($_GET, $_POST, "Dozent \"{$model->toString()}\" wurde gespeichert");
 				die();
 			} else {
-				$flash = "Docent could not be saved";
+				$flash = "Dozent konnte nicht gespeichert werden";
 				foreach ($model->getErrors() as $name => $error)
 					$flash .= "<br> - $name: $error";
 			}			
@@ -51,17 +51,17 @@ class DocentController extends AbstractController {
 	public static function edit(array $_GET, array $_POST, $flash=false) {
 		$model = false;
 		
-		if (get($_POST, T::SAVE, false)) {
+		if (get($_POST, T::SUBMIT, false)) {
 			$model = Docent::findById($_POST["model"]["id"]);
 			
 			foreach ($_POST["model"] as $key => $value)
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, "Docent \"{$model->toString()}\" was saved");
+				self::index($_GET, $_POST, "Dozent \"{$model->toString()}\" wurde gespeichert");
 				die();
 			} else {
-				$flash = "Docent could not be saved";
+				$flash = "Dozent konnte nicht gespeichert werden";
 				foreach ($model->getErrors() as $name => $error)
 					$flash .= "<br> - $name: $error";
 			}			
@@ -71,7 +71,7 @@ class DocentController extends AbstractController {
 			$model = Docent::findById($id);
 		
 		if (! $model) {
-			self::index($_GET, $_POST, "Docent could not be found");
+			self::index($_GET, $_POST, "Dozent konnte nicht gefunden werden");
 			die();
 		}
 		$variables = array(
@@ -84,8 +84,8 @@ class DocentController extends AbstractController {
 		if ($id = get($_GET, "id", false)) {
 			$model = Docent::findById($id);
 			if ($model && $model->delete())
-				$flash = "Docent {$model->toString()} was deleted";
-			else $flash = "Couldn't delete docent";
+				$flash = "Dozent {$model->toString()} wurde gelöscht";
+			else $flash = "Dozent konnte nicht gelöscht werden";
 		}
 		
 		self::index($_GET, $_POST, $flash);		
