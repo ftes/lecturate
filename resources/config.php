@@ -29,7 +29,7 @@ $config = array(
 				"baseUrl" => "localhost"
 		),
 		"paths" => array(
-				"resources" => realpath(dirname(__FILE__)),
+				"resources" => dirname(__FILE__),
 				"css" => $_SERVER["DOCUMENT_ROOT"] . "/css",
 				"images" => array(
 						"content" => $_SERVER["DOCUMENT_ROOT"] . "/images/content",
@@ -83,25 +83,25 @@ ex. require_once(LIBRARY_PATH . "Paginator.php")
 */
 
 defined("RESOURCES_PATH")
-or define("RESOURCES_PATH", realpath(dirname(__FILE__)));
+or define("RESOURCES_PATH", dirname(__FILE__));
 
 defined("LIBRARY_PATH")
-or define("LIBRARY_PATH", realpath(dirname(__FILE__) . '/library'));
+or define("LIBRARY_PATH", dirname(__FILE__) . '/library');
 
 defined("CONTROLLERS_PATH")
-or define("CONTROLLERS_PATH", realpath(dirname(__FILE__) . '/controllers'));
+or define("CONTROLLERS_PATH", dirname(__FILE__) . '/controllers');
 
 defined("PERSISTENCE_PATH")
 or define("PERSISTENCE_PATH", LIBRARY_PATH. '/persistence');
 
 defined("TEMPLATES_PATH")
-or define("TEMPLATES_PATH", realpath(dirname(__FILE__) . '/templates'));
+or define("TEMPLATES_PATH", dirname(__FILE__) . '/templates');
 
 defined("VIEWS_PATH")
-or define("VIEWS_PATH", realpath(dirname(__FILE__) . '/views'));
+or define("VIEWS_PATH", dirname(__FILE__) . '/views');
 
 defined("MODELS_PATH")
-or define("MODELS_PATH", realpath(dirname(__FILE__) . '/models'));
+or define("MODELS_PATH", dirname(__FILE__) . '/models');
 
 defined("SQLLOG")
 or define("SQLLOG", RESOURCES_PATH . '/log.txt');

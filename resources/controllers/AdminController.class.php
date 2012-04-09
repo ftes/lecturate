@@ -1,5 +1,5 @@
 <?php
-require_once(realpath(dirname(__FILE__) . "/../config.php"));
+require_once(dirname(__FILE__) . "/../config.php");
 
 class AdminController extends AbstractController {
 	public static function index($_GET, $_POST, $flash=false) {

@@ -1,5 +1,5 @@
 <?php
-require_once(realpath(dirname(__FILE__) . "/../resources/config.php"));
+require_once(dirname(__FILE__) . "/../resources/config.php");
 
 function get(array $array, $key, $default) {
 	if (array_key_exists($key, $array)) return $array[$key];
