@@ -1,17 +1,40 @@
+/* #container { */
+/* 	width: 780px; */
+/* 	margin: 0 auto; */
+/* 	padding: 0px; */
+/* } */
 #container {
+	font-family: Arial;
 	width: 780px;
 	margin: 0 auto;
 	padding: 0px;
+/* 	-moz-box-shadow: -5px -5px 5px #888; */
+/* 	-webkit-box-shadow: -5px -5px 5px #888; */
+/* 	box-shadow: -5px -5px 5px #888; */
 }
 
+/* #topbar { */
+/* 	width: auto; */
+/* 	display: block; */
+/* 	height: 80px; */
+/* 	background-color: grey; */
+/* } */
 #topbar {
 	width: auto;
 	display: block;
-	height: 80px;
-	background-color: grey;
+	height: 100px;
+    background-color: #FFFFFF;
 }
 
+/* #navbar { */
+/* 	width: auto; */
+/* 	display: block; */
+/* 	height: 24px; */
+/* 	background-color: lightgrey; */
+/* 	padding: 5px; */
+/* } */
 #navbar {
+/*     text-shadow: 1px 1px 2px #999; */
 	width: auto;
 	display: block;
 	height: 24px;
@@ -19,21 +42,41 @@
 	padding: 5px;
 }
 
+/* #main { */
+/* 	width: auto; */
+/* 	display: block; */
+/* 	overflow: hidden; */
+/* 	padding: 0px; */
+/* } */
 #main {
 	width: auto;
 	display: block;
 	overflow: hidden;
 	padding: 0px;
+
 }
 
+/* #content { */
+/* 	width: 520px; */
+/* 	margin-right: 20px; */
+/* 	float: left; */
+/* } */
 #content {
 	width: 520px;
 	margin-right: 20px;
 	float: left;
 }
 
+/* #column_right { */
+/* 	background-color: lightgrey; */
+/* 	float: right; */
+/* 	width: 180px; */
+/* 	overflow: hidden; */
+/* 	padding: 10px */
+/* } */
 #column_right {
-	background-color: lightgrey;
+/*     text-shadow: 1px 1px 2px #999; */
+	background-color: #ff8f80;
 	float: right;
 	width: 180px;
 	overflow: hidden;
@@ -50,13 +93,25 @@ div.spacer {
 	display: block;
 }
 
+/* #footer { */
+/* 	width: 780px; */
+/* 	position: fixed; */
+/* 	bottom: 0px; */
+/* 	display: block; */
+/* 	height: 50px; */
+/* 	background-color: grey; */
+/* } */
 #footer {
+/*     text-shadow: 1px 1px 2px #999; */
+    font-size: 10px;
+    text-align: right;
 	width: 780px;
 	position: fixed;
 	bottom: 0px;
 	display: block;
 	height: 50px;
-	background-color: grey;
+	background-color: lightgrey;
+    
 }
 
 #flash {
@@ -71,10 +126,9 @@ div.spacer {
 
 table {
 	border-collapse: collapse;
-
 }
 
-td, th {
+td,th {
 	border: 1px solid black;
 	padding: 2px 5px;
 }
@@ -82,3 +136,11 @@ td, th {
 div {
 	padding: 10px;
 }
+
+/* body { */
+/*     background: url(studenten2.jpg) no-repeat bottom; */
+/*     -webkit-background-size: cover; */
+/*     -moz-background-size: cover; */
+/*     -o-background-size: cover; */
+/*     background-size: cover; */
+/* }  */

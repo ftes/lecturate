@@ -4,13 +4,14 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Simple Site</title>
+	<title>Lecturate</title>
 	<link rel="stylesheet" href="css/main.css" type="text/css">
 </head>
 
 <body>
 <div id="topbar">
 	<h1>Lecturate</h1>
+	<p>Bewerten, Verbessern, Profitieren!</p>
 </div>
 <div id="navbar">
 <a href="<?=T::href("admin", "index"); ?>">Admin</a>

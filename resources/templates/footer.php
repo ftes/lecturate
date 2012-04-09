@@ -1,5 +1,5 @@
 <div id="footer">
-	Footer content...
+	<p>Philipp Mail, Marcel Steinleitner, Fredrik Teschke, Julia Lakatos</p>
 </div>
 </body>
 </html>
