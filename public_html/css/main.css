@@ -37,7 +37,7 @@
 	width: auto;
 	display: block;
 /* 	height: 24px; */
-	background-color: lightgrey;
+	background-color: rgb(50,50,50);
 	padding: 5px;
 	border-radius: 7px 7px 0 0;
 }
@@ -74,12 +74,16 @@
 /* 	padding: 10px */
 /* } */
 #column_right { /*     text-shadow: 1px 1px 2px #999; */
-	background-color: lightgrey;
+	background-color: rgb(50,50,50);
 	float: right;
 	width: 180px;
 	overflow: hidden;
 	padding: 10px;
 	border-radius: 0 0 7px 7px;
+}
+
+#column_right .button {
+	display: block;
 }
 
 /* 
@@ -101,14 +105,15 @@ div.spacer {
 /* 	background-color: grey; */
 /* } */
 #footer { /*     text-shadow: 1px 1px 2px #999; */
+	color: lightgrey;
 	font-size: 10px;
 	text-align: right;
 	width: 780px;
 	position: fixed;
-	bottom: 0px;
+	bottom: 10px;
 	display: block;
-	height: 50px;
-	background-color: lightgrey;
+	height: 30px;
+	background-color: rgb(50,50,50);
 	border-radius: 0 0 7px 7px;
 }
 
@@ -140,7 +145,9 @@ td,th {
 }
 
 tr:nth-child(even) {
-	background-color: lightgrey;
+/* 	background-color: lightgrey; */
+background-color: rgb(80,80,80);
+color: white;
 }
 
 div {
@@ -158,6 +165,7 @@ div {
 .group {
 	border: 1px solid black;
 	border-radius: 7px;
+	background-color: rgb(240,240,240)
 }
 
 .group h2 {
@@ -167,4 +175,5 @@ div {
 	display: inline-block;
 	padding: 0 0.2em;
 	margin: 0;
+	background-color: rgb(240,240,240)
 }

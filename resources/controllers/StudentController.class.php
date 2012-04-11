@@ -4,7 +4,7 @@ class StudentController extends AbstractController {
 	private static $TXT = "Student";
 	
 	public static function index($_GET, $_POST) {
-		$classses = array();
+		$classses = Classs::findAll();
 		$classsDocentLectures = array();
 		
 		$classs = new Classs();
@@ -27,11 +27,7 @@ class StudentController extends AbstractController {
 			}
 		}
 		
-		$classses = Classs::findAll();
-		
-		
 		$variables = array(
-			
 			"classs" => $classs,
 			"classses" => $classses,
 			"classsDocentLecture" => $classsDocentLecture,

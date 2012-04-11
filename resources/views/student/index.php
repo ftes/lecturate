@@ -12,7 +12,7 @@ $formId = T::uid(); ?>
 			<td><?=T::select($classs->getAttribute("id"), $classses, false, "c_id", array("onchange", "getElementById('$formId').submit();")); ?></td>
 		</tr>	
 		<tr>
-			<th>Kurs hört Gehaltene Vorlesung</th>
+			<th>Vorlesung</th>
 			<td><?=T::select($classsDocentLecture->getAttribute("id"), $classsDocentLectures, false, "cdl_id", array("onchange", "getElementById('$formId').submit();")); ?></td>
 		</tr>
 </table>
