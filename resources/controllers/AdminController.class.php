@@ -2,8 +2,11 @@
 require_once(dirname(__FILE__) . "/../config.php");
 
 class AdminController extends AbstractController {
+	private static $CTR = "admin";
+	private static $TXT = "Admin";
+	
 	public static function index($_GET, $_POST) {
-		T::render("admin/default.php", "admin/nav.php", array());
+		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", array());
 	}
 	
 	public static function initdb($_GET, $_POST) {
@@ -33,6 +36,6 @@ class AdminController extends AbstractController {
 		
 		$_SESSION["flash"] = array(T::FLASH_POS, "DB wurde initialisiert");
 		$variables = array();
-		T::render("admin/default.php", "admin/nav.php", $variables);
+		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);
 	}
 }

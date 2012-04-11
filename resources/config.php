@@ -73,6 +73,11 @@ final class Util {
 		}
 		return $string;
 	}
+	
+	public static function redirect($location) {
+		header("Location: $location");
+		die();
+	}
 }
 
 /*

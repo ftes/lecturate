@@ -2,6 +2,9 @@
 require_once(dirname(__FILE__) . "/../config.php");
 
 class OtpwController extends AbstractController {
+	private static $CTR = "otpw";
+	private static $TXT = "Einmal-PW";
+	
 	
 	public static function index(array $_GET, array $_POST) {
 		$models = Otpw::findAll();
@@ -15,7 +18,7 @@ class OtpwController extends AbstractController {
 		$variables = array(
 				"models" => $models,
 				"docentLectures" => $docentLectures);
-		T::render("otpw/index.php", "otpw/nav.php", $variables);
+		T::render(self::$CTR."/index.php", self::$CTR."/nav.php", $variables);
 	}
 	
 	public static function view(array $_GET, array $_POST) {
@@ -26,12 +29,12 @@ class OtpwController extends AbstractController {
 					"model" => $model,
 					"docentLecture" => $docentLecture,
 					"usedOptions" => array(0 => "False", 1=> "True"),);
-			T::render("otpw/view.php", "otpw/nav.php", $variables);
+			T::render(self::$CTR."/view.php", self::$CTR."/nav.php", $variables);
 			die();
 		}
 	
-		$_SESSION["flash"] = array(T::FLASH_NEG, "Einmal-PW konnte nicht gefunden werden");
-		self::index($_GET, $_POST);
+		$_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gefunden werden");
+		Util::redirect(T::href(self::$CTR, "index"));
 	}
 	
 	public static function create(array $_GET, array $_POST) {
@@ -42,15 +45,15 @@ class OtpwController extends AbstractController {
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, array(T::FLASH_POS, "Einmal-PW \"{$model->toString()}\" wurde gespeichert"));
-				die();
+				$_SESSION["flash"] = array(T::FLASH_POS, self::$TXT." \"{$model->toString()}\" wurde gespeichert");
+				Util::redirect(T::href(self::$CTR, "index"));
 			} else {
-				$_SESSION["flash"] = array(T::FLASH_NEG, "Einmal-PW konnte nicht gespeichert werden");
+				$_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gespeichert werden");
 				foreach ($model->getErrors() as $name => $error)
 					$_SESSION["flash"][1] .= "<br> - $name: $error";
 			}			
 		} elseif (get($_POST, T::CANCEL, false))
-			self::index($_GET, $_POST);
+			Util::redirect(T::href(self::$CTR, "index"));
 		
 		$docentLectures = DocentLecture::findAll();
 		
@@ -58,18 +61,18 @@ class OtpwController extends AbstractController {
 				"docentLectures" => $docentLectures,
 				"usedOptions" => array(0 => "False", 1=> "True"),
 				"model" => $model);
-		T::render("otpw/create.php", "otpw/nav.php", $variables);
+		T::render(self::$CTR."/create.php", self::$CTR."/nav.php", $variables);
 	}
 	
 	public static function delete(array $_GET, array $_POST) {
 		if ($id = get($_GET, "id", false)) {
 			$model = Otpw::findById($id);
 			if ($model && $model->delete())
-				$_SESSION["flash"] = array(T::FLASH_POS, "Einmal-PW {$model->toString()} wurde gelöscht");
-			else $_SESSION["flash"] = array(T::FLASH_NEG, "Einmal-PW konnte nicht gelöscht werden");
+				$_SESSION["flash"] = array(T::FLASH_POS, self::$TXT." {$model->toString()} wurde gelöscht");
+			else $_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gelöscht werden");
 		}
 		
-		self::index($_GET, $_POST);		
+		Util::redirect(T::href(self::$CTR, "index"));		
 	}
 }
 ?>

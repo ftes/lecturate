@@ -3,7 +3,7 @@ require_once(LIBRARY_PATH . "/persistence/Model.class.php");
 
 class Advisor extends Model {
 	private static $name = "advisor";
-
+	
 	public function __construct() {
 		parent::__construct(self::$name);
 

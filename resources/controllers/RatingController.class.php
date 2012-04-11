@@ -2,6 +2,9 @@
 require_once(dirname(__FILE__) . "/../config.php");
 
 class RatingController extends AbstractController {
+	private static $CTR = "rating";
+	private static $TXT = "Bewertung";
+	
 
 	public static function index(array $_GET, array $_POST) {
 		$models = Rating::findAll();
@@ -18,7 +21,7 @@ class RatingController extends AbstractController {
 				"models" => Rating::findAll(),
 				"otpws" => $otpws,
 				"docentLectures" => $docentLectures);
-		T::render("rating/index.php", "rating/nav.php", $variables);
+		T::render(self::$CTR."/index.php", self::$CTR."/nav.php", $variables);
 	}
 
 	public static function view(array $_GET, array $_POST) {
@@ -30,19 +33,19 @@ class RatingController extends AbstractController {
 					"model" => $model,
 					"otpw" => $otpw,
 					"docentLecture" => $docentLecture,);
-			T::render("rating/view.php", "rating/nav.php", $variables);
+			T::render(self::$CTR."/view.php", self::$CTR."/nav.php", $variables);
 			die();
 		}
 
-		$_SESSION["flash"] = array(T::FLASH_NEG, "Bewertung konnte nicht gefunden werden");
-		self::index($_GET, $_POST);
+		$_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gefunden werden");
+		Util::redirect(T::href(self::$CTR, "index"));
 	}
 
-	public static function create(array $_GET, array $_POST, $defaults=false) {
+	public static function create(array $_GET, array $_POST) {
 		$model = new Rating();
 		
-		if ($defaults)
-			foreach ($defaults as $col => $value)
+		if (isset($_SESSION["model"]))
+			foreach ($_SESSION["model"] as $col => $value)
 				$model->setValue($col, $value);
 
 		if (get($_POST, T::SUBMIT, false)) {
@@ -53,15 +56,15 @@ class RatingController extends AbstractController {
 			if ($model->persist()) {
 				$otpw->setUsed();
 				$otpw->persist();
-				self::index($_GET, $_POST, array(T::FLASH_POS, "Bewertung \"{$model->toString()}\" wurde gespeichert"));
-				die();
+				$_SESSION["flash"] = array(T::FLASH_POS, self::$TXT." \"{$model->toString()}\" wurde gespeichert");
+				Util::redirect(T::href(self::$CTR, "index"));
 			} else {
-				$_SESSION["flash"] = array(T::FLASH_NEG, "Bewertung konnte nicht gespeichert werden");
+				$_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gespeichert werden");
 				foreach ($model->getErrors() as $name => $error)
 					$_SESSION["flash"][1] .= "<br> - $name: $error";
 			}
 		} elseif (get($_POST, T::CANCEL, false))
-		self::index($_GET, $_POST);
+		Util::redirect(T::href(self::$CTR, "index"));
 
 		$otpws = Otpw::findAll();
 		$docentLectures = DocentLecture::findAll();
@@ -70,17 +73,17 @@ class RatingController extends AbstractController {
 				"otpws" => $otpws,
 				"docentLectures" => $docentLectures,
 				"model" => $model);
-		T::render("rating/create.php", "rating/nav.php", $variables);
+		T::render(self::$CTR."/create.php", self::$CTR."/nav.php", $variables);
 	}
 
 	public static function delete(array $_GET, array $_POST) {
 		if ($id = get($_GET, "id", false)) {
 			$model = Rating::findById($id);
 			if ($model && $model->delete())
-				$_SESSION["flash"] = array(T::FLASH_POS, "Bewertung {$model->toString()} wurde gelöscht");
+				$_SESSION["flash"] = array(T::FLASH_POS, self::$TXT." {$model->toString()} wurde gelöscht");
 		}
 
-		self::index($_GET, $_POST);
+		Util::redirect(T::href(self::$CTR, "index"));
 	}
 }
 ?>

@@ -2,6 +2,8 @@
 require_once(dirname(__FILE__) . "/../config.php");
 
 class ClasssController extends AbstractController {
+	private static $CTR = "classs";
+	private static $TXT = "Kurs";
 	
 	public static function index(array $_GET, array $_POST) {
 		$models = Classs::findAll();
@@ -15,7 +17,7 @@ class ClasssController extends AbstractController {
 		$variables = array(
 				"models" => $models,
 				"advisors" => $advisors);
-		T::render("classs/index.php", "classs/nav.php", $variables);
+		T::render(self::$CTR."/index.php", self::$CTR."/nav.php", $variables);
 	}
 	
 	public static function view(array $_GET, array $_POST) {
@@ -25,12 +27,12 @@ class ClasssController extends AbstractController {
 			$variables = array(
 					"model" => $model,
 					"advisor" => $advisor,);
-			T::render("classs/view.php", "classs/nav.php", $variables);
+			T::render(self::$CTR."/view.php", self::$CTR."/nav.php", $variables);
 			die();
 		}
 	
-		$_SESSION["flash"] = array(T::FLASH_POS, array(T::FLASH_NEG, "Kurs konnte nicht gefunden werden"));
-		self::index($_GET, $_POST);
+		$_SESSION["flash"] = array(T::FLASH_POS, array(T::FLASH_NEG, self::$TXT." konnte nicht gefunden werden"));
+		Util::redirect(T::href(self::$CTR, "index"));
 	}
 	
 	public static function create(array $_GET, array $_POST) {
@@ -41,22 +43,22 @@ class ClasssController extends AbstractController {
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, array(T::FLASH_POS, "Kurs \"{$model->toString()}\" wurde gespeichert"));
-				die();
+				$_SESSION["flash"] = array(T::FLASH_POS, self::$TXT." \"{$model->toString()}\" wurde gespeichert");
+				Util::redirect(T::href(self::$CTR, "index"));
 			} else {
-				$_SESSION["flash"] = array(T::FLASH_NEG, "Kurs konnte nicht gespeichert werden");
+				$_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gespeichert werden");
 				foreach ($model->getErrors() as $name => $error)
 					$_SESSION["flash"][1] .= "<br> - $name: $error";
 			}			
 		} elseif (get($_POST, T::CANCEL, false))
-			self::index($_GET, $_POST);
+			Util::redirect(T::href(self::$CTR, "index"));
 		
 		$advisors = Advisor::findAll();
 		
 		$variables = array(
 				"advisors" => $advisors,
 				"model" => $model);
-		T::render("classs/create.php", "classs/nav.php", $variables);
+		T::render(self::$CTR."/create.php", self::$CTR."/nav.php", $variables);
 	}
 	
 	public static function edit(array $_GET, array $_POST) {
@@ -69,21 +71,21 @@ class ClasssController extends AbstractController {
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, array(T::FLASH_POS, "Kurs \"{$model->toString()}\" wurde gespeichert"));
-				die();
+				$_SESSION["flash"] = array(T::FLASH_POS, self::$TXT." \"{$model->toString()}\" wurde gespeichert");
+				Util::redirect(T::href(self::$CTR, "index"));
 			} else {
-				$_SESSION["flash"] = array(T::FLASH_NEG, "Kurs konnte nicht gespeichert werden");
+				$_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gespeichert werden");
 				foreach ($model->getErrors() as $name => $error)
 					$_SESSION["flash"][1] .= "<br> - $name: $error";
 			}			
 		} elseif (get($_POST, T::CANCEL, false))
-			self::index($_GET, $_POST);
+			Util::redirect(T::href(self::$CTR, "index"));
 		elseif ($id = get($_GET, "id", false))
 			$model = Classs::findById($id);
 		
 		if (! $model) {
-			self::index($_GET, $_POST, array(T::FLASH_NEG, "Kurs konnte nicht gefunden werden"));
-			die();
+			$_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gefunden werden");
+			Util::redirect(T::href(self::$CTR, "index"));
 		}
 		
 		$advisors = Advisor::findAll();
@@ -91,18 +93,18 @@ class ClasssController extends AbstractController {
 		$variables = array(
 				"advisors" => $advisors,
 				"model" => $model);
-		T::render("classs/edit.php", "classs/nav.php", $variables);
+		T::render(self::$CTR."/edit.php", self::$CTR."/nav.php", $variables);
 	}
 	
 	public static function delete(array $_GET, array $_POST) {
 		if ($id = get($_GET, "id", false)) {
 			$model = Classs::findById($id);
 			if ($model && $model->delete())
-				$_SESSION["flash"] = array(T::FLASH_POS, "Kurs {$model->toString()} wurde gelöscht");
-			else $_SESSION["flash"] = array(T::FLASH_NEG, "Kurs konnte nicht gelöscht werden");
+				$_SESSION["flash"] = array(T::FLASH_POS, self::$TXT." {$model->toString()} wurde gelöscht");
+			else $_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gelöscht werden");
 		}
 		
-		self::index($_GET, $_POST);		
+		Util::redirect(T::href(self::$CTR, "index"));	
 	}
 }
 ?>
