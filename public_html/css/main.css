@@ -39,6 +39,7 @@
 /* 	height: 24px; */
 	background-color: lightgrey;
 	padding: 5px;
+	border-radius: 7px 7px 0 0;
 }
 
 /* #main { */
@@ -73,11 +74,12 @@
 /* 	padding: 10px */
 /* } */
 #column_right { /*     text-shadow: 1px 1px 2px #999; */
-	background-color: #ff8f80;
+	background-color: lightgrey;
 	float: right;
 	width: 180px;
 	overflow: hidden;
-	padding: 10px
+	padding: 10px;
+	border-radius: 0 0 7px 7px;
 }
 
 /* 
@@ -107,6 +109,7 @@ div.spacer {
 	display: block;
 	height: 50px;
 	background-color: lightgrey;
+	border-radius: 0 0 7px 7px;
 }
 
 #flash {
@@ -151,3 +154,17 @@ div {
 /*     -o-background-size: cover; */
 /*     background-size: cover; */
 /* }  */
+
+.group {
+	border: 1px solid black;
+	border-radius: 7px;
+}
+
+.group h2 {
+	position: relative;
+	top: -1em;
+	background-color: white;
+	display: inline-block;
+	padding: 0 0.2em;
+	margin: 0;
+}

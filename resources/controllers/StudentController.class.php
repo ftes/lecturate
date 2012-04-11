@@ -38,7 +38,7 @@ class StudentController extends AbstractController {
 			"classsDocentLectures" => $classsDocentLectures
 		);
 		
-		T::render("student/index.php", "student/index.php", $variables);
+		T::render(self::$CTR."/index.php", self::$CTR."/nav.php", $variables);
 	}
 }
 ?>
