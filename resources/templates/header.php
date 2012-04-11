@@ -23,5 +23,6 @@
 <?=T::iconButton(false, "Dozent hält Vorlesung", "docent_lecture")?>
 <?=T::iconButton(false, "Kurs hört gehaltene Vorlesung", "classs_docent_lecture")?>
 <?=T::iconButton(false, "Einmal-PW", "otpw")?>
-<?=T::iconButton(false, "Bewertung", "Rating")?>
+<?=T::iconButton(false, "Bewertung", "rating")?>
+<?=T::iconButton(false, "Student", "student")?>
 </div>

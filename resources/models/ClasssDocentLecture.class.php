@@ -32,6 +32,16 @@ class ClasssDocentLecture extends Model {
 		$result = self::findBy($query, $values, self::$name);
 		return count($result) == 0 ? false : $result[0];
 	}
+
+	public static function findByClass($cId) {
+		$class = Util::camelCase(self::$name);
+		$model = new $class;
+
+		$query = "SELECT {$model->getAttrList()} FROM `" . self::$name . "` WHERE `c_id`='%d'";
+		$values = array($cId);
+		
+		return self::findBy($query, $values, self::$name);
+	}
 	
 	public function toString() {
 		$classs = Classs::findById($this->getValue("c_id"))->toString();

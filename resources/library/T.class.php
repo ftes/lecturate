@@ -38,7 +38,7 @@ class T {
 		self::$editable = $bool;
 	}
 	
-	private static function uid() {
+	public static function uid() {
 		$length = 10;
 		$characters = "0123456789abcdefghijklmnopqrstuvwxyz";
 		$uid = "";
@@ -93,26 +93,35 @@ class T {
 		return $html;
 	}
 	
-	public static function select(Attribute $attribute, array $options, $array=false) {
-		$name = "name=\"model[{$attribute->getName()}]\"";
+	/**
+	 * 
+	 * @param Attribute $attribute
+	 * @param array $options
+	 * @param unknown_type $array Array with id -> text
+	 */
+	public static function select(Attribute $attribute, array $options, $optionsSimpleArray=false, $alternativeName=false, $js=false) {
+		$name = $alternativeName ? "name=\"model[$alternativeName]\"" : "name=\"model[{$attribute->getName()}]\"";
 		$nullable = $attribute->getNullable();
 		$value = "value=\"{$attribute->getValue()}\"";
 		$disabled = self::$editable ? "" : "disabled";
 		$size ="size=\"1\"";
+		$js = $js ? "$js[0]=\"$js[1]\"" : "";
 		
-		$html = "<select $name $size $disabled>";
+		$html = "<select $name $size $disabled $js>";
+		$html .= "<option></option>";
 		foreach ($options as $key => $option) {
-			if ($array) {
-				$optionValue = "value=\"" . $key . "\"";
+			if ($optionsSimpleArray) {
+				$optionValue = $key;
 				$selected = ($attribute->getValue() == $key) ? "selected" : "";
-				$html .= "<option $optionValue $selected>{$option}</option>";
+				$optiontext = $option;
 			} else {
 				$pk = $option->getPrimaryKey()->getAttributes();
-				$optionValue = "value=\"{$pk[0]->getValue()}\"";
-				$selected = ($attribute->getValue() == $pk[0]->getValue()) ? "selected" : "";
-				$html .= "<option $optionValue $selected>{$option->toString()}</option>";
+				$optionValue = $pk[0]->getValue();
+				$optionText = $option->toString();
 			}
-			
+			$selected = ($attribute->getValue() == $optionValue) ? "selected" : "";
+			$optionValue = "value=\"$optionValue\"";
+			$html .= "<option $optionValue $selected>{$optionText}</option>";
 		}
 		$html .= "</select";
 		

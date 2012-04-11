@@ -40,8 +40,12 @@ class RatingController extends AbstractController {
 		self::index($_GET, $_POST, $flash);
 	}
 
-	public static function create(array $_GET, array $_POST, $flash=false) {
+	public static function create(array $_GET, array $_POST, $flash=false, $defaults=false) {
 		$model = new Rating();
+		
+		if ($defaults)
+			foreach ($defaults as $col => $value)
+				$model->setValue($col, $value);
 
 		if (get($_POST, T::SUBMIT, false)) {
 			foreach ($_POST["model"] as $key => $value)
