@@ -32,7 +32,7 @@ class AdminController extends AbstractController {
 		$dbConn->close();
 		
 		$variables = array(
-				"flash" => "DB wurde initialisiert");
+				"flash" => array(T::FLASH_POS, "DB wurde initialisiert"));
 		T::render("admin/default.php", "admin/nav.php", $variables);
 	}
 }

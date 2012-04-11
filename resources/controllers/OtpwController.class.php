@@ -32,7 +32,7 @@ class OtpwController extends AbstractController {
 			die();
 		}
 	
-		$flash = "Einmal-PW konnte nicht gefunden werden";
+		$flash = array(T::FLASH_NEG, "Einmal-PW konnte nicht gefunden werden");
 		self::index($_GET, $_POST, $flash);
 	}
 	
@@ -44,12 +44,12 @@ class OtpwController extends AbstractController {
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, "Einmal-PW \"{$model->toString()}\" wurde gespeichert");
+				self::index($_GET, $_POST, array(T::FLASH_POS, "Einmal-PW \"{$model->toString()}\" wurde gespeichert"));
 				die();
 			} else {
-				$flash = "Einmal-PW konnte nicht gespeichert werden";
+				$flash = array(T::FLASH_NEG, "Einmal-PW konnte nicht gespeichert werden");
 				foreach ($model->getErrors() as $name => $error)
-					$flash .= "<br> - $name: $error";
+					$flash[1] .= "<br> - $name: $error";
 			}			
 		} elseif (get($_POST, T::CANCEL, false))
 			self::index($_GET, $_POST);
@@ -68,8 +68,8 @@ class OtpwController extends AbstractController {
 		if ($id = get($_GET, "id", false)) {
 			$model = Otpw::findById($id);
 			if ($model && $model->delete())
-				$flash = "Einmal-PW {$model->toString()} wurde gelöscht";
-			else $flash = "Einmal-PW konnte nicht gelöscht werden";
+				$flash = array(T::FLASH_POS, "Einmal-PW {$model->toString()} wurde gelöscht");
+			else $flash = array(T::FLASH_NEG, "Einmal-PW konnte nicht gelöscht werden");
 		}
 		
 		self::index($_GET, $_POST, $flash);		

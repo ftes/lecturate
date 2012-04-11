@@ -20,7 +20,7 @@ class AdvisorController extends AbstractController {
 			die();
 		}
 	
-		$flash = "SGL konnte nicht gefunden werden";
+		$flash = array(T::FLASH_NEG, "SGL konnte nicht gefunden werden");
 		self::index($_GET, $_POST, $flash);
 	}
 	
@@ -32,12 +32,12 @@ class AdvisorController extends AbstractController {
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, "SGL \"{$model->toString()}\" wurde gespeichert");
+				self::index($_GET, $_POST, array(T::FLASH_POS, "SGL \"{$model->toString()}\" wurde gespeichert"));
 				die();
 			} else {
-				$flash = "SGL konnte nicht gespeichert werden";
+				$flash = array(T::FLASH_NEG, array(T::FLASH_POS, "SGL konnte nicht gespeichert werden"));
 				foreach ($model->getErrors() as $name => $error)
-					$flash .= "<br> - $name: $error";
+					$flash[1] .= "<br> - $name: $error";
 			}			
 		} elseif (get($_POST, T::CANCEL, false))
 			self::index($_GET, $_POST);
@@ -58,12 +58,12 @@ class AdvisorController extends AbstractController {
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, "SGL \"{$model->toString()}\" wurde gespeichert");
+				self::index($_GET, $_POST, array(T::FLASH_POS, "SGL \"{$model->toString()}\" wurde gespeichert"));
 				die();
 			} else {
-				$flash = "SGL konnte nicht gespeichert werden";
+				$flash = array(T::FLASH_POS, array(T::FLASH_NEG, "SGL konnte nicht gespeichert werden"));
 				foreach ($model->getErrors() as $name => $error)
-					$flash .= "<br> - $name: $error";
+					$flash[1] .= "<br> - $name: $error";
 			}			
 		} elseif (get($_POST, T::CANCEL, false))
 			self::index($_GET, $_POST);
@@ -71,7 +71,7 @@ class AdvisorController extends AbstractController {
 			$model = Advisor::findById($id);
 		
 		if (! $model) {
-			self::index($_GET, $_POST, "SGL konnte nicht gefunden werden");
+			self::index($_GET, $_POST, array(T::FLASH_NEG, "SGL konnte nicht gefunden werden"));
 			die();
 		}
 		$variables = array(
@@ -84,8 +84,8 @@ class AdvisorController extends AbstractController {
 		if ($id = get($_GET, "id", false)) {
 			$model = Advisor::findById($id);
 			if ($model && $model->delete())
-				$flash = "SGL {$model->toString()} wurde gelöscht";
-			else $flash = "SGL konnte nicht gelöscht werden";
+				$flash = array(T::FLASH_POS, "SGL {$model->toString()} wurde gelöscht");
+			else $flash = array(T::FLASH_NEG, "SGL konnte nicht gelöscht werden");
 		}
 		
 		self::index($_GET, $_POST, $flash);		

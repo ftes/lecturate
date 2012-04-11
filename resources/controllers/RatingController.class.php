@@ -36,7 +36,7 @@ class RatingController extends AbstractController {
 			die();
 		}
 
-		$flash = "Bewertung konnte nicht gefunden werden";
+		$flash = array(T::FLASH_NEG, "Bewertung konnte nicht gefunden werden");
 		self::index($_GET, $_POST, $flash);
 	}
 
@@ -51,12 +51,12 @@ class RatingController extends AbstractController {
 			if ($model->persist()) {
 				$otpw->setUsed();
 				$otpw->persist();
-				self::index($_GET, $_POST, "Bewertung \"{$model->toString()}\" wurde gespeichert");
+				self::index($_GET, $_POST, array(T::FLASH_POS, "Bewertung \"{$model->toString()}\" wurde gespeichert"));
 				die();
 			} else {
-				$flash = "Bewertung konnte nicht gespeichert werden";
+				$flash = array(T::FLASH_NEG, "Bewertung konnte nicht gespeichert werden");
 				foreach ($model->getErrors() as $name => $error)
-					$flash .= "<br> - $name: $error";
+					$flash[1] .= "<br> - $name: $error";
 			}
 		} elseif (get($_POST, T::CANCEL, false))
 		self::index($_GET, $_POST);
@@ -76,8 +76,7 @@ class RatingController extends AbstractController {
 		if ($id = get($_GET, "id", false)) {
 			$model = Rating::findById($id);
 			if ($model && $model->delete())
-				$flash = "Bewertung {$model->toString()} wurde gelöscht";
-			else $flash = "Bewertung konnte nicht gelöscht werden";
+				$flash = array(T::FLASH_POS, "Bewertung {$model->toString()} wurde gelöscht");
 		}
 
 		self::index($_GET, $_POST, $flash);

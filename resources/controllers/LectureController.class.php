@@ -19,8 +19,8 @@ class LectureController extends AbstractController {
 			T::render("lecture/view.php", "lecture/nav.php", $variables);
 			die();
 		}
-	
-		$flash = "Vorlesung konnte nicht gefunden werden";
+		
+		$flash = array(T::FLASH_NEG, array(T::FLASH_NEG, "Vorlesung konnte nicht gefunden werden"));
 		self::index($_GET, $_POST, $flash);
 	}
 	
@@ -32,12 +32,12 @@ class LectureController extends AbstractController {
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, "Vorlesung \"".$model->getValue("token")."\" wurde gespeichert");
+				self::index($_GET, $_POST, array(T::FLASH_POS, "Vorlesung \"".$model->getValue("token")."\" wurde gespeichert"));
 				die();
 			} else {
-				$flash = "Vorlesung konnte nicht gespeichert werden";
+				$flash = array(T::FLASH_NEG, "Vorlesung konnte nicht gespeichert werden");
 				foreach ($model->getErrors() as $name => $error)
-					$flash .= "<br> - $name: $error";
+					$flash[1] .= "<br> - $name: $error";
 			}			
 		} elseif (get($_POST, T::CANCEL, false))
 			self::index($_GET, $_POST);
@@ -58,12 +58,12 @@ class LectureController extends AbstractController {
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, "Vorlesung \"".$model->getValue("token")."\" wurde gespeichert");
+				self::index($_GET, $_POST, array(T::FLASH_POS, "Vorlesung \"".$model->getValue("token")."\" wurde gespeichert"));
 				die();
 			} else {
-				$flash = "Vorlesung konnte nicht gespeichert werden";
+				$flash = array(T::FLASH_NEG, "Vorlesung konnte nicht gespeichert werden");
 				foreach ($model->getErrors() as $name => $error)
-					$flash .= "<br> - $name: $error";
+					$flash[1] .= "<br> - $name: $error";
 			}			
 		} elseif (get($_POST, T::CANCEL, false))
 			self::index($_GET, $_POST);
@@ -71,7 +71,7 @@ class LectureController extends AbstractController {
 			$model = Lecture::findById($id);
 		
 		if (! $model) {
-			self::index($_GET, $_POST, "Vorlesung konnte nicht gefunden werden");
+			self::index($_GET, $_POST, array(T::FLASH_NEG, "Vorlesung konnte nicht gefunden werden"));
 			die();
 		}
 		$variables = array(
@@ -84,8 +84,8 @@ class LectureController extends AbstractController {
 		if ($id = get($_GET, "id", false)) {
 			$model = Lecture::findById($id);
 			if ($model && $model->delete())
-				$flash = "Vorlesung {$model->getValue("token")} wurde gelöscht";
-			else $flash = "Vorlesung konnte nicht gelöscht werden";
+				$flash = array(T::FLASH_POS, "Vorlesung {$model->getValue("token")} wurde gelöscht");
+			else $flash = array(T::FLASH_NEG, "Vorlesung konnte nicht gelöscht werden");
 		}
 		
 		self::index($_GET, $_POST, $flash);		

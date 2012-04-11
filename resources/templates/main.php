@@ -1,8 +1,8 @@
 <div id="container">
 	<?php require_once(TEMPLATES_PATH . "/header.php"); ?>
 	<div id=main>
-		<div id="flash">
-			<?php if (isset($flash)) echo $flash; ?>
+		<div id="flash" class="<?= isset($flash) ? $flash[0] : ""; ?>">
+			<?php if (isset($flash)) echo $flash[1]; ?>
 		</div>
 		<div id="content">
 			<?php

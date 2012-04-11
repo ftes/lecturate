@@ -11,6 +11,9 @@ class T {
 	const CREATE= "create";
 	const INDEX = "index";
 	
+	const FLASH_POS = "positive";
+	const FLASH_NEG = "negative";
+	
 	private static $errorHTML = "";
 
 	private static $editable = true;

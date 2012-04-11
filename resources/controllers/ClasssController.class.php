@@ -31,7 +31,7 @@ class ClasssController extends AbstractController {
 			die();
 		}
 	
-		$flash = "Kurs konnte nicht gefunden werden";
+		$flash = array(T::FLASH_POS, array(T::FLASH_NEG, "Kurs konnte nicht gefunden werden"));
 		self::index($_GET, $_POST, $flash);
 	}
 	
@@ -43,12 +43,12 @@ class ClasssController extends AbstractController {
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, "Kurs \"{$model->toString()}\" wurde gespeichert");
+				self::index($_GET, $_POST, array(T::FLASH_POS, "Kurs \"{$model->toString()}\" wurde gespeichert"));
 				die();
 			} else {
-				$flash = "Kurs konnte nicht gespeichert werden";
+				$flash = array(T::FLASH_NEG, "Kurs konnte nicht gespeichert werden");
 				foreach ($model->getErrors() as $name => $error)
-					$flash .= "<br> - $name: $error";
+					$flash[1] .= "<br> - $name: $error";
 			}			
 		} elseif (get($_POST, T::CANCEL, false))
 			self::index($_GET, $_POST);
@@ -72,12 +72,12 @@ class ClasssController extends AbstractController {
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				self::index($_GET, $_POST, "Kurs \"{$model->toString()}\" wurde gespeichert");
+				self::index($_GET, $_POST, array(T::FLASH_POS, "Kurs \"{$model->toString()}\" wurde gespeichert"));
 				die();
 			} else {
-				$flash = "Kurs konnte nicht gespeichert werden";
+				$flash = array(T::FLASH_NEG, "Kurs konnte nicht gespeichert werden");
 				foreach ($model->getErrors() as $name => $error)
-					$flash .= "<br> - $name: $error";
+					$flash[1] .= "<br> - $name: $error";
 			}			
 		} elseif (get($_POST, T::CANCEL, false))
 			self::index($_GET, $_POST);
@@ -85,7 +85,7 @@ class ClasssController extends AbstractController {
 			$model = Classs::findById($id);
 		
 		if (! $model) {
-			self::index($_GET, $_POST, "Kurs konnte nicht gefunden werden");
+			self::index($_GET, $_POST, array(T::FLASH_NEG, "Kurs konnte nicht gefunden werden"));
 			die();
 		}
 		
@@ -102,8 +102,8 @@ class ClasssController extends AbstractController {
 		if ($id = get($_GET, "id", false)) {
 			$model = Classs::findById($id);
 			if ($model && $model->delete())
-				$flash = "Kurs {$model->toString()} wurde gelöscht";
-			else $flash = "Kurs konnte nicht gelöscht werden";
+				$flash = array(T::FLASH_POS, "Kurs {$model->toString()} wurde gelöscht");
+			else $flash = array(T::FLASH_NEG, "Kurs konnte nicht gelöscht werden");
 		}
 		
 		self::index($_GET, $_POST, $flash);		
