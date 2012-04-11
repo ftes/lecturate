@@ -18,3 +18,15 @@ $formId = T::uid(); ?>
 </table>
 </form>
 </div>
+
+<div class="group">
+<h2>Vorlesung nach Einmal-PW</h2>
+<form method="POST" id="<?=$formId; ?>">
+<table>
+		<tr>
+			<th>Einmal-PW</th>
+			<td></td>
+		</tr>	
+</table>
+</form>
+</div>
