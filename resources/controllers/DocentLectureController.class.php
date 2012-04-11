@@ -3,7 +3,7 @@ require_once(dirname(__FILE__) . "/../config.php");
 
 class DocentLectureController extends AbstractController {
 	
-	public static function index(array $_GET, array $_POST, $flash=false) {
+	public static function index(array $_GET, array $_POST) {
 		$models = DocentLecture::findAll();
 		$docents = array();
 		$lectures = array();
@@ -18,12 +18,11 @@ class DocentLectureController extends AbstractController {
 		$variables = array(
 				"models" => $models,
 				"docents" => $docents,
-				"lectures" => $lectures,
-				"flash" => $flash);
+				"lectures" => $lectures);
 		T::render("docent_lecture/index.php", "docent_lecture/nav.php", $variables);
 	}
 	
-	public static function view(array $_GET, array $_POST, $flash=false) {
+	public static function view(array $_GET, array $_POST) {
 		if ($id = self::get($_GET, "id"))
 				if ($model = DocentLecture::findById($id)) {
 			$docent = Docent::findById($model->getValue("d_id"));
@@ -31,17 +30,16 @@ class DocentLectureController extends AbstractController {
 			$variables = array(
 					"model" => $model,
 					"docent" => $docent,
-					"lecture" => $lecture,
-					"flash" => $flash);
+					"lecture" => $lecture,);
 			T::render("docent_lecture/view.php", "docent_lecture/nav.php", $variables);
 			die();
 		}
 	
-		$flash = array(T::FLASH_NEG, "Dozent hält Vorlesung konnte nicht gefunden werden");
-		self::index($_GET, $_POST, $flash);
+		$_SESSION["flash"] = array(T::FLASH_NEG, "Dozent hält Vorlesung konnte nicht gefunden werden");
+		self::index($_GET, $_POST);
 	}
 	
-	public static function create(array $_GET, array $_POST, $flash=false) {
+	public static function create(array $_GET, array $_POST) {
 		$model = new DocentLecture();
 
 		if (get($_POST, T::SUBMIT, false)) {
@@ -52,9 +50,9 @@ class DocentLectureController extends AbstractController {
 				self::index($_GET, $_POST, array(T::FLASH_POS, "Dozent hält Vorlesung \"{$model->toString()}\" wurde gespeichert"));
 				die();
 			} else {
-				$flash = array(T::FLASH_NEG, "Dozent hält Vorlesung konnte nicht gespeichert werden");
+				$_SESSION["flash"] = array(T::FLASH_NEG, "Dozent hält Vorlesung konnte nicht gespeichert werden");
 				foreach ($model->getErrors() as $name => $error)
-					$flash[1] .= "<br> - $name: $error";
+					$_SESSION["flash"][1] .= "<br> - $name: $error";
 			}			
 		} elseif (get($_POST, T::CANCEL, false))
 			self::index($_GET, $_POST);
@@ -65,12 +63,11 @@ class DocentLectureController extends AbstractController {
 		$variables = array(
 				"docents" => $docents,
 				"lectures" => $lectures,
-				"flash" => $flash,
 				"model" => $model);
 		T::render("docent_lecture/create.php", "docent_lecture/nav.php", $variables);
 	}
 	
-	public static function edit(array $_GET, array $_POST, $flash=false) {
+	public static function edit(array $_GET, array $_POST) {
 		$model = false;
 		
 		if (get($_POST, T::SUBMIT, false)) {
@@ -83,9 +80,9 @@ class DocentLectureController extends AbstractController {
 				self::index($_GET, $_POST, array(T::FLASH_POS, "Dozent hält Vorlesung \"{$model->toString()}\" wurde gespeichert"));
 				die();
 			} else {
-				$flash = array(T::FLASH_NEG, "Dozent hält Vorlesung konnte nicht gespeichert werden");
+				$_SESSION["flash"] = array(T::FLASH_NEG, "Dozent hält Vorlesung konnte nicht gespeichert werden");
 				foreach ($model->getErrors() as $name => $error)
-					$flash[1] .= "<br> - $name: $error";
+					$_SESSION["flash"][1] .= "<br> - $name: $error";
 			}			
 		} elseif (get($_POST, T::CANCEL, false))
 			self::index($_GET, $_POST);
@@ -103,20 +100,19 @@ class DocentLectureController extends AbstractController {
 		$variables = array(
 				"docents" => $docents,
 				"lectures" => $lectures,
-				"flash" => $flash,
 				"model" => $model);
 		T::render("docent_lecture/edit.php", "docent_lecture/nav.php", $variables);
 	}
 	
-	public static function delete(array $_GET, array $_POST, $flash=false) {
+	public static function delete(array $_GET, array $_POST) {
 		if ($id = get($_GET, "id", false)) {
 			$model = DocentLecture::findById($id);
 			if ($model && $model->delete())
-				$flash = array(T::FLASH_POS, "Dozent hält Vorlesung {$model->toString()} wurde gelöscht");
-			else $flash = array(T::FLASH_NEG, "Dozent hält Vorlesung konnte nicht gelöscht werden");
+				$_SESSION["flash"] = array(T::FLASH_POS, "Dozent hält Vorlesung {$model->toString()} wurde gelöscht");
+			else $_SESSION["flash"] = array(T::FLASH_NEG, "Dozent hält Vorlesung konnte nicht gelöscht werden");
 		}
 		
-		self::index($_GET, $_POST, $flash);		
+		self::index($_GET, $_POST);		
 	}
 }
 ?>

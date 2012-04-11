@@ -3,7 +3,7 @@ require_once(dirname(__FILE__) . "/../config.php");
 
 class RatingController extends AbstractController {
 
-	public static function index(array $_GET, array $_POST, $flash=false) {
+	public static function index(array $_GET, array $_POST) {
 		$models = Rating::findAll();
 		$otpws = array();
 		$docentLectures = array();
@@ -17,12 +17,11 @@ class RatingController extends AbstractController {
 		$variables = array(
 				"models" => Rating::findAll(),
 				"otpws" => $otpws,
-				"docentLectures" => $docentLectures,
-				"flash" => $flash);
+				"docentLectures" => $docentLectures);
 		T::render("rating/index.php", "rating/nav.php", $variables);
 	}
 
-	public static function view(array $_GET, array $_POST, $flash=false) {
+	public static function view(array $_GET, array $_POST) {
 		if ($id = self::get($_GET, "id"))
 			if ($model = Rating::findById($id)) {
 			$docentLecture = DocentLecture::findById($model->getValue("dl_id"));
@@ -30,17 +29,16 @@ class RatingController extends AbstractController {
 			$variables = array(
 					"model" => $model,
 					"otpw" => $otpw,
-					"docentLecture" => $docentLecture,
-					"flash" => $flash);
+					"docentLecture" => $docentLecture,);
 			T::render("rating/view.php", "rating/nav.php", $variables);
 			die();
 		}
 
-		$flash = array(T::FLASH_NEG, "Bewertung konnte nicht gefunden werden");
-		self::index($_GET, $_POST, $flash);
+		$_SESSION["flash"] = array(T::FLASH_NEG, "Bewertung konnte nicht gefunden werden");
+		self::index($_GET, $_POST);
 	}
 
-	public static function create(array $_GET, array $_POST, $flash=false, $defaults=false) {
+	public static function create(array $_GET, array $_POST, $defaults=false) {
 		$model = new Rating();
 		
 		if ($defaults)
@@ -58,9 +56,9 @@ class RatingController extends AbstractController {
 				self::index($_GET, $_POST, array(T::FLASH_POS, "Bewertung \"{$model->toString()}\" wurde gespeichert"));
 				die();
 			} else {
-				$flash = array(T::FLASH_NEG, "Bewertung konnte nicht gespeichert werden");
+				$_SESSION["flash"] = array(T::FLASH_NEG, "Bewertung konnte nicht gespeichert werden");
 				foreach ($model->getErrors() as $name => $error)
-					$flash[1] .= "<br> - $name: $error";
+					$_SESSION["flash"][1] .= "<br> - $name: $error";
 			}
 		} elseif (get($_POST, T::CANCEL, false))
 		self::index($_GET, $_POST);
@@ -71,19 +69,18 @@ class RatingController extends AbstractController {
 		$variables = array(
 				"otpws" => $otpws,
 				"docentLectures" => $docentLectures,
-				"flash" => $flash,
 				"model" => $model);
 		T::render("rating/create.php", "rating/nav.php", $variables);
 	}
 
-	public static function delete(array $_GET, array $_POST, $flash=false) {
+	public static function delete(array $_GET, array $_POST) {
 		if ($id = get($_GET, "id", false)) {
 			$model = Rating::findById($id);
 			if ($model && $model->delete())
-				$flash = array(T::FLASH_POS, "Bewertung {$model->toString()} wurde gelöscht");
+				$_SESSION["flash"] = array(T::FLASH_POS, "Bewertung {$model->toString()} wurde gelöscht");
 		}
 
-		self::index($_GET, $_POST, $flash);
+		self::index($_GET, $_POST);
 	}
 }
 ?>

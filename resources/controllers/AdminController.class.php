@@ -2,11 +2,11 @@
 require_once(dirname(__FILE__) . "/../config.php");
 
 class AdminController extends AbstractController {
-	public static function index($_GET, $_POST, $flash=false) {
+	public static function index($_GET, $_POST) {
 		T::render("admin/default.php", "admin/nav.php", array());
 	}
 	
-	public static function initdb($_GET, $_POST, $flash=false) {
+	public static function initdb($_GET, $_POST) {
 		global $config;
 		
 		$dbConn = Sql::getDbConn();
@@ -31,8 +31,8 @@ class AdminController extends AbstractController {
 		
 		$dbConn->close();
 		
-		$variables = array(
-				"flash" => array(T::FLASH_POS, "DB wurde initialisiert"));
+		$_SESSION["flash"] = array(T::FLASH_POS, "DB wurde initialisiert");
+		$variables = array();
 		T::render("admin/default.php", "admin/nav.php", $variables);
 	}
 }

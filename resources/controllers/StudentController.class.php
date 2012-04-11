@@ -1,6 +1,6 @@
 <?php
 class StudentController extends AbstractController {
-	public static function index($_GET, $_POST, $flash=false) {
+	public static function index($_GET, $_POST) {
 		$classses = array();
 		$classsDocentLectures = array();
 		
@@ -29,7 +29,7 @@ class StudentController extends AbstractController {
 		
 		
 		$variables = array(
-			"flash" => $flash,
+			
 			"classs" => $classs,
 			"classses" => $classses,
 			"classsDocentLecture" => $classsDocentLecture,
