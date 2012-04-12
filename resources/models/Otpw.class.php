@@ -25,10 +25,33 @@ class Otpw extends Model {
 		$docentLecture = new DocentLecture();
 		$this->addConstraint(new ForeignKey(array($dlId), $docentLecture, array($docentLecture->getAttribute("id"))));
 	}
-	
+
+	public function generateOtpw() {
+		$length = 10;
+		$characters = "0123456789abcdefghijklmnopqrstuvwxyz";
+		$otpw = "";
+
+		do {
+			for ($i=0; $i<$length; $i++)
+				$otpw .= $characters[mt_rand(0, strlen($characters) - 1)];
+		} while (self::findByOtpw($otpw) != false);
+
+		$this->setValue("otpw", $otpw);
+	}
+
 	public function setUsed() {
 		$this->setValue("used", Bool::T);
 		$this->setValue("used_ts", date('Y-m-d H-i-s'));
+	}
+
+	public static function findByOtpw($otpw) {
+		$model = new self::$name;
+
+		$query = "SELECT {$model->getAttrList()} FROM `" . self::$name . "` WHERE `otpw`='%s'";
+		$values = array($otpw);
+
+		$result = self::findBy($query, $values, self::$name);
+		return count($result) == 0 ? false : $result[0];
 	}
 
 	public static function findById($id) {
@@ -36,11 +59,11 @@ class Otpw extends Model {
 
 		$query = "SELECT {$model->getAttrList()} FROM `" . self::$name . "` WHERE `id`='%d'";
 		$values = array($id);
-		
+
 		$result = self::findBy($query, $values, self::$name);
 		return count($result) == 0 ? false : $result[0];
 	}
-	
+
 	public function toString() {
 		return $this->getValue("otpw");
 	}

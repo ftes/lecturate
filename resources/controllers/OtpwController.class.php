@@ -74,5 +74,54 @@ class OtpwController extends AbstractController {
 		
 		Util::redirect(T::href(self::$CTR, "index"));		
 	}
+	
+	public static function generate(array $_GET, array $_POST) {
+		$classs = new Classs();
+		$classses = Classs::findAll();
+		$classsDocentLecture = new ClasssDocentLecture();
+		$classsDocentLectures = array();
+		$otpws = array();
+		
+		if (isset($_POST["model"]["c_id"])) {
+			$classs->setValue("id", $_POST["model"]["c_id"]);
+			$classsObj = Classs::findById($_POST["model"]["c_id"]);
+			
+			if ($classsObj) {
+				$classs = $classsObj;
+				$classsDocentLectures = ClasssDocentLecture::findByClass($_POST["model"]["c_id"]);
+			}
+			
+			if (isset($_POST["model"]["cdl_id"])) {
+				$classsDocentLecture->setValue("id", $_POST["model"]["cdl_id"]);
+				$cdlObj = ClasssDocentLecture::findById($_POST["model"]["cdl_id"]);
+					
+				if ($cdlObj) {
+					$dlId = $cdlObj->getValue("dl_id");
+					
+					if (isset($_POST["model"]["size"])) {
+						$size = $_POST["model"]["size"];
+						
+						for ($i=0; $i<$size; $i++) {
+							$otpw = new Otpw();
+							$otpw->generateOtpw();
+							$otpw->setValue("dl_id", $dlId);
+							echo ($otpw->persist() == false);
+							array_push($otpws, $otpw);
+						}
+					}
+				}
+			}
+		}
+		
+		$variables = array(
+			"classs" => $classs,
+			"classses" => $classses,
+			"classsDocentLecture" => $classsDocentLecture,
+			"classsDocentLectures" => $classsDocentLectures,
+			"otpws" => $otpws
+		);
+		
+		T::render(self::$CTR."/generate.php", self::$CTR."/nav.php", $variables);
+	}
 }
 ?>
