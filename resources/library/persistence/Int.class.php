@@ -32,8 +32,8 @@ class Int extends Attribute {
 				array_push($this->errors, "Keine Zahl");
 			} else {
 				$value = intval($this->value);
-				if ($this->max && $this->value > $this->max) array_push($this->errors, "Zu klein (max. {$this->max})");
-				if ($this->min && $this->value < $this->min) array_push($this->errors, "Zu groß (min. {$this->min})");
+				if ($this->max && $this->value > $this->max) array_push($this->errors, "Zu groß (max. {$this->max})");
+				if ($this->min && $this->value < $this->min) array_push($this->errors, "Zu klein (min. {$this->min})");
 			}
 		}
 	}
