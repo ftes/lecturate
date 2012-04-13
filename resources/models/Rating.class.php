@@ -53,5 +53,14 @@ class Rating extends Model {
 
 		return self::findBy($query, $values, self::$name);
 	}
+	
+	public static function findNumberOfMarks($mark) {
+		$model = new self::$name;
+		
+		$query = "SELECT COUNT(*) FROM `" . self::$name . "` WHERE mark = `" . $mark . "` GROUP BY mark";
+		$values = array();
+		
+		return self::findBy($query, $values, self::$name);
+	}
 }
 ?>
