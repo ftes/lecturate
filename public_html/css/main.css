@@ -106,9 +106,13 @@
 /* } */
 #content {
 	width: 720px;
+	margin-left: 10px;
 	margin-right: 20px;
 	float: left;
 }
+#content h1 {
+	font-size: 16pt;
+} 
 
 /* #column_right { */
 /* 	background-color: lightgrey; */
