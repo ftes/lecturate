@@ -66,6 +66,47 @@ class EvaluationController extends AbstractController {
 		
 	} 
 	
+	public static function evaluateDocent() {
+		$marks = array();
+		$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
+		$ratings = Rating::findByDocent(1); // dozentID muss mitgeben werden
+	
+		foreach($ratings as $rating) {
+			$mark = $rating->getValue("mark");
+			if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
+			$marks[$mark]++;
+		}
+	
+	
+		$variables = array(
+				"evaluation"=>self::makeURL("p", "450x200", "Dozent%20Allgemein", $marks, $colors)
+		);
+	
+		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);
+	
+	}
+	
+	public static function evaluateDocentLecture() {
+		$marks = array();
+		$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
+		$ratings = Rating::findByDocentLecture(1); // dl ID muss mitgegeben werden
+	
+		foreach($ratings as $rating) {
+			$mark = $rating->getValue("mark");
+			if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
+			$marks[$mark]++;
+		}
+	
+	
+		$variables = array(
+				"evaluation"=>self::makeURL("p", "450x200", "Dozent%20 pro Vorlesung", $marks, $colors)
+		);
+	
+		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);
+	
+	}
+	
+	
 	
 	
 }

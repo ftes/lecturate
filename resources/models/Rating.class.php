@@ -69,7 +69,23 @@ class Rating extends Model {
 	}
 	
 	public static function findByDocent ($docentID) {
+		$model = new self::$name;
 		
+		$query = "SELECT {$model->getAttrList("r")} FROM `" . self::$name . "` r INNER JOIN docent_lecture dl ON r.`dl_id`=dl.`id` WHERE dl.`d_id`='%d'";
+		
+		$values = array($docentID);
+		
+		return self::findBy($query, $values, self::$name);
+	}
+	
+	public static function findByDocentLecture ($docentID) {
+		$model = new self::$name;
+	
+		$query = "SELECT {$model->getAttrList("r")} FROM `" . self::$name . "` r  WHERE r.`dl_id`='%d'";
+	
+		$values = array($docentID);
+	
+		return self::findBy($query, $values, self::$name);
 	}
 }
 ?>

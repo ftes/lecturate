@@ -84,8 +84,8 @@ abstract class Model {
 		return $attribute->getValue();
 	}
 
-	public function getAttrList() {
-		return Util::enum($this->attributes, "getName");
+	public function getAttrList($acronym="") {
+		return Util::enum($this->attributes, "getName", ",", $acronym);
 	}
 	
 	private function inSync() {
