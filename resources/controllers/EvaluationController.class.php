@@ -11,10 +11,10 @@ class EvaluationController extends AbstractController {
 		self::evaluateAll($_GET, $_POST);	
 	}
 	
-	private static function makeURL($chartType, $chartSize, $chartTitle, $chartLabels, $chartColors) {
+	private static function makeURL($chartType, $chartSize, $chartLabels, $chartColors) {
 		$chartTypeURL = "cht=" . $chartType;
 		$chartSizeURL = "chs=" . $chartSize;
-		$chartTitleURL = "chtt=" . $chartTitle;
+		
 		$chartLabelsURL = "chl=";
 		$chartColorsURL = "chco=";
 		$chartDataURL = "chd=t:";
@@ -41,7 +41,7 @@ class EvaluationController extends AbstractController {
 		$yaxis = "chxr=0,0," . $maxCount . ",1";
 		
 		
-		$URL = self::$URL_BASIS . $yaxis . "&chxt=y,x" . "&" . $chartTypeURL . "&" . $chartSizeURL . "&" . $chartDataURL . "&" . $chartLabelsURL . "&" . $chartTitleURL . "&" . $chartColorsURL;
+		$URL = self::$URL_BASIS . $yaxis . "&chxt=y,x" . "&" . $chartTypeURL . "&" . $chartSizeURL . "&" . $chartDataURL . "&" . $chartLabelsURL . "&" . $chartColorsURL;
 		return $URL;
 	}
 	
@@ -58,7 +58,8 @@ class EvaluationController extends AbstractController {
 		
 
 		$variables = array(
-				"evaluation"=>self::makeURL("bvg", "450x200", "Alle%20Vorlesungen", $marks, $colors)	
+				"heading"=>"DHBW allgemein",
+				"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors)	
 		);
 		
 		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);
@@ -85,8 +86,8 @@ class EvaluationController extends AbstractController {
 			}
 						
 			$variables = array(
-			
-					"evaluation"=>self::makeURL("bvg", "250x300", "Dozent%20Allgemein", $marks, $colors)
+					"heading"=>"Dozent allgemein",
+					"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors)
 			
 			);
 			
@@ -98,25 +99,7 @@ class EvaluationController extends AbstractController {
 		$_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gefunden werden");
 		Util::redirect(T::href(self::$CTR, "index"));
 		
-		$marks = array();
-		$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
-		$ratings = Rating::findByDocent(1); // dozentID muss mitgeben werden
-	
-		foreach($ratings as $rating) {
-			$mark = $rating->getValue("mark");
-			if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
-			$marks[$mark]++;
-		}
-	
-	
-		$variables = array(
-
-				"evaluation"=>self::makeURL("bvg", "250x300", "Dozent%20Allgemein", $marks, $colors)
-
-		);
-	
-		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);
-	
+			
 	}
 	
 	public static function evaluateDocentLecture() {
@@ -132,7 +115,8 @@ class EvaluationController extends AbstractController {
 	
 	
 		$variables = array(
-				"evaluation"=>self::makeURL("bvg", "250x300", "Dozent%20 pro Vorlesung", $marks, $colors)
+				"heading"=>"Vorlesung",
+				"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors)
 		);
 	
 		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);

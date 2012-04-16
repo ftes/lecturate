@@ -116,5 +116,5 @@
 }
 
 .button.text.rate:before,.button.notext.rate:after {
-	content: "\52";
+	content: "\00B1";
 }
