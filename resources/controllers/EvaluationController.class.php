@@ -14,7 +14,7 @@ class EvaluationController extends AbstractController {
 	private static function makeURL($chartType, $chartSize, $chartLabels, $chartColors) {
 		$chartTypeURL = "cht=" . $chartType;
 		$chartSizeURL = "chs=" . $chartSize;
-		
+		$chartBackgroundURL = "chf=bg,s,00000000";
 		$chartLabelsURL = "chl=";
 		$chartColorsURL = "chco=";
 		$chartDataURL = "chd=t:";
@@ -41,7 +41,7 @@ class EvaluationController extends AbstractController {
 		$yaxis = "chxr=0,0," . $maxCount . ",1";
 		
 		
-		$URL = self::$URL_BASIS . $yaxis . "&chxt=y,x" . "&" . $chartTypeURL . "&" . $chartSizeURL . "&" . $chartDataURL . "&" . $chartLabelsURL . "&" . $chartColorsURL;
+		$URL = self::$URL_BASIS . $yaxis . "&chxt=y,x" . "&" . $chartTypeURL . "&" . $chartSizeURL . "&" . $chartDataURL . "&" . $chartLabelsURL . "&" . $chartColorsURL . "&" . $chartBackgroundURL;
 		return $URL;
 	}
 	
@@ -56,6 +56,7 @@ class EvaluationController extends AbstractController {
 			$marks[$mark]++;
 		}
 		
+		ksort($marks);
 
 		$variables = array(
 				"heading"=>"DHBW",
@@ -85,6 +86,8 @@ class EvaluationController extends AbstractController {
 				$marks[$mark]++;
 			}
 						
+			ksort($marks);
+			
 			$variables = array(
 					"heading"=>"Dozent",
 					"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors)
@@ -112,7 +115,7 @@ class EvaluationController extends AbstractController {
 			
 			if (count($ratings) == 0) {
 				$_SESSION["flash"] = array(T::FLASH_NEG, "Für diese Zuordnung liegt keine Bewertung vor");
-				Util::redirect(T::href("docentlecture", "index"));
+				Util::redirect(T::href("docent_lecture", "index"));
 			}
 			
 			foreach($ratings as $rating) {
@@ -120,9 +123,11 @@ class EvaluationController extends AbstractController {
 				if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
 				$marks[$mark]++;
 			}
-						
+
+			ksort($marks);
+			
 			$variables = array(
-					"heading"=>"Dozent h�lt Vorlesung",
+					"heading"=>"Dozent hält Vorlesung",
 					"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors)
 			
 			);
@@ -155,6 +160,8 @@ class EvaluationController extends AbstractController {
 				$marks[$mark]++;
 			}
 		
+			ksort($marks);
+			
 			$variables = array(
 					"heading"=>"Vorlesung",
 					"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors)
