@@ -6,7 +6,7 @@
 #container {
 	font-family: Arial;
 	min-height: 100%;
-	width: 780px;
+	width: 980px;
 	background: #ddd;
 	padding: 0;
 	margin: 0px auto 0px auto;
@@ -28,10 +28,10 @@
 #topbar {
 	text-shadow: 1px 1px 2px #999;
 	margin: 0;
-	width: 760px;
+	width: 960px;
 	display: block;
 	height: 100px;
-	background: url(../img/test.jpg);
+	background: url(../img/banner.jpg);
 	border-radius: 7px 7px 0 0;
 }
 
@@ -49,7 +49,7 @@
 #contentTopBar {
 	position: absolute;
 	top: 0px;
-	width: 740px;
+	width: 940px;
 	z-index: 2;
 }
 
@@ -61,7 +61,7 @@
 	position: absolute;
 	top: 10px;
 	z-index: 1;
-	width: 740px;
+	width: 940px;
 	background: white;
 	opacity: 0.8;
 	display: run-in;
@@ -105,7 +105,7 @@
 /* 	float: left; */
 /* } */
 #content {
-	width: 520px;
+	width: 720px;
 	margin-right: 20px;
 	float: left;
 }
@@ -152,7 +152,7 @@ div.spacer {
 	color: lightgrey;
 	font-size: 10px;
 	text-align: right;
-	width: 760px;
+	width: 960px;
 	position: fixed;
 	bottom: 0px;
 	display: run-in;
