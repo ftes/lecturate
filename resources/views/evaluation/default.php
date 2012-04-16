@@ -1,8 +1,7 @@
 <h1><?=$heading ?></h1>
-
-<img src="<?=$evaluation ?>">
-
-<table>
+<table valign="top">
+<tr><td>
+<table valign="top">
 <?php 
 foreach($content as $key=>$value){
 	echo "<tr>";
@@ -11,4 +10,24 @@ foreach($content as $key=>$value){
 	echo "</tr>";
 }
 ?>
+</table>
+<img src="<?=$evaluation ?>">
+
+
+</td>
+<td valign="top" width="300">
+<table valign="top" >
+
+<th>Bemerkungen</th>
+<?php 
+foreach($comments as $comment){
+	echo "<tr>";
+	echo "<td>$comment</td>";
+	echo "</tr>";
+}
+?>
+
+</table>
+</td>
+</tr>
 </table>
