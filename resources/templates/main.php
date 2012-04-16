@@ -7,6 +7,7 @@
 	<title>Lecturate</title>
 	<link rel="stylesheet" href="css/main.css" type="text/css">
 	<link rel="stylesheet" href="css/buttons.css" type="text/css">
+	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
 </head>
 
 <body>
