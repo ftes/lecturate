@@ -14,7 +14,7 @@ class EvaluationController extends AbstractController {
 	private static function makeURL($chartType, $chartSize, $chartLabels, $chartColors) {
 		$chartTypeURL = "cht=" . $chartType;
 		$chartSizeURL = "chs=" . $chartSize;
-		
+		$chartBackgroundURL = "chf=bg,s,00000000";
 		$chartLabelsURL = "chl=";
 		$chartColorsURL = "chco=";
 		$chartDataURL = "chd=t:";
@@ -41,7 +41,7 @@ class EvaluationController extends AbstractController {
 		$yaxis = "chxr=0,0," . $maxCount . ",1";
 		
 		
-		$URL = self::$URL_BASIS . $yaxis . "&chxt=y,x" . "&" . $chartTypeURL . "&" . $chartSizeURL . "&" . $chartDataURL . "&" . $chartLabelsURL . "&" . $chartColorsURL;
+		$URL = self::$URL_BASIS . $yaxis . "&chxt=y,x" . "&" . $chartTypeURL . "&" . $chartSizeURL . "&" . $chartDataURL . "&" . $chartLabelsURL . "&" . $chartColorsURL . "&" . $chartBackgroundURL;
 		return $URL;
 	}
 	
@@ -56,9 +56,10 @@ class EvaluationController extends AbstractController {
 			$marks[$mark]++;
 		}
 		
+		ksort($marks);
 
 		$variables = array(
-				"heading"=>"DHBW allgemein",
+				"heading"=>"DHBW",
 				"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors)	
 		);
 		
@@ -85,8 +86,10 @@ class EvaluationController extends AbstractController {
 				$marks[$mark]++;
 			}
 						
+			ksort($marks);
+			
 			$variables = array(
-					"heading"=>"Dozent allgemein",
+					"heading"=>"Dozent",
 					"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors)
 			
 			);
@@ -103,24 +106,78 @@ class EvaluationController extends AbstractController {
 	}
 	
 	public static function evaluateDocentLecture() {
-		$marks = array();
-		$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
-		$ratings = Rating::findByDocentLecture(1); // dl ID muss mitgegeben werden
-	
-		foreach($ratings as $rating) {
-			$mark = $rating->getValue("mark");
-			if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
-			$marks[$mark]++;
+		if ($id = self::get($_GET, "id"))
+			if ($model = Docent::findById($id)) {
+			
+			$marks = array();
+			$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
+			$ratings = Rating::findByDocentLecture($id); // dozentID muss mitgeben werden
+			
+			if (count($ratings) == 0) {
+				$_SESSION["flash"] = array(T::FLASH_NEG, "Für diese Zuordnung liegt keine Bewertung vor");
+				Util::redirect(T::href("docent_lecture", "index"));
+			}
+			
+			foreach($ratings as $rating) {
+				$mark = $rating->getValue("mark");
+				if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
+				$marks[$mark]++;
+			}
+
+			ksort($marks);
+			
+			$variables = array(
+					"heading"=>"Dozent hält Vorlesung",
+					"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors)
+			
+			);
+			
+			T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);
+			
+			die();
 		}
+		
+		$_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gefunden werden");
+		Util::redirect(T::href(self::$CTR, "index"));
+	}
 	
-	
-		$variables = array(
-				"heading"=>"Vorlesung",
-				"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors)
-		);
-	
-		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);
-	
+	public static function evaluateLecture(){
+		if ($id = self::get($_GET, "id"))
+			if ($model = Lecture::findById($id)) {
+				
+			$marks = array();
+			$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
+			$ratings = Rating::findByLecture($id); //lecture ID
+				
+			if (count($ratings) == 0) {
+				$_SESSION["flash"] = array(T::FLASH_NEG, "Für diese Vorlesung liegt keine Bewertung vor");
+				Util::redirect(T::href("lecture", "index"));
+			}
+				
+			foreach($ratings as $rating) {
+				$mark = $rating->getValue("mark");
+				if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
+				$marks[$mark]++;
+			}
+		
+			ksort($marks);
+			
+			$variables = array(
+					"heading"=>"Vorlesung",
+					"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors)
+						
+			);
+				
+			T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);
+				
+			die();
+		}
+		
+		$_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gefunden werden");
+		Util::redirect(T::href(self::$CTR, "index"));
+		
+			
+		
 	}
 	
 	
