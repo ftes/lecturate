@@ -118,3 +118,11 @@
 .button.text.rate:before,.button.notext.rate:after {
 	content: "\00B1";
 }
+
+.button.text.login:before,.button.notext.login:after {
+	content: "\1F50F";
+}
+
+.button.text.logout:before,.button.notext.logout:after {
+	content: "\1F50F";
+}

@@ -8,5 +8,5 @@ function get(array $array, $key, $default) {
 
 $controller = Util::camelCase(get($_GET, "controller", "admin"));
 $action = strtolower(get($_GET, "action", "index"));
-call_user_func_array($controller . "Controller::" . $action, array($_GET, $_POST));
+call_user_func_array($controller . "Controller::" . $action, array());
 ?>

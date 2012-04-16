@@ -6,7 +6,9 @@ class RatingController extends AbstractController {
 	private static $TXT = "Bewertung";
 	
 
-	public static function index(array $_GET, array $_POST) {
+	public static function index(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		$models = Rating::findAll();
 		$otpws = array();
 		$docentLectures = array();
@@ -24,7 +26,9 @@ class RatingController extends AbstractController {
 		T::render(self::$CTR."/index.php", self::$CTR."/nav.php", $variables);
 	}
 
-	public static function view(array $_GET, array $_POST) {
+	public static function view(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		if ($id = self::get($_GET, "id"))
 			if ($model = Rating::findById($id)) {
 			$docentLecture = DocentLecture::findById($model->getValue("dl_id"));
@@ -41,7 +45,7 @@ class RatingController extends AbstractController {
 		Util::redirect(T::href(self::$CTR, "index"));
 	}
 
-	public static function create(array $_GET, array $_POST) {
+	public static function create(array $tmp1=null, array $tmp2=null) {
 		$model = new Rating();
 		
 		if (isset($_SESSION["model"]))
@@ -76,7 +80,9 @@ class RatingController extends AbstractController {
 		T::render(self::$CTR."/create.php", self::$CTR."/nav.php", $variables);
 	}
 
-	public static function delete(array $_GET, array $_POST) {
+	public static function delete(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		if ($id = get($_GET, "id", false)) {
 			$model = Rating::findById($id);
 			if ($model && $model->delete())

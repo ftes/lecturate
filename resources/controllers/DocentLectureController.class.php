@@ -6,7 +6,9 @@ class DocentLectureController extends AbstractController {
 	private static $TXT = "Gehaltene Vorlesung";
 	
 	
-	public static function index(array $_GET, array $_POST) {
+	public static function index(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		$models = DocentLecture::findAll();
 		$docents = array();
 		$lectures = array();
@@ -25,7 +27,9 @@ class DocentLectureController extends AbstractController {
 		T::render(self::$CTR."/index.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function view(array $_GET, array $_POST) {
+	public static function view(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		if ($id = self::get($_GET, "id"))
 				if ($model = DocentLecture::findById($id)) {
 			$docent = Docent::findById($model->getValue("d_id"));
@@ -42,7 +46,9 @@ class DocentLectureController extends AbstractController {
 		Util::redirect(T::href(self::$CTR, "index"));
 	}
 	
-	public static function create(array $_GET, array $_POST) {
+	public static function create(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		$model = new DocentLecture();
 
 		if (get($_POST, T::SUBMIT, false)) {
@@ -70,7 +76,9 @@ class DocentLectureController extends AbstractController {
 		T::render(self::$CTR."/create.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function edit(array $_GET, array $_POST) {
+	public static function edit(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		$model = false;
 		
 		if (get($_POST, T::SUBMIT, false)) {
@@ -107,7 +115,9 @@ class DocentLectureController extends AbstractController {
 		T::render(self::$CTR."/edit.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function delete(array $_GET, array $_POST) {
+	public static function delete(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		if ($id = get($_GET, "id", false)) {
 			$model = DocentLecture::findById($id);
 			if ($model && $model->delete())

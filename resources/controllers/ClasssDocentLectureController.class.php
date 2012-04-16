@@ -6,7 +6,9 @@ class ClasssDocentLectureController extends AbstractController {
 	private static $TXT = "Kurs hört gehaltene Vorlesung";
 	
 	
-	public static function index(array $_GET, array $_POST) {
+	public static function index(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		$models = ClasssDocentLecture::findAll();
 		$classses= array();
 		$docentLectures = array();
@@ -25,7 +27,9 @@ class ClasssDocentLectureController extends AbstractController {
 		T::render(self::$CTR."/index.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function view(array $_GET, array $_POST) {
+	public static function view(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		if ($id = self::get($_GET, "id"))
 				if ($model = ClasssDocentLecture::findById($id)) {
 			$classs = Classs::findById($model->getValue("c_id"));
@@ -42,7 +46,9 @@ class ClasssDocentLectureController extends AbstractController {
 		Util::redirect(T::href(self::$CTR, "index"));
 	}
 	
-	public static function create(array $_GET, array $_POST) {
+	public static function create(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		$model = new ClasssDocentLecture();
 
 		if (get($_POST, T::SUBMIT, false)) {
@@ -70,7 +76,9 @@ class ClasssDocentLectureController extends AbstractController {
 		T::render(self::$CTR."/create.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function edit(array $_GET, array $_POST) {
+	public static function edit(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		$model = false;
 		
 		if (get($_POST, T::SUBMIT, false)) {
@@ -107,7 +115,9 @@ class ClasssDocentLectureController extends AbstractController {
 		T::render(self::$CTR."/edit.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function delete(array $_GET, array $_POST) {
+	public static function delete(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		if ($id = get($_GET, "id", false)) {
 			$model = ClasssDocentLecture::findById($id);
 			if ($model && $model->delete())

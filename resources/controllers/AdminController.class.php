@@ -5,11 +5,13 @@ class AdminController extends AbstractController {
 	private static $CTR = "admin";
 	private static $TXT = "Admin";
 	
-	public static function index($_GET, $_POST) {
+	public static function index($tmp1=false, $tmp2=false) {
 		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", array());
 	}
 	
-	public static function initdb($_GET, $_POST) {
+	public static function initdb($tmp1=false, $tmp2=false) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		global $config;
 		
 		$dbConn = Sql::getDbConn();
@@ -34,7 +36,17 @@ class AdminController extends AbstractController {
 		
 		$dbConn->close();
 		
-		$_SESSION["flash"] = array(T::FLASH_POS, "DB wurde initialisiert");
+		$advisor = new Advisor();
+		$advisor->setValue("username", "admin");
+		$advisor->setValue("password", "admin");
+		$advisor->setValue("firstname", "admin");
+		$advisor->setValue("lastname", "admin");
+		
+		$advisor->persist();
+		
+		$_SESSION["login"] = false;
+		
+		$_SESSION["flash"] = array(T::FLASH_POS, "DB wurde initialisiert<br>Standard-SGL admin/admin");
 		$variables = array();
 		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);
 	}

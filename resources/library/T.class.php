@@ -11,6 +11,8 @@ class T {
 	const CREATE= "create";
 	const INDEX = "index";
 	const RATE = "rate";
+	const LOGIN = "login";
+	const LOGOUT = "logout";
 	
 	const FLASH_POS = "positive";
 	const FLASH_NEG = "negative";
@@ -33,6 +35,7 @@ class T {
 			}
 		}
 		require_once(TEMPLATES_PATH . "/main.php");
+		die();
 	}
 
 	public static function setEditable($bool) {
@@ -153,7 +156,10 @@ class T {
 	}
 
 	public static function button($type, $text) {
-		return "<button type=\"submit\" name=\"$type\" value=\"$type\" class=\"button text $type\">$text</button>";
+		$typeText = "type=\"submit\"";
+		if ($type == T::CANCEL)
+			$typeText = "type=\"button\"";
+		return "<button $typeText name=\"$type\" value=\"$type\" class=\"button text $type\">$text</button>";
 	}
 	
 	public static function href($controller, $action="index", $array=array()) {

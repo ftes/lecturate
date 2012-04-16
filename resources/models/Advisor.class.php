@@ -32,6 +32,16 @@ class Advisor extends Model {
 		$result = self::findBy($query, $values, self::$name);
 		return count($result) == 0 ? false : $result[0];
 	}
+
+	public static function findByUsernamePassword($username, $password) {
+		$model = new self::$name;
+
+		$query = "SELECT {$model->getAttrList()} FROM `" . self::$name . "` WHERE `username`='%s' AND `password`='%s'";
+		$values = array($username, $password);
+		
+		$result = self::findBy($query, $values, self::$name);
+		return count($result) == 0 ? false : $result[0];
+	}
 	
 	public function toString() {
 		return $this->getValue("firstname") . " " . $this->getValue("lastname");

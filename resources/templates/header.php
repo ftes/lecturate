@@ -7,16 +7,31 @@
 	<div id="background"></div>
 </div>
 <div id="navbar">
-<?=T::iconButton(false, "Admin", "admin")?>
-<?=T::iconButton(false, "Vorlesung", "lecture")?>
-<?=T::iconButton(false, "Dozent", "docent")?>
-<?=T::iconButton(false, "SGL", "advisor")?>
-<?=T::iconButton(false, "Kurs", "classs")?>
-<?=T::iconButton(false, "Dozent hält Vorlesung", "docent_lecture")?>
-<?=T::iconButton(false, "Kurs hört gehaltene Vorlesung", "classs_docent_lecture")?>
-<?=T::iconButton(false, "Einmal-PW", "otpw")?>
-<?=T::iconButton(false, "Bewertung", "rating")?>
-<?=T::iconButton(false, "Student", "student")?>
-<?=T::iconButton(false, "Auswertung", "evaluation")?>
+	<div id="left">
+		<?php
+		if (array_key_exists("login", $_SESSION)) {
+			echo T::iconButton(false, "Admin", "admin");
+			echo T::iconButton(false, "Vorlesung", "lecture");
+			echo T::iconButton(false, "Dozent", "docent");
+			echo T::iconButton(false, "SGL", "advisor");
+			echo T::iconButton(false, "Kurs", "classs");
+			echo T::iconButton(false, "Dozent hält Vorlesung", "docent_lecture");
+			echo T::iconButton(false, "Kurs hört gehaltene Vorlesung", "classs_docent_lecture");
+			echo T::iconButton(false, "Einmal-PW", "otpw");
+			echo T::iconButton(false, "Bewertung", "rating");
+			echo T::iconButton(false, "Auswertung", "evaluation");
+		} else {
+			echo T::iconButton(false, "Bewerten", "student");
+		}
+		?>
+	</div>
+	<div id="right">
+		<?php 
+		if (array_key_exists("login", $_SESSION))
+			echo T::iconButton(false, "Abmelden", "advisor", "logout");
+		else
+			echo T::iconButton(false, "Anmelden", "advisor", "login");
+		?>
+	</div>
 </div>
 

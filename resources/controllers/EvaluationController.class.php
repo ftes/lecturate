@@ -7,8 +7,10 @@ class EvaluationController extends AbstractController {
 	private static $TXT = "Evaluation";
 	private static $URL_BASIS = "http://chart.apis.google.com/chart?";
 	
-	public static function index($_GET, $_POST) {
-		self::evaluateAll($_GET, $_POST);	
+	public static function index($tmp1=false, $tmp2=false) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
+		self::evaluateAll();	
 	}
 	
 	private static function makeURL($chartType, $chartSize, $chartLabels, $chartColors) {
@@ -46,6 +48,8 @@ class EvaluationController extends AbstractController {
 	}
 	
 	public static function evaluateAll() {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		$marks = array();
 		$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
 		$ratings = Rating::findAll();
@@ -67,6 +71,8 @@ class EvaluationController extends AbstractController {
 	} 
 	
 	public static function evaluateDocent() {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		if ($id = self::get($_GET, "id"))
 			if ($model = Docent::findById($id)) {
 			
@@ -103,6 +109,8 @@ class EvaluationController extends AbstractController {
 	}
 	
 	public static function evaluateDocentLecture() {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		$marks = array();
 		$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
 		$ratings = Rating::findByDocentLecture(1); // dl ID muss mitgegeben werden

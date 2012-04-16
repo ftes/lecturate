@@ -6,7 +6,9 @@ class OtpwController extends AbstractController {
 	private static $TXT = "Einmal-PW";
 	
 	
-	public static function index(array $_GET, array $_POST) {
+	public static function index(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		$models = Otpw::findAll();
 		$docentLectures = array();
 		foreach ($models as $model) {
@@ -21,7 +23,9 @@ class OtpwController extends AbstractController {
 		T::render(self::$CTR."/index.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function view(array $_GET, array $_POST) {
+	public static function view(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		if ($id = self::get($_GET, "id"))
 				if ($model = Otpw::findById($id)) {
 			$docentLecture = DocentLecture::findById($model->getValue("dl_id"));
@@ -37,7 +41,9 @@ class OtpwController extends AbstractController {
 		Util::redirect(T::href(self::$CTR, "index"));
 	}
 	
-	public static function create(array $_GET, array $_POST) {
+	public static function create(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		$model = new Otpw();
 
 		if (get($_POST, T::SUBMIT, false)) {
@@ -64,7 +70,9 @@ class OtpwController extends AbstractController {
 		T::render(self::$CTR."/create.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function delete(array $_GET, array $_POST) {
+	public static function delete(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		if ($id = get($_GET, "id", false)) {
 			$model = Otpw::findById($id);
 			if ($model && $model->delete())
@@ -75,7 +83,9 @@ class OtpwController extends AbstractController {
 		Util::redirect(T::href(self::$CTR, "index"));		
 	}
 	
-	public static function generate(array $_GET, array $_POST) {
+	public static function generate(array $tmp1=null, array $tmp2=null) {
+		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		
 		$classs = new Classs();
 		$classses = Classs::findAll();
 		$classsDocentLecture = new ClasssDocentLecture();
