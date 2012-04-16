@@ -15,10 +15,10 @@ foreach($content as $key=>$value){
 
 
 </td>
-<td valign="top" width="300">
-<table valign="top" >
-
-<th>Bemerkungen</th>
+<td valign="top">
+<table valign="top">
+<colgroup width="300">
+<th width="400">Bemerkungen</th>
 <?php 
 foreach($comments as $comment){
 	echo "<tr>";
@@ -26,7 +26,7 @@ foreach($comments as $comment){
 	echo "</tr>";
 }
 ?>
-
+</colgroup>
 </table>
 </td>
 </tr>
