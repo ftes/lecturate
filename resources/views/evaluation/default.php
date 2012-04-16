@@ -15,7 +15,7 @@ foreach($content as $key=>$value){
 
 
 </td>
-<td valign="top" width="300">
+<td valign="top" width="500">
 <table valign="top" >
 
 <th>Bemerkungen</th>
