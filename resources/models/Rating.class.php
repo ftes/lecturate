@@ -8,7 +8,7 @@ class Rating extends Model {
 		parent::__construct(self::$name);
 
 		$id = new Int("id", false, true, 0, false);
-		$mark = new Int("mark", false, false, 1, 10);
+		$mark = new Int("mark", false, false, 1, 5);
 		$created = new Timestamp("created", true, false);
 		$oId = new Int("o_id", false, false, 0, false);
 		$dlId = new Int("dl_id", false, false, 0, false);
