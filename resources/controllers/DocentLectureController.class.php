@@ -6,7 +6,7 @@ class DocentLectureController extends AbstractController {
 	private static $TXT = "Gehaltene Vorlesung";
 	
 	
-	public static function index(array $tmp1=null, array $tmp2=null) {
+	public static function index() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$models = DocentLecture::findAll();
@@ -27,7 +27,7 @@ class DocentLectureController extends AbstractController {
 		T::render(self::$CTR."/index.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function view(array $tmp1=null, array $tmp2=null) {
+	public static function view() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		if ($id = self::get($_GET, "id"))
@@ -46,7 +46,7 @@ class DocentLectureController extends AbstractController {
 		Util::redirect(T::href(self::$CTR, "index"));
 	}
 	
-	public static function create(array $tmp1=null, array $tmp2=null) {
+	public static function create() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$model = new DocentLecture();
@@ -76,7 +76,7 @@ class DocentLectureController extends AbstractController {
 		T::render(self::$CTR."/create.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function edit(array $tmp1=null, array $tmp2=null) {
+	public static function edit() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$model = false;
@@ -115,7 +115,7 @@ class DocentLectureController extends AbstractController {
 		T::render(self::$CTR."/edit.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function delete(array $tmp1=null, array $tmp2=null) {
+	public static function delete() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		if ($id = get($_GET, "id", false)) {

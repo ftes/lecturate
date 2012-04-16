@@ -5,11 +5,11 @@ class AdminController extends AbstractController {
 	private static $CTR = "admin";
 	private static $TXT = "Admin";
 	
-	public static function index($tmp1=false, $tmp2=false) {
+	public static function index() {
 		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", array());
 	}
 	
-	public static function initdb($tmp1=false, $tmp2=false) {
+	public static function initdb() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		global $config;

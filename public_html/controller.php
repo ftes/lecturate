@@ -6,7 +6,7 @@ function get(array $array, $key, $default) {
 	return $default;
 }
 
-$controller = Util::camelCase(get($_GET, "controller", "admin"));
+$controller = Util::camelCase(get($_GET, "controller", "student"));
 $action = strtolower(get($_GET, "action", "index"));
 call_user_func_array($controller . "Controller::" . $action, array());
 ?>

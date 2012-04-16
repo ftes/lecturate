@@ -5,7 +5,7 @@ class ClasssController extends AbstractController {
 	private static $CTR = "classs";
 	private static $TXT = "Kurs";
 	
-	public static function index(array $tmp1=null, array $tmp2=null) {
+	public static function index() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$models = Classs::findAll();
@@ -22,7 +22,7 @@ class ClasssController extends AbstractController {
 		T::render(self::$CTR."/index.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function view(array $tmp1=null, array $tmp2=null) {
+	public static function view() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		if ($id = self::get($_GET, "id"))
@@ -39,10 +39,12 @@ class ClasssController extends AbstractController {
 		Util::redirect(T::href(self::$CTR, "index"));
 	}
 	
-	public static function create(array $tmp1=null, array $tmp2=null) {
+	public static function create() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$model = new Classs();
+		
+		$model->setValue("a_id", $_SESSION["advisor"]);
 
 		if (get($_POST, T::SUBMIT, false)) {
 			foreach ($_POST["model"] as $key => $value)
@@ -67,7 +69,7 @@ class ClasssController extends AbstractController {
 		T::render(self::$CTR."/create.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function edit(array $tmp1=null, array $tmp2=null) {
+	public static function edit() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$model = false;
@@ -104,7 +106,7 @@ class ClasssController extends AbstractController {
 		T::render(self::$CTR."/edit.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function delete(array $tmp1=null, array $tmp2=null) {
+	public static function delete() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		if ($id = get($_GET, "id", false)) {

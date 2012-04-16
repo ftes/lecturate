@@ -7,7 +7,7 @@ class EvaluationController extends AbstractController {
 	private static $TXT = "Evaluation";
 	private static $URL_BASIS = "http://chart.apis.google.com/chart?";
 	
-	public static function index($tmp1=false, $tmp2=false) {
+	public static function index() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		self::evaluateAll();	
@@ -66,7 +66,10 @@ class EvaluationController extends AbstractController {
 		}
 		
 		ksort($marks);
-		$mittelwert = $mittelwert/count($ratings);
+		$count = count($ratings);
+		
+		//! Divison by zero
+		$mittelwert = $count==0 ? 0 : $mittelwert/$count;;
 			
 		$content = array("Mittelwert"=>round($mittelwert,2));
 

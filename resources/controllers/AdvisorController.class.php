@@ -6,7 +6,7 @@ class AdvisorController extends AbstractController {
 	private static $TXT = "SGL";
 	
 	
-	public static function index(array $tmp1=null, array $tmp2=null) {
+	public static function index() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$variables = array(
@@ -15,7 +15,7 @@ class AdvisorController extends AbstractController {
 		T::render(self::$CTR."/index.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function view(array $tmp1=null, array $tmp2=null) {
+	public static function view() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		if ($id = self::get($_GET, "id"))
@@ -30,7 +30,7 @@ class AdvisorController extends AbstractController {
 		Util::redirect(T::href(self::$CTR."", "index"));
 	}
 	
-	public static function create(array $tmp1=null, array $tmp2=null) {
+	public static function create() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$model = new Advisor();
@@ -55,7 +55,7 @@ class AdvisorController extends AbstractController {
 		T::render(self::$CTR."/create.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function edit(array $tmp1=null, array $tmp2=null) {
+	public static function edit() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$model = false;
@@ -88,7 +88,7 @@ class AdvisorController extends AbstractController {
 		T::render(self::$CTR."/edit.php", self::$CTR."/nav.php", $variables);
 	}
 	
-	public static function delete(array $tmp1=null, array $tmp2=null) {
+	public static function delete() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		if ($id = get($_GET, "id", false)) {
@@ -143,7 +143,7 @@ class AdvisorController extends AbstractController {
 		T::render(self::$CTR."/login.php", "notexistent", $variables);
 	}
 	
-	public static function logout(array $tmp1=null, array $tmp2=null) {
+	public static function logout() {
 		if (self::get($_SESSION, "login", false)) {
 			unset($_SESSION["login"]);
 			$_SESSION["flash"] = array(T::FLASH_POS, "Abmeldung erfolgreich");

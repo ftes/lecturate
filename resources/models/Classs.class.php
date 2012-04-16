@@ -21,6 +21,19 @@ class Classs extends Model {
 		$advisor = new Advisor();
 		$this->addConstraint(new ForeignKey(array($aId), $advisor, array($advisor->getAttribute("id"))));
 	}
+	
+	public static function getAdvisor() {
+		return Advisor::findById(self::getValue("a_id"));
+	}
+
+	public static function findByAdvisor($a_id) {
+		$model = new self::$name;
+
+		$query = "SELECT {$model->getAttrList()} FROM `" . self::$name . "` WHERE `a_id`='%d'";
+		$values = array($a_id);
+		
+		return self::findBy($query, $values, self::$name);
+	}
 
 	public static function findById($id) {
 		$model = new self::$name;

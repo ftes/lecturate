@@ -13,7 +13,7 @@
 		</tr>
 		<tr>
 			<th>Einmal-PW</th>
-			<td><?=T::select($model->getAttribute("o_id"), $otpws); ?></td>
+			<td><input type="text" name="model[otpw]"></td>
 			<td></td>
 		</tr>
 		<tr>

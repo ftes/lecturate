@@ -3,7 +3,7 @@ class StudentController extends AbstractController {
 	private static $CTR = "student";
 	private static $TXT = "Student";
 	
-	public static function index($tmp1=false, $tmp2=false) {
+	public static function index() {
 		$classses = Classs::findAll();
 		$classsDocentLectures = array();
 		

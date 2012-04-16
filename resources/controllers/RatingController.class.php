@@ -6,7 +6,7 @@ class RatingController extends AbstractController {
 	private static $TXT = "Bewertung";
 	
 
-	public static function index(array $tmp1=null, array $tmp2=null) {
+	public static function index() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$models = Rating::findAll();
@@ -26,7 +26,7 @@ class RatingController extends AbstractController {
 		T::render(self::$CTR."/index.php", self::$CTR."/nav.php", $variables);
 	}
 
-	public static function view(array $tmp1=null, array $tmp2=null) {
+	public static function view() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		if ($id = self::get($_GET, "id"))
@@ -45,7 +45,7 @@ class RatingController extends AbstractController {
 		Util::redirect(T::href(self::$CTR, "index"));
 	}
 
-	public static function create(array $tmp1=null, array $tmp2=null) {
+	public static function create() {
 		$model = new Rating();
 		
 		if (isset($_SESSION["model"]))
@@ -55,20 +55,26 @@ class RatingController extends AbstractController {
 		if (get($_POST, T::SUBMIT, false)) {
 			foreach ($_POST["model"] as $key => $value)
 				$model->setValue($key, $value);
+			
+			$otpw = $_POST["model"]["otpw"];
+			if ($otpw = Otpw::findByOtpw($otpw))
+				$model->setValue("o_id", $otpw->getValue("id"));
+			
+
 
 			$otpw = Otpw::findById($model->getValue("o_id"));
 			if ($model->persist()) {
 				$otpw->setUsed();
 				$otpw->persist();
 				$_SESSION["flash"] = array(T::FLASH_POS, self::$TXT." \"{$model->toString()}\" wurde gespeichert");
-				Util::redirect(T::href(self::$CTR, "index"));
+				Util::redirect(T::href("rating", "create"));
 			} else {
 				$_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gespeichert werden");
 				foreach ($model->getErrors() as $name => $error)
 					$_SESSION["flash"][1] .= "<br> - $name: $error";
 			}
 		} elseif (get($_POST, T::CANCEL, false))
-		Util::redirect(T::href(self::$CTR, "index"));
+		Util::redirect(T::href("student", "index"));
 
 		$otpws = Otpw::findAll();
 		$docentLectures = DocentLecture::findAll();
@@ -80,7 +86,7 @@ class RatingController extends AbstractController {
 		T::render(self::$CTR."/create.php", self::$CTR."/nav.php", $variables);
 	}
 
-	public static function delete(array $tmp1=null, array $tmp2=null) {
+	public static function delete() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		if ($id = get($_GET, "id", false)) {

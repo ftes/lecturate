@@ -86,13 +86,12 @@ class T {
 			if($attribute->getMax() == false && $attribute->getMax() == false){
 				$min = "min=\"{$attribute->getMin()}\"";
 				$max = "max=\"{$attribute->getMax()}\"";
-				$html = "<input $id type=\"number\" $name $min $max $readonly $value\>";
-			}
-			elseif ($attribute instanceof Int){	
+				$html = "<input type=\"number\" $name $min $max $readonly $value />";
+			} else {	
 				$min = "min=\"{$attribute->getMin()}\"";
 				$max = "max=\"{$attribute->getMax()}\"";
 				$value = "value=\"{$attribute->getMin()}\"";
-				$html = "<input $id type=\"range\" $name $min $max $readonly $value step=\"1\" onchange=\"document.getElementById('$valueUid').innerHTML = document.getElementById('$inputUid').value;\" \>";
+				$html = "<input $id type=\"range\" $name $min $max $readonly $value step=\"1\" onchange=\"document.getElementById('$valueUid').innerHTML = document.getElementById('$inputUid').value;\" />";
 				$html .= "<span id=\"$valueUid\" >{$attribute->getMin()}</span>";
 			}
 		}
