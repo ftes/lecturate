@@ -18,11 +18,17 @@ class EvaluationController extends AbstractController {
 		$chartLabelsURL = "chl=";
 		$chartColorsURL = "chco=";
 		$chartDataURL = "chd=t:";
+		$maxCount = 0;
+		$newCount = 0;
 		
 		foreach ($chartLabels as $mark=>$count) {
+			if ($maxCount < $count) $maxCount = $count;
+		}
+		foreach ($chartLabels as $mark=>$count) {
 			$chartLabelsURL = $chartLabelsURL . $mark;
-			$chartLabelsURL = $chartLabelsURL . "|"; 
-			$chartDataURL = $chartDataURL . $count;
+			$chartLabelsURL = $chartLabelsURL . "|";
+			$newCount = $count * (100/$maxCount);
+			$chartDataURL = $chartDataURL . $newCount;
 			$chartDataURL = $chartDataURL . ",";
 			$chartColorsURL = $chartColorsURL . $chartColors[$mark-1];
 			$chartColorsURL = $chartColorsURL . "|";
@@ -32,10 +38,10 @@ class EvaluationController extends AbstractController {
 		$chartColorsURL = substr($chartColorsURL, 0, strlen($chartColorsURL)-1);
 		
 		
+		$yaxis = "chxr=0,0," . $maxCount . ",1";
 		
 		
-		
-		$URL = self::$URL_BASIS . $chartTypeURL . "&" . $chartSizeURL . "&" . $chartDataURL . "&" . $chartLabelsURL . "&" . $chartTitleURL . "&" . $chartColorsURL;
+		$URL = self::$URL_BASIS . $yaxis . "&chxt=y,x" . "&" . $chartTypeURL . "&" . $chartSizeURL . "&" . $chartDataURL . "&" . $chartLabelsURL . "&" . $chartTitleURL . "&" . $chartColorsURL;
 		echo $URL;
 		return $URL;
 	}
@@ -53,7 +59,7 @@ class EvaluationController extends AbstractController {
 		
 
 		$variables = array(
-				"evaluation"=>self::makeURL("p", "450x200", "Alle%20Vorlesungen", $marks, $colors)	
+				"evaluation"=>self::makeURL("bvg", "450x200", "Alle%20Vorlesungen", $marks, $colors)	
 		);
 		
 		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);
