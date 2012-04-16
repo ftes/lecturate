@@ -114,3 +114,7 @@
 .button.text.index:before,.button.notext.index:after {
 	content: "\2261";
 }
+
+.button.text.rate:before,.button.notext.rate:after {
+	content: "R";
+}

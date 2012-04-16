@@ -10,6 +10,7 @@ class T {
 	const DELETE = "delete";
 	const CREATE= "create";
 	const INDEX = "index";
+	const RATE = "rate";
 	
 	const FLASH_POS = "positive";
 	const FLASH_NEG = "negative";
