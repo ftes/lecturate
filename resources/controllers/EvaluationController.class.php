@@ -80,7 +80,7 @@ class EvaluationController extends AbstractController {
 	
 		$variables = array(
 
-				"evaluation"=>self::makeURL("p", "450x400", "Dozent%20Allgemein", $marks, $colors)
+				"evaluation"=>self::makeURL("bvg", "250x300", "Dozent%20Allgemein", $marks, $colors)
 
 		);
 	
@@ -101,7 +101,7 @@ class EvaluationController extends AbstractController {
 	
 	
 		$variables = array(
-				"evaluation"=>self::makeURL("bvg", "450x200", "Dozent%20 pro Vorlesung", $marks, $colors)
+				"evaluation"=>self::makeURL("bvg", "250x300", "Dozent%20 pro Vorlesung", $marks, $colors)
 		);
 	
 		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);
