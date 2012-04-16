@@ -2,7 +2,7 @@
 
 <div style="position: absolute; top: 0px; width: 740px; z-index: 2;">
 	<h1>Lecturate</h1>
-	<img src="img/Logo.svg" alt="DHBW-Logo" style="position:absolute; top: 20px; right:10px; height:80px;">
+	<img src="img/logo.png" alt="DHBW-Logo" style="position:absolute; top: 20px; right:10px; height:80px;">
 	<p>Bewerten, Verbessern, Profitieren!</p>
 </div>
 <div style="position: absolute; top: 10px; z-index: 1; width:740px; background: white; opacity: 0.8; display: run-in; height: 80px; border-radius: 7px 7px 7px 7px;"></div>
