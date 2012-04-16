@@ -34,8 +34,8 @@ $config = array(
 				"resources" => dirname(__FILE__),
 				"css" => $_SERVER["DOCUMENT_ROOT"] . "/css",
 				"images" => array(
-						"content" => $_SERVER["DOCUMENT_ROOT"] . "/images/content",
-						"layout" => $_SERVER["DOCUMENT_ROOT"] . "/images/layout"
+						"content" => $_SERVER["DOCUMENT_ROOT"] . "/img",
+						"layout" => $_SERVER["DOCUMENT_ROOT"] . "/img"
 				)
 		)
 	);

@@ -1,18 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
-
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Lecturate</title>
-	<link rel="stylesheet" href="css/main.css" type="text/css">
-	<link rel="stylesheet" href="css/buttons.css" type="text/css">
-</head>
-
-<body>
 <div id="topbar">
+
+<div style="position: absolute; top: 0px; width: 740px; z-index: 2;">
 	<h1>Lecturate</h1>
+	<img src="img/Logo.svg" alt="DHBW-Logo" style="position:absolute; top: 20px; right:10px; height:80px;">
 	<p>Bewerten, Verbessern, Profitieren!</p>
+</div>
+<div style="position: absolute; top: 10px; z-index: 1; width:740px; background: white; opacity: 0.8; display: run-in; height: 80px; border-radius: 7px 7px 7px 7px;"></div>
 </div>
 <div id="navbar">
 <?=T::iconButton(false, "Admin", "admin")?>
