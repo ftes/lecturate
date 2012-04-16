@@ -35,6 +35,40 @@
 	border-radius: 7px 7px 0 0;
 }
 
+#topbar h1 {
+	margin-bottom: 0px;
+}
+
+#logo {
+	position: absolute;
+	top: 20px;
+	right: 10px;
+	height: 80px;
+}
+
+#contentTopBar {
+	position: absolute;
+	top: 0px;
+	width: 740px;
+	z-index: 2;
+}
+
+#contentTopBar p {
+	margin-top: 7px;
+}
+
+#background {
+	position: absolute;
+	top: 10px;
+	z-index: 1;
+	width: 740px;
+	background: white;
+	opacity: 0.8;
+	display: run-in;
+	height: 80px;
+	border-radius: 7px 7px 7px 7px;
+}
+
 /* #navbar { */
 /* 	width: auto; */
 /* 	display: block; */
