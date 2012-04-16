@@ -35,3 +35,5 @@ if (isset($_SESSION["flash"])) {
 	</div>
 	<?php require_once(TEMPLATES_PATH . "/footer.php"); ?>
 </div>
+</body>
+</html>

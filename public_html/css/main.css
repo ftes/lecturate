@@ -53,6 +53,7 @@
 	display: block;
 	overflow: hidden;
 	padding: 0px;
+	margin-bottom: 60px;
 }
 
 /* #content { */
@@ -110,7 +111,7 @@ div.spacer {
 	text-align: right;
 	width: 780px;
 	position: fixed;
-	bottom: 10px;
+	bottom: 0px;
 	display: block;
 	height: 30px;
 	background-color: rgb(50, 50, 50);
