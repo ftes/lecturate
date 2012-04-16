@@ -42,7 +42,6 @@ class EvaluationController extends AbstractController {
 		
 		
 		$URL = self::$URL_BASIS . $yaxis . "&chxt=y,x" . "&" . $chartTypeURL . "&" . $chartSizeURL . "&" . $chartDataURL . "&" . $chartLabelsURL . "&" . $chartTitleURL . "&" . $chartColorsURL;
-		echo $URL;
 		return $URL;
 	}
 	
