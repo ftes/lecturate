@@ -1,3 +1,4 @@
+04.16.2012 10:49:59: SELECT id,token,name FROM `lecture`
 04.16.2012 08:33:55: SELECT id,token,name FROM `lecture` WHERE `id`='1'
 04.16.2012 08:33:55: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
 04.16.2012 08:33:55: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
