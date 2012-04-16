@@ -157,7 +157,7 @@ class T {
 	public static function button($type, $text) {
 		$typeText = "type=\"submit\"";
 		if ($type == T::CANCEL)
-			$typeText = "type=\"button\"";
+			$typeText = "type=\"button\" onclick=\"history.back();\"";
 		return "<button $typeText name=\"$type\" value=\"$type\" class=\"button text $type\">$text</button>";
 	}
 	
