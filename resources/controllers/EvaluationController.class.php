@@ -8,7 +8,7 @@ class EvaluationController extends AbstractController {
 	private static $URL_BASIS = "http://chart.apis.google.com/chart?";
 	
 	public static function index($_GET, $_POST) {
-		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", array());
+		self::evaluateAll($_GET, $_POST);	
 	}
 	
 	private static function makeURL($chartType, $chartSize, $chartTitle, $chartLabels, $chartColors) {
@@ -66,6 +66,38 @@ class EvaluationController extends AbstractController {
 	} 
 	
 	public static function evaluateDocent() {
+		if ($id = self::get($_GET, "id"))
+			if ($model = Docent::findById($id)) {
+			
+			$marks = array();
+			$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
+			$ratings = Rating::findByDocent($id); // dozentID muss mitgeben werden
+			
+			if (count($ratings) == 0) {
+				$_SESSION["flash"] = array(T::FLASH_NEG, "Für diesen Dozent liegt keine Bewertung vor");
+				Util::redirect(T::href("docent", "index"));
+			}
+			
+			foreach($ratings as $rating) {
+				$mark = $rating->getValue("mark");
+				if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
+				$marks[$mark]++;
+			}
+						
+			$variables = array(
+			
+					"evaluation"=>self::makeURL("bvg", "250x300", "Dozent%20Allgemein", $marks, $colors)
+			
+			);
+			
+			T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);
+			
+			die();
+		}
+		
+		$_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gefunden werden");
+		Util::redirect(T::href(self::$CTR, "index"));
+		
 		$marks = array();
 		$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
 		$ratings = Rating::findByDocent(1); // dozentID muss mitgeben werden

@@ -18,4 +18,5 @@
 <?=T::iconButton(false, "Einmal-PW", "otpw")?>
 <?=T::iconButton(false, "Bewertung", "rating")?>
 <?=T::iconButton(false, "Student", "student")?>
+<?=T::iconButton(false, "Auswertung", "evaluation")?>
 </div>
