@@ -1,0 +1,493 @@
+04.16.2012 11:50:23: SELECT id,token,name FROM `lecture`
+04.16.2012 11:50:22: SELECT id,token,name FROM `lecture`
+04.16.2012 11:50:21: SELECT id,token,size,a_id FROM `classs`
+04.16.2012 11:50:18: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:50:18: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:50:18: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:50:18: SELECT id,token,size,a_id FROM `classs` WHERE `id`='1'
+04.16.2012 11:50:18: SELECT id,c_id,dl_id FROM `classs_docent_lecture`
+04.16.2012 11:50:17: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:50:17: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:50:17: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='2'
+04.16.2012 11:50:17: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:50:17: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:50:17: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='2'
+04.16.2012 11:50:17: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:50:17: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:50:17: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:50:17: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:50:17: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:50:17: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:50:17: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 11:50:16: SELECT id,username,password,firstname,lastname FROM `advisor`
+04.16.2012 11:50:15: SELECT id,username,password,firstname,lastname FROM `advisor` WHERE `id`='1'
+04.16.2012 11:50:15: SELECT id,token,size,a_id FROM `classs`
+04.16.2012 11:50:14: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:50:14: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:50:14: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:50:14: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:50:14: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 11:49:10: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:49:10: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:49:10: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:49:10: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:49:10: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 11:49:08: SELECT id,token,name FROM `lecture`
+04.16.2012 11:48:39: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:48:39: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:48:39: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:48:39: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:48:39: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 11:48:25: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:48:17: SELECT id,firstname,lastname FROM `docent`
+04.16.2012 11:48:08: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:48:08: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:48:08: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:48:08: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='2'
+04.16.2012 11:48:08: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='4'
+04.16.2012 11:48:08: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:48:08: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:48:08: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='2'
+04.16.2012 11:48:08: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='3'
+04.16.2012 11:48:08: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:48:08: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:48:08: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:48:08: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='2'
+04.16.2012 11:48:08: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:48:08: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:48:08: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:48:08: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='1'
+04.16.2012 11:48:08: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:24:10: SELECT r.id,r.mark,r.created,r.o_id,r.dl_id,r.comment FROM `rating` r  WHERE r.`dl_id`='1'
+04.16.2012 11:23:55: SELECT r.id,r.mark,r.created,r.o_id,r.dl_id,r.comment FROM `rating` r  WHERE r.`dl_id`='2'
+04.16.2012 11:23:41: SELECT r.id,r.mark,r.created,r.o_id,r.dl_id,r.comment FROM `rating` r INNER JOIN docent_lecture dl ON r.`dl_id`=dl.`id` WHERE dl.`d_id`='1'
+04.16.2012 11:22:31: SELECT r.id,r.mark,r.created,r.o_id,r.dl_id,r.comment FROM `rating` r  WHERE r.`dl_id`='2'
+04.16.2012 11:22:21: SELECT r.id,r.mark,r.created,r.o_id,r.dl_id,r.comment FROM `rating` r  WHERE r.`dl_id`='1'
+04.16.2012 11:21:47: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:21:47: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:21:47: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:47: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='2'
+04.16.2012 11:21:47: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='4'
+04.16.2012 11:21:47: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:21:47: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:47: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='2'
+04.16.2012 11:21:47: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='3'
+04.16.2012 11:21:47: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:21:47: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:47: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:21:47: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='2'
+04.16.2012 11:21:47: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:21:47: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:47: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:21:47: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='1'
+04.16.2012 11:21:47: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:21:47: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:21:47: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:47: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='2'
+04.16.2012 11:21:47: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='4'
+04.16.2012 11:21:47: UPDATE `otpw` SET `id`='4',`otpw`='sap2',`dl_id`='2',`used`='1',`created`='2012-04-16 13:21:18',`used_ts`='2012-04-16 11-21-47' WHERE `id`='4'
+04.16.2012 11:21:47: SELECT id FROM docent_lecture WHERE `id`='2'
+04.16.2012 11:21:47: INSERT INTO `rating` (mark,o_id,dl_id,comment) VALUES ('1','4','2','gutgut')
+04.16.2012 11:21:47: SELECT id FROM docent_lecture WHERE `id`='2'
+04.16.2012 11:21:47: SELECT id,dl_id FROM otpw WHERE `id`='4' AND `dl_id`='2'
+04.16.2012 11:21:47: SELECT id FROM otpw WHERE `id`='4'
+04.16.2012 11:21:47: SELECT `o_id` FROM `rating` WHERE `o_id`='4'
+04.16.2012 11:21:47: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='4'
+04.16.2012 11:21:35: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:21:35: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:35: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:21:35: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:35: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 11:21:35: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 11:21:34: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:21:34: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:21:34: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:34: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='2'
+04.16.2012 11:21:34: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='3'
+04.16.2012 11:21:34: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:21:34: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:34: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:21:34: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='2'
+04.16.2012 11:21:34: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:21:34: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:34: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:21:34: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='1'
+04.16.2012 11:21:34: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:21:34: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:21:34: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:34: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='2'
+04.16.2012 11:21:34: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='3'
+04.16.2012 11:21:34: UPDATE `otpw` SET `id`='3',`otpw`='sap1',`dl_id`='2',`used`='1',`created`='2012-04-16 13:21:11',`used_ts`='2012-04-16 11-21-34' WHERE `id`='3'
+04.16.2012 11:21:34: SELECT id FROM docent_lecture WHERE `id`='2'
+04.16.2012 11:21:34: INSERT INTO `rating` (mark,o_id,dl_id,comment) VALUES ('3','3','2','gut')
+04.16.2012 11:21:34: SELECT id FROM docent_lecture WHERE `id`='2'
+04.16.2012 11:21:34: SELECT id,dl_id FROM otpw WHERE `id`='3' AND `dl_id`='2'
+04.16.2012 11:21:34: SELECT id FROM otpw WHERE `id`='3'
+04.16.2012 11:21:34: SELECT `o_id` FROM `rating` WHERE `o_id`='3'
+04.16.2012 11:21:34: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='3'
+04.16.2012 11:21:22: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:21:22: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:22: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:21:22: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:21: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 11:21:21: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 11:21:20: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:21:20: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:21:20: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:20: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:21:20: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='2'
+04.16.2012 11:21:20: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:21:20: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:20: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:21:20: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='1'
+04.16.2012 11:21:20: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:21:19: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:21:19: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:19: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='2'
+04.16.2012 11:21:19: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:21:19: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:19: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='2'
+04.16.2012 11:21:19: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:21:19: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:19: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:21:19: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:21:19: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:19: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:21:19: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 11:21:18: INSERT INTO `otpw` (otpw,dl_id,used,used_ts) VALUES ('sap2','2','0','')
+04.16.2012 11:21:18: SELECT id FROM docent_lecture WHERE `id`='2'
+04.16.2012 11:21:18: SELECT `otpw` FROM `otpw` WHERE `otpw`='sap2'
+04.16.2012 11:21:13: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:21:13: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:13: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:21:13: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:13: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 11:21:11: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:21:11: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:11: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='2'
+04.16.2012 11:21:11: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:21:11: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:11: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:21:11: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:21:11: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:11: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:21:11: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 11:21:11: INSERT INTO `otpw` (otpw,dl_id,used,used_ts) VALUES ('sap1','2','0','')
+04.16.2012 11:21:11: SELECT id FROM docent_lecture WHERE `id`='2'
+04.16.2012 11:21:11: SELECT `otpw` FROM `otpw` WHERE `otpw`='sap1'
+04.16.2012 11:21:00: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:21:00: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:00: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:21:00: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:21:00: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 11:20:57: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:20:57: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:20:57: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:20:57: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:20:57: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:20:57: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:20:57: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 11:20:56: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:20:56: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:20:56: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:20:56: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:20:56: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 11:20:56: SELECT id,token,name FROM `lecture` WHERE `id`='3'
+04.16.2012 11:20:56: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:20:56: INSERT INTO `docent_lecture` (d_id,l_id) VALUES ('1','3')
+04.16.2012 11:20:56: SELECT id FROM lecture WHERE `id`='3'
+04.16.2012 11:20:56: SELECT id FROM docent WHERE `id`='1'
+04.16.2012 11:20:56: SELECT `d_id`,`l_id` FROM `docent_lecture` WHERE `d_id`='1' AND `l_id`='3'
+04.16.2012 11:20:51: SELECT id,token,name FROM `lecture`
+04.16.2012 11:20:51: SELECT id,firstname,lastname FROM `docent`
+04.16.2012 11:20:49: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:20:49: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:20:49: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 11:20:47: SELECT id,token,name FROM `lecture`
+04.16.2012 11:20:47: INSERT INTO `lecture` (token,name) VALUES ('sap','SAP Business ByDesign')
+04.16.2012 11:20:47: SELECT `token` FROM `lecture` WHERE `token`='sap'
+04.16.2012 11:20:28: SELECT id,token,name FROM `lecture`
+04.16.2012 11:20:20: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:20:20: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:20:20: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 11:20:19: SELECT r.id,r.mark,r.created,r.o_id,r.dl_id,r.comment FROM `rating` r  WHERE r.`dl_id`='1'
+04.16.2012 11:20:08: SELECT r.id,r.mark,r.created,r.o_id,r.dl_id,r.comment FROM `rating` r  WHERE r.`dl_id`='2'
+04.16.2012 11:19:59: SELECT r.id,r.mark,r.created,r.o_id,r.dl_id,r.comment FROM `rating` r  WHERE r.`dl_id`='3'
+04.16.2012 11:19:44: SELECT r.id,r.mark,r.created,r.o_id,r.dl_id,r.comment FROM `rating` r  WHERE r.`dl_id`='1'
+04.16.2012 11:19:14: SELECT id,token,name FROM `lecture`
+04.16.2012 11:17:23: SELECT id,firstname,lastname FROM `docent`
+04.16.2012 11:17:17: SELECT r.id,r.mark,r.created,r.o_id,r.dl_id,r.comment FROM `rating` r INNER JOIN docent_lecture dl ON r.`dl_id`=dl.`id` WHERE dl.`d_id`='1'
+04.16.2012 11:13:39: SELECT r.id,r.mark,r.created,r.o_id,r.dl_id,r.comment FROM `rating` r INNER JOIN docent_lecture dl ON r.`dl_id`=dl.`id` WHERE dl.`d_id`='1'
+04.16.2012 11:12:23: SELECT r.id,r.mark,r.created,r.o_id,r.dl_id,r.comment FROM `rating` r INNER JOIN docent_lecture dl ON r.`dl_id`=dl.`id` WHERE dl.`d_id`='1'
+04.16.2012 11:12:03: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:12:03: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:12:03: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:12:03: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:12:03: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='2'
+04.16.2012 11:12:03: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:12:03: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:12:03: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:12:03: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='1'
+04.16.2012 11:12:03: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:12:03: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:12:03: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:12:03: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:12:03: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='2'
+04.16.2012 11:12:03: UPDATE `otpw` SET `id`='2',`otpw`='BAUM',`dl_id`='1',`used`='1',`created`='2012-04-16 13:11:44',`used_ts`='2012-04-16 11-12-03' WHERE `id`='2'
+04.16.2012 11:12:03: SELECT id FROM docent_lecture WHERE `id`='1'
+04.16.2012 11:12:03: INSERT INTO `rating` (mark,o_id,dl_id,comment) VALUES ('5','2','1','Huhu')
+04.16.2012 11:12:03: SELECT id FROM docent_lecture WHERE `id`='1'
+04.16.2012 11:12:03: SELECT id,dl_id FROM otpw WHERE `id`='2' AND `dl_id`='1'
+04.16.2012 11:12:03: SELECT id FROM otpw WHERE `id`='2'
+04.16.2012 11:12:03: SELECT `o_id` FROM `rating` WHERE `o_id`='2'
+04.16.2012 11:12:03: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='2'
+04.16.2012 11:11:49: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:11:49: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:11:49: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 11:11:49: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 11:11:47: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:11:47: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:11:47: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:11:47: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:11:47: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='1'
+04.16.2012 11:11:47: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:11:44: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:11:44: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:11:44: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:11:44: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:11:44: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:11:44: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:11:44: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 11:11:44: INSERT INTO `otpw` (otpw,dl_id,used,used_ts) VALUES ('BAUM','1','0','')
+04.16.2012 11:11:44: SELECT id FROM docent_lecture WHERE `id`='1'
+04.16.2012 11:11:44: SELECT `otpw` FROM `otpw` WHERE `otpw`='BAUM'
+04.16.2012 11:11:38: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:11:38: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:11:38: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 11:11:26: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:11:26: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:11:26: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:11:26: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 11:11:17: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:11:17: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:11:17: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:11:17: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='1'
+04.16.2012 11:11:15: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:11:15: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:11:15: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:11:15: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 11:11:13: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:11:13: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:11:13: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 11:11:13: SELECT id FROM docent_lecture WHERE `id`='1'
+04.16.2012 11:11:13: SELECT `otpw` FROM `otpw` WHERE `otpw`='BERG'
+04.16.2012 11:11:05: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:11:05: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:11:05: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 11:11:01: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:11:01: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:11:01: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:11:01: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 11:10:57: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:10:57: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:10:57: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 11:10:57: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 11:10:57: SELECT id FROM docent_lecture WHERE `id`='1'
+04.16.2012 11:10:57: SELECT id,dl_id FROM otpw WHERE `id`='1' AND `dl_id`='1'
+04.16.2012 11:10:57: SELECT id FROM otpw WHERE `id`='1'
+04.16.2012 11:10:57: SELECT `o_id` FROM `rating` WHERE `o_id`='1'
+04.16.2012 11:10:57: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='1'
+04.16.2012 11:10:49: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:10:49: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:10:49: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 11:10:49: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 11:10:46: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:10:46: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:10:46: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:10:46: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:10:46: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='1'
+04.16.2012 11:10:46: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:10:44: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:10:44: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:10:44: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:10:44: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:10:44: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='1'
+04.16.2012 11:10:44: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:10:42: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:10:42: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 11:10:42: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 11:10:42: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 11:10:42: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='1'
+04.16.2012 11:10:42: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 11:10:10: SELECT  FROM `rating`
+04.16.2012 11:10:06: SELECT  FROM `rating`
+04.16.2012 11:10:02: SELECT  FROM `rating`
+04.16.2012 11:08:03: SELECT .id,.mark,.created,.o_id,.dl_id,.comment FROM `rating`
+04.16.2012 11:07:52: SELECT .id,.mark,.created,.o_id,.dl_id,.comment FROM `rating`
+04.16.2012 11:07:47: SELECT .id,.mark,.created,.o_id,.dl_id,.comment FROM `rating`
+04.16.2012 11:07:45: SELECT .id,.mark,.created,.o_id,.dl_id,.comment FROM `rating`
+04.16.2012 11:07:40: SELECT .id,.mark,.created,.o_id,.dl_id,.comment FROM `rating`
+04.16.2012 11:07:26: SELECT r.id,r.mark,r.created,r.o_id,r.dl_id,r.comment FROM `rating` r INNER JOIN docent_lecture dl ON r.`dl_id`=dl.`id` WHERE dl.`d_id`='1'
+04.16.2012 10:49:39: SELECT r.id,r.mark,r.created,r.o_id,r.dl_id,r.comment FROM `rating` r INNER JOIN docent_lecture dl ON `r.dl_id`=`dl.id` WHERE `dl.d_id`='1'
+04.16.2012 10:46:32: SELECT rid,rmark,rcreated,ro_id,rdl_id,rcomment FROM `rating` r INNER JOIN docent_lecture dl ON `r.dl_id`=`dl.id` WHERE `dl.d_id`='1'
+04.16.2012 10:46:02: SELECT rid,rmark,rcreated,ro_id,rdl_id,rcomment FROM `rating` r INNER JOIN docent_lecture dl ON `r.dl_id`=`dl.id` WHERE `dl.d_id`='1'
+04.16.2012 10:45:56: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 10:45:42: SELECT rid,rmark,rcreated,ro_id,rdl_id,rcomment FROM `rating` r INNER JOIN docent_lecture dl ON `r.dl_id`=`dl.id` WHERE `dl.d_id`='1'
+04.16.2012 10:45:13: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 10:45:13: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 10:45:13: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 10:45:13: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 10:45:13: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='1'
+04.16.2012 10:45:13: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 10:45:13: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 10:45:13: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 10:45:13: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 10:45:13: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='1'
+04.16.2012 10:45:13: UPDATE `otpw` SET `id`='1',`otpw`='Berg',`dl_id`='1',`used`='1',`created`='2012-04-16 12:44:57',`used_ts`='2012-04-16 10-45-13' WHERE `id`='1'
+04.16.2012 10:45:13: SELECT id FROM docent_lecture WHERE `id`='1'
+04.16.2012 10:45:13: INSERT INTO `rating` (mark,o_id,dl_id,comment) VALUES ('1','1','1','gut')
+04.16.2012 10:45:13: SELECT id FROM docent_lecture WHERE `id`='1'
+04.16.2012 10:45:13: SELECT id,dl_id FROM otpw WHERE `id`='1' AND `dl_id`='1'
+04.16.2012 10:45:13: SELECT id FROM otpw WHERE `id`='1'
+04.16.2012 10:45:13: SELECT `o_id` FROM `rating` WHERE `o_id`='1'
+04.16.2012 10:45:13: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw` WHERE `id`='1'
+04.16.2012 10:45:01: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 10:45:01: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 10:45:01: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 10:45:01: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 10:45:00: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 10:45:00: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 10:44:57: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 10:44:57: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 10:44:57: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 10:44:57: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 10:44:57: INSERT INTO `otpw` (otpw,dl_id,used,used_ts) VALUES ('Berg','1','0','')
+04.16.2012 10:44:57: SELECT id FROM docent_lecture WHERE `id`='1'
+04.16.2012 10:44:57: SELECT `otpw` FROM `otpw` WHERE `otpw`='Berg'
+04.16.2012 10:44:51: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 10:44:51: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 10:44:51: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 10:44:50: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 10:44:49: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 10:44:49: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 10:44:49: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 10:44:49: SELECT id,token,size,a_id FROM `classs` WHERE `id`='1'
+04.16.2012 10:44:49: SELECT id,c_id,dl_id FROM `classs_docent_lecture`
+04.16.2012 10:44:49: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 10:44:49: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 10:44:49: SELECT id,d_id,l_id FROM `docent_lecture` WHERE `id`='1'
+04.16.2012 10:44:49: SELECT id,token,size,a_id FROM `classs` WHERE `id`='1'
+04.16.2012 10:44:49: INSERT INTO `classs_docent_lecture` (c_id,dl_id) VALUES ('1','1')
+04.16.2012 10:44:49: SELECT id FROM docent_lecture WHERE `id`='1'
+04.16.2012 10:44:49: SELECT id FROM classs WHERE `id`='1'
+04.16.2012 10:44:49: SELECT `c_id`,`dl_id` FROM `classs_docent_lecture` WHERE `c_id`='1' AND `dl_id`='1'
+04.16.2012 10:44:45: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 10:44:45: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 10:44:45: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 10:44:45: SELECT id,token,size,a_id FROM `classs`
+04.16.2012 10:44:43: SELECT id,c_id,dl_id FROM `classs_docent_lecture`
+04.16.2012 10:44:41: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 10:44:41: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 10:44:41: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 10:44:41: SELECT id,token,name FROM `lecture` WHERE `id`='2'
+04.16.2012 10:44:41: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 10:44:41: INSERT INTO `docent_lecture` (d_id,l_id) VALUES ('1','2')
+04.16.2012 10:44:41: SELECT id FROM lecture WHERE `id`='2'
+04.16.2012 10:44:41: SELECT id FROM docent WHERE `id`='1'
+04.16.2012 10:44:41: SELECT `d_id`,`l_id` FROM `docent_lecture` WHERE `d_id`='1' AND `l_id`='2'
+04.16.2012 10:44:36: SELECT id,token,name FROM `lecture`
+04.16.2012 10:44:36: SELECT id,firstname,lastname FROM `docent`
+04.16.2012 10:44:35: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 10:44:32: SELECT id,username,password,firstname,lastname FROM `advisor` WHERE `id`='1'
+04.16.2012 10:44:32: SELECT id,token,size,a_id FROM `classs`
+04.16.2012 10:44:30: SELECT id,username,password,firstname,lastname FROM `advisor` WHERE `id`='1'
+04.16.2012 10:44:30: SELECT id,token,size,a_id FROM `classs`
+04.16.2012 10:44:30: UPDATE `classs` SET `id`='1',`token`='WI10SWQ',`size`='22',`a_id`='1' WHERE `id`='1'
+04.16.2012 10:44:30: SELECT id FROM advisor WHERE `id`='1'
+04.16.2012 10:44:30: SELECT `token` FROM `classs` WHERE `token`='WI10SWQ'
+04.16.2012 10:44:30: SELECT id,token,size,a_id FROM `classs` WHERE `id`='1'
+04.16.2012 10:44:16: SELECT id,username,password,firstname,lastname FROM `advisor`
+04.16.2012 10:44:16: SELECT id,token,size,a_id FROM `classs` WHERE `id`='1'
+04.16.2012 10:44:13: SELECT id,username,password,firstname,lastname FROM `advisor` WHERE `id`='1'
+04.16.2012 10:44:13: SELECT id,token,size,a_id FROM `classs`
+04.16.2012 10:44:12: SELECT id,username,password,firstname,lastname FROM `advisor`
+04.16.2012 10:44:10: SELECT id,username,password,firstname,lastname FROM `advisor`
+04.16.2012 10:44:10: UPDATE `advisor` SET `id`='1',`username`='Baumi',`password`='Baumgart',`firstname`='Joerg',`lastname`='Baumart' WHERE `id`='1'
+04.16.2012 10:44:10: SELECT `firstname`,`lastname` FROM `advisor` WHERE `firstname`='Joerg' AND `lastname`='Baumart'
+04.16.2012 10:44:10: SELECT `username` FROM `advisor` WHERE `username`='Baumi'
+04.16.2012 10:44:10: SELECT id,username,password,firstname,lastname FROM `advisor` WHERE `id`='1'
+04.16.2012 10:43:49: SELECT id,username,password,firstname,lastname FROM `advisor` WHERE `id`='1'
+04.16.2012 10:43:47: SELECT id,username,password,firstname,lastname FROM `advisor`
+04.16.2012 10:43:46: SELECT id,firstname,lastname FROM `docent`
+04.16.2012 10:43:46: UPDATE `docent` SET `id`='1',`firstname`='Matthias',`lastname`='Berg' WHERE `id`='1'
+04.16.2012 10:43:46: SELECT `firstname`,`lastname` FROM `docent` WHERE `firstname`='Matthias' AND `lastname`='Berg'
+04.16.2012 10:43:46: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 10:43:40: SELECT id,firstname,lastname FROM `docent` WHERE `id`='1'
+04.16.2012 10:43:38: SELECT id,firstname,lastname FROM `docent`
+04.16.2012 10:43:37: SELECT id,token,name FROM `lecture`
+04.16.2012 10:43:37: INSERT INTO `lecture` (token,name) VALUES ('Ui','Benutzeroberflächen')
+04.16.2012 10:43:37: SELECT `token` FROM `lecture` WHERE `token`='Ui'
+04.16.2012 10:43:25: SELECT id,token,name FROM `lecture`
+04.16.2012 10:43:25: DELETE FROM `lecture` WHERE `id`='1'
+04.16.2012 10:43:25: SELECT id,token,name FROM `lecture` WHERE `id`='1'
+04.16.2012 10:43:23: SELECT id,token,name FROM `lecture`
+04.16.2012 10:42:49: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 10:42:49: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 10:42:47: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 10:42:47: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 10:42:46: SELECT id,username,password,firstname,lastname FROM `advisor` WHERE `id`='1'
+04.16.2012 10:42:46: SELECT id,token,size,a_id FROM `classs`
+04.16.2012 10:42:46: INSERT INTO `classs` (token,size,a_id) VALUES ('hallo','10','1')
+04.16.2012 10:42:46: SELECT id FROM advisor WHERE `id`='1'
+04.16.2012 10:42:46: SELECT `token` FROM `classs` WHERE `token`='hallo'
+04.16.2012 10:42:38: SELECT id,username,password,firstname,lastname FROM `advisor`
+04.16.2012 10:42:36: SELECT id,token,size,a_id FROM `classs`
+04.16.2012 10:42:29: SELECT id,username,password,firstname,lastname FROM `advisor`
+04.16.2012 10:42:28: SELECT id,token,size,a_id FROM `classs`
+04.16.2012 10:42:27: SELECT id,username,password,firstname,lastname FROM `advisor`
+04.16.2012 10:42:26: SELECT id,username,password,firstname,lastname FROM `advisor`
+04.16.2012 10:42:26: INSERT INTO `advisor` (username,password,firstname,lastname) VALUES ('hallo','hallo','hallo','hallo')
+04.16.2012 10:42:26: SELECT `firstname`,`lastname` FROM `advisor` WHERE `firstname`='hallo' AND `lastname`='hallo'
+04.16.2012 10:42:26: SELECT `username` FROM `advisor` WHERE `username`='hallo'
+04.16.2012 10:42:12: SELECT id,username,password,firstname,lastname FROM `advisor`
+04.16.2012 10:42:09: SELECT id,username,password,firstname,lastname FROM `advisor`
+04.16.2012 10:42:09: SELECT id FROM advisor WHERE `id`='0'
+04.16.2012 10:42:09: SELECT `token` FROM `classs` WHERE `token`='dumbo'
+04.16.2012 10:41:57: SELECT id,username,password,firstname,lastname FROM `advisor`
+04.16.2012 10:41:56: SELECT id,token,size,a_id FROM `classs`
+04.16.2012 10:41:54: SELECT id,username,password,firstname,lastname FROM `advisor`
+04.16.2012 10:41:51: SELECT id,token,name FROM `lecture`
+04.16.2012 10:41:51: INSERT INTO `lecture` (token,name) VALUES ('test','Test')
+04.16.2012 10:41:51: SELECT `token` FROM `lecture` WHERE `token`='test'
+04.16.2012 10:41:42: SELECT id,token,name FROM `lecture`
+04.16.2012 10:41:39: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 10:41:39: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 10:41:37: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 10:41:37: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 10:41:33: SELECT id,firstname,lastname FROM `docent`
+04.16.2012 10:41:33: INSERT INTO `docent` (firstname,lastname) VALUES ('Hans','Hantoine')
+04.16.2012 10:41:33: SELECT `firstname`,`lastname` FROM `docent` WHERE `firstname`='Hans' AND `lastname`='Hantoine'
+04.16.2012 10:41:23: SELECT id,firstname,lastname FROM `docent`
+04.16.2012 10:41:18: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 10:41:18: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 09:36:57: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 09:36:57: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 09:36:56: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 09:36:56: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 09:36:54: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 09:36:54: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 09:36:54: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
+04.16.2012 09:36:52: CREATE TABLE `rating` (`id` INT NOT NULL AUTO_INCREMENT,`mark` INT NOT NULL,`created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,`o_id` INT NOT NULL,`dl_id` INT NOT NULL,`comment` VARCHAR (500),PRIMARY KEY (`id`),UNIQUE (`o_id`),FOREIGN KEY (`o_id`) REFERENCES `otpw` (`id`),FOREIGN KEY (`dl_id`) REFERENCES `docent_lecture` (`id`));
+04.16.2012 09:36:52: CREATE TABLE `otpw` (`id` INT NOT NULL AUTO_INCREMENT,`otpw` VARCHAR (30) NOT NULL,`dl_id` INT NOT NULL,`used` TINYINT NOT NULL DEFAULT 0,`created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,`used_ts` TIMESTAMP DEFAULT 0,PRIMARY KEY (`id`),UNIQUE (`otpw`),FOREIGN KEY (`dl_id`) REFERENCES `docent_lecture` (`id`));
+04.16.2012 09:36:52: CREATE TABLE `classs_docent_lecture` (`id` INT NOT NULL AUTO_INCREMENT,`c_id` INT NOT NULL,`dl_id` INT NOT NULL,PRIMARY KEY (`id`),UNIQUE (`c_id`,`dl_id`),FOREIGN KEY (`c_id`) REFERENCES `classs` (`id`),FOREIGN KEY (`dl_id`) REFERENCES `docent_lecture` (`id`));
+04.16.2012 09:36:52: CREATE TABLE `classs` (`id` INT NOT NULL AUTO_INCREMENT,`token` VARCHAR (30) NOT NULL,`size` INT NOT NULL,`a_id` INT NOT NULL,PRIMARY KEY (`id`),UNIQUE (`token`),FOREIGN KEY (`a_id`) REFERENCES `advisor` (`id`));
+04.16.2012 09:36:52: CREATE TABLE `advisor` (`id` INT NOT NULL AUTO_INCREMENT,`username` VARCHAR (30) NOT NULL,`password` VARCHAR (30) NOT NULL,`firstname` VARCHAR (30) NOT NULL,`lastname` VARCHAR (30) NOT NULL,PRIMARY KEY (`id`),UNIQUE (`username`),UNIQUE (`firstname`,`lastname`));
+04.16.2012 09:36:52: CREATE TABLE `docent_lecture` (`id` INT NOT NULL AUTO_INCREMENT,`d_id` INT NOT NULL,`l_id` INT NOT NULL,PRIMARY KEY (`id`),UNIQUE (`d_id`,`l_id`),FOREIGN KEY (`d_id`) REFERENCES `docent` (`id`),FOREIGN KEY (`l_id`) REFERENCES `lecture` (`id`));
+04.16.2012 09:36:52: CREATE TABLE `docent` (`id` INT NOT NULL AUTO_INCREMENT,`firstname` VARCHAR (30) NOT NULL,`lastname` VARCHAR (30) NOT NULL,PRIMARY KEY (`id`),UNIQUE (`firstname`,`lastname`));
+04.16.2012 09:36:51: CREATE TABLE `lecture` (`id` INT NOT NULL AUTO_INCREMENT,`token` VARCHAR (10) NOT NULL,`name` VARCHAR (100),PRIMARY KEY (`id`),UNIQUE (`token`));
+04.16.2012 09:36:51: CREATE DATABASE lecturate
+04.16.2012 09:36:51: DROP DATABASE lecturate
+04.16.2012 09:36:48: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 09:36:48: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 09:36:47: SELECT id,d_id,l_id FROM `docent_lecture`
+04.16.2012 09:36:47: SELECT id,otpw,dl_id,used,created,used_ts FROM `otpw`
