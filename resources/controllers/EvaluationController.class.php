@@ -37,8 +37,8 @@ class EvaluationController extends AbstractController {
 		$chartDataURL = substr($chartDataURL, 0, strlen($chartDataURL)-1);	
 		$chartColorsURL = substr($chartColorsURL, 0, strlen($chartColorsURL)-1);
 		
-		
-		$yaxis = "chxr=0,0," . $maxCount . ",1";
+		$step = floor($maxCount/5) + 1;
+		$yaxis = "chxr=0,0," . $maxCount . "," . $step;
 		
 		
 		$URL = self::$URL_BASIS . $yaxis . "&chxt=y,x" . "&" . $chartTypeURL . "&" . $chartSizeURL . "&" . $chartDataURL . "&" . $chartLabelsURL . "&" . $chartColorsURL . "&" . $chartBackgroundURL;
@@ -49,18 +49,28 @@ class EvaluationController extends AbstractController {
 		$marks = array();
 		$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
 		$ratings = Rating::findAll();
+		$comments = array();
+		$mittelwert = 0;
 		
 		foreach($ratings as $rating) {
 			$mark = $rating->getValue("mark");
 			if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
 			$marks[$mark]++;
+			$mittelwert = $mittelwert + $mark;
+			if($rating->getValue("comment") != "")
+			array_push($comments,$rating->getValue("comment"));
 		}
 		
 		ksort($marks);
+		$mittelwert = $mittelwert/count($ratings);
+			
+		$content = array("Mittelwert"=>round($mittelwert,2));
 
 		$variables = array(
 				"heading"=>"DHBW",
-				"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors)	
+				"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors),
+				"content"=>$content,
+				"comments"=>$comments
 		);
 		
 		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);
@@ -74,23 +84,32 @@ class EvaluationController extends AbstractController {
 			$marks = array();
 			$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
 			$ratings = Rating::findByDocent($id); // dozentID muss mitgeben werden
+			$comments = array();
 			
 			if (count($ratings) == 0) {
 				$_SESSION["flash"] = array(T::FLASH_NEG, "Für diesen Dozent liegt keine Bewertung vor");
 				Util::redirect(T::href("docent", "index"));
 			}
-			
+			$mittelwert = 0;
 			foreach($ratings as $rating) {
 				$mark = $rating->getValue("mark");
 				if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
 				$marks[$mark]++;
+				$mittelwert = $mittelwert + $mark;
+				if($rating->getValue("comment") != "")
+				array_push($comments,$rating->getValue("comment"));
 			}
 						
 			ksort($marks);
+			$mittelwert = $mittelwert/count($ratings);
+			
+			$content = array("Mittelwert"=>round($mittelwert,2));
 			
 			$variables = array(
 					"heading"=>"Dozent",
-					"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors)
+					"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors),
+					"content"=>$content,
+					"comments"=>$comments
 			
 			);
 			
@@ -112,23 +131,31 @@ class EvaluationController extends AbstractController {
 			$marks = array();
 			$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
 			$ratings = Rating::findByDocentLecture($id); // dozentID muss mitgeben werden
-			
+			$comments = array();
 			if (count($ratings) == 0) {
 				$_SESSION["flash"] = array(T::FLASH_NEG, "Für diese Zuordnung liegt keine Bewertung vor");
 				Util::redirect(T::href("docent_lecture", "index"));
 			}
-			
+			$mittelwert = 0;
 			foreach($ratings as $rating) {
 				$mark = $rating->getValue("mark");
 				if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
 				$marks[$mark]++;
+				$mittelwert = $mittelwert + $mark;
+				if($rating->getValue("comment") != "")
+				array_push($comments,$rating->getValue("comment"));
 			}
 
 			ksort($marks);
+			$mittelwert = $mittelwert/count($ratings);
+				
+			$content = array("Mittelwert"=>round($mittelwert,2));
 			
 			$variables = array(
 					"heading"=>"Dozent hält Vorlesung",
-					"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors)
+					"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors),
+					"content"=>$content,
+					"comments"=>$comments
 			
 			);
 			
@@ -148,23 +175,30 @@ class EvaluationController extends AbstractController {
 			$marks = array();
 			$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
 			$ratings = Rating::findByLecture($id); //lecture ID
-				
+			$comments = array();
 			if (count($ratings) == 0) {
 				$_SESSION["flash"] = array(T::FLASH_NEG, "Für diese Vorlesung liegt keine Bewertung vor");
 				Util::redirect(T::href("lecture", "index"));
 			}
-				
+			$mittelwert = 0;
 			foreach($ratings as $rating) {
 				$mark = $rating->getValue("mark");
 				if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
 				$marks[$mark]++;
+				$mittelwert = $mittelwert + $mark;
+				if($rating->getValue("comment") != "")
+				array_push($comments,$rating->getValue("comment"));
 			}
 		
 			ksort($marks);
+			$mittelwert = $mittelwert/count($ratings);
 			
+			$content = array("Mittelwert"=>round($mittelwert,2));
 			$variables = array(
 					"heading"=>"Vorlesung",
-					"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors)
+					"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors),
+					"content"=>$content,
+					"comments"=>$comments
 						
 			);
 				
