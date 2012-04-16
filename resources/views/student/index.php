@@ -25,8 +25,9 @@ $formId = T::uid(); ?>
 <table>
 		<tr>
 			<th>Einmal-PW</th>
-			<td></td>
-		</tr>	
+			<td><input type="text" name="model[otpw]"></td>
+		</tr>
 </table>
+<?=T::button(T::SUBMIT, "Los!"); ?>
 </form>
 </div>

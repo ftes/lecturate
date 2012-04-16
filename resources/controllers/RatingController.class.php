@@ -4,11 +4,11 @@ require_once(dirname(__FILE__) . "/../config.php");
 class RatingController extends AbstractController {
 	private static $CTR = "rating";
 	private static $TXT = "Bewertung";
-	
+
 
 	public static function index() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
-		
+
 		$models = Rating::findAll();
 		$otpws = array();
 		$docentLectures = array();
@@ -28,7 +28,7 @@ class RatingController extends AbstractController {
 
 	public static function view() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
-		
+
 		if ($id = self::get($_GET, "id"))
 			if ($model = Rating::findById($id)) {
 			$docentLecture = DocentLecture::findById($model->getValue("dl_id"));
@@ -47,19 +47,25 @@ class RatingController extends AbstractController {
 
 	public static function create() {
 		$model = new Rating();
-		
-		if (isset($_SESSION["model"]))
+		$otpw = "";
+
+		if (isset($_SESSION["model"]["otpw"]))
+			$otpw = $_SESSION["model"]["otpw"];
+
+		if (isset($_SESSION["model"])) {
 			foreach ($_SESSION["model"] as $col => $value)
 				$model->setValue($col, $value);
+			unset($_SESSION["model"]);
+		}
 
 		if (get($_POST, T::SUBMIT, false)) {
 			foreach ($_POST["model"] as $key => $value)
 				$model->setValue($key, $value);
-			
+				
 			$otpw = $_POST["model"]["otpw"];
 			if ($otpw = Otpw::findByOtpw($otpw))
 				$model->setValue("o_id", $otpw->getValue("id"));
-			
+				
 
 
 			$otpw = Otpw::findById($model->getValue("o_id"));
@@ -76,19 +82,18 @@ class RatingController extends AbstractController {
 		} elseif (get($_POST, T::CANCEL, false))
 		Util::redirect(T::href("student", "index"));
 
-		$otpws = Otpw::findAll();
 		$docentLectures = DocentLecture::findAll();
 
 		$variables = array(
-				"otpws" => $otpws,
 				"docentLectures" => $docentLectures,
-				"model" => $model);
+				"model" => $model,
+				"otpw" => $otpw);
 		T::render(self::$CTR."/create.php", self::$CTR."/nav.php", $variables);
 	}
 
 	public static function delete() {
 		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
-		
+
 		if ($id = get($_GET, "id", false)) {
 			$model = Rating::findById($id);
 			if ($model && $model->delete())

@@ -21,6 +21,18 @@ class DocentLecture extends Model {
 		$this->addConstraint(new ForeignKey(array($dId), $docent, array($docent->getAttribute("id"))));
 		$this->addConstraint(new ForeignKey(array($lId), $lecture, array($lecture->getAttribute("id"))));
 	}
+	
+	public static function findByOtpw($otpw) {
+		$class = Util::camelCase(self::$name);
+		$model = new $class;
+	
+		$query = "SELECT {$model->getAttrList("dl")} FROM `" . self::$name . "` dl INNER JOIN `otpw` o ON dl.`id`=o.`dl_id`  WHERE o.`otpw`='%s'";
+		$values = array($otpw);
+	
+		$result = self::findBy($query, $values, self::$name);
+
+		return count($result) == 0 ? false : $result[0];
+	}
 
 	public static function findById($id) {
 		$class = Util::camelCase(self::$name);

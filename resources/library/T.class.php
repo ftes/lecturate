@@ -132,7 +132,7 @@ class T {
 			if ($optionsSimpleArray) {
 				$optionValue = $key;
 				$selected = ($attribute->getValue() == $key) ? "selected" : "";
-				$optiontext = $option;
+				$optionText = $option;
 			} else {
 				$pk = $option->getPrimaryKey()->getAttributes();
 				$optionValue = $pk[0]->getValue();
