@@ -8,7 +8,7 @@ class Rating extends Model {
 		parent::__construct(self::$name);
 
 		$id = new Int("id", false, true, 0, false);
-		$mark = new Int("mark", false, false, 1, 10);
+		$mark = new Int("mark", false, false, 1, 5);
 		$created = new Timestamp("created", true, false);
 		$oId = new Int("o_id", false, false, 0, false);
 		$dlId = new Int("dl_id", false, false, 0, false);
@@ -57,9 +57,34 @@ class Rating extends Model {
 	public static function findNumberOfMarks($mark) {
 		$model = new self::$name;
 		
-		$query = "SELECT COUNT(*) FROM `" . self::$name . "` WHERE mark = `" . $mark . "` GROUP BY mark";
-		$values = array();
+		$query = "SELECT COUNT(*) FROM `" . self::$name . "` WHERE `mark`='%d' GROUP BY mark";
+		$values = array($mark);
 		
+		
+		$sql = Sql::execute($query, $values);
+		$result = $sql->getResult();
+		
+		$row = $result->fetch_assoc();
+		return $row["COUNT(*)"];
+	}
+	
+	public static function findByDocent ($docentID) {
+		$model = new self::$name;
+		
+		$query = "SELECT {$model->getAttrList("r")} FROM `" . self::$name . "` r INNER JOIN docent_lecture dl ON r.`dl_id`=dl.`id` WHERE dl.`d_id`='%d'";
+		
+		$values = array($docentID);
+		
+		return self::findBy($query, $values, self::$name);
+	}
+	
+	public static function findByDocentLecture ($docentID) {
+		$model = new self::$name;
+	
+		$query = "SELECT {$model->getAttrList("r")} FROM `" . self::$name . "` r  WHERE r.`dl_id`='%d'";
+	
+		$values = array($docentID);
+	
 		return self::findBy($query, $values, self::$name);
 	}
 }

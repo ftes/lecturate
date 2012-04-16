@@ -11,55 +11,101 @@ class EvaluationController extends AbstractController {
 		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", array());
 	}
 	
-	private static function makeURL($chartType, $chartSize, $chartTitle, $chartLabels, $chartColors, $chartData) {
+	private static function makeURL($chartType, $chartSize, $chartTitle, $chartLabels, $chartColors) {
 		$chartTypeURL = "cht=" . $chartType;
 		$chartSizeURL = "chs=" . $chartSize;
 		$chartTitleURL = "chtt=" . $chartTitle;
-		$chartLabelsURL = "chl=" . $chartLabels;
-		$chartColorsURL ="chco=" . $chartColors;
-		
-		for ($i = 0; $i < count($chartLabels); $i++) {
-			$chartLabelsURL = $chartLabelsURL . $chartLabels[$i];
-			if($i == (count($chartLabels)-1)) break;
-			$chartLabelsURL = $chartLabelsURL . "|"; //Überall | anfügen, außer bei letztem
-		}
-	
-		for ($i = 0; $i < count($chartLabels); $i++) {
-			$chartColorsURL = $chartColorsURL . $chartColors[$i];
-			if($i == (count($chartLabels)-1)) break;
-			$chartColorsURL = $chartColorsURL . "|"; 
-		}
-		
+		$chartLabelsURL = "chl=";
+		$chartColorsURL = "chco=";
 		$chartDataURL = "chd=t:";
-		for ($i = 0; $i < count($chartData); $i++) {
-			$chartDataURL = $chartDataURL . $chartData[$i];
-			if($i == (count($chartData)-1)) break;
-			$chartDataURL = $chartDataURL . ","; 
+		$maxCount = 0;
+		$newCount = 0;
+		
+		foreach ($chartLabels as $mark=>$count) {
+			if ($maxCount < $count) $maxCount = $count;
 		}
-		$URL = self::$URL_BASIS . $chartTypeURL . "&" . $chartSizeURL . "&" . $chartDataURL . "&" . $chartLabelsURL . "&" . $chartTitleURL . "&" . $chartColorsURL;
+		foreach ($chartLabels as $mark=>$count) {
+			$chartLabelsURL = $chartLabelsURL . $mark;
+			$chartLabelsURL = $chartLabelsURL . "|";
+			$newCount = $count * (100/$maxCount);
+			$chartDataURL = $chartDataURL . $newCount;
+			$chartDataURL = $chartDataURL . ",";
+			$chartColorsURL = $chartColorsURL . $chartColors[$mark-1];
+			$chartColorsURL = $chartColorsURL . "|";
+		}
+		$chartLabelsURL = substr($chartLabelsURL, 0, strlen($chartLabelsURL)-1);
+		$chartDataURL = substr($chartDataURL, 0, strlen($chartDataURL)-1);	
+		$chartColorsURL = substr($chartColorsURL, 0, strlen($chartColorsURL)-1);
+		
+		
+		$yaxis = "chxr=0,0," . $maxCount . ",1";
+		
+		
+		$URL = self::$URL_BASIS . $yaxis . "&chxt=y,x" . "&" . $chartTypeURL . "&" . $chartSizeURL . "&" . $chartDataURL . "&" . $chartLabelsURL . "&" . $chartTitleURL . "&" . $chartColorsURL;
+		echo $URL;
 		return $URL;
 	}
 	
 	public static function evaluateAll() {
-		$chartLabels = "1|2|3|4|5|6";
 		$marks = array();
-		$colors = array("0066FF","FFFF00","FF0000","00CC00");
+		$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
 		$ratings = Rating::findAll();
+		
 		foreach($ratings as $rating) {
-			array_push($marks, $rating->getValue("mark"));	
+			$mark = $rating->getValue("mark");
+			if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
+			$marks[$mark]++;
 		}
-		$anzahl = array();
-		for ($i = 0; $i < count($marks); $i++) {
-			array_push($anzahl, Rating::findNumberOfMarks($marks[$i]));
-			//liefert Fehler zurück
-		}
+		
+
 		$variables = array(
-				"evaluation"=>self::makeURL("p", "450x200", "Alle%20Vorlesungen", $marks, $colors, $anzahl)	
+				"evaluation"=>self::makeURL("bvg", "450x200", "Alle%20Vorlesungen", $marks, $colors)	
 		);
 		
 		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);
 		
 	} 
+	
+	public static function evaluateDocent() {
+		$marks = array();
+		$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
+		$ratings = Rating::findByDocent(1); // dozentID muss mitgeben werden
+	
+		foreach($ratings as $rating) {
+			$mark = $rating->getValue("mark");
+			if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
+			$marks[$mark]++;
+		}
+	
+	
+		$variables = array(
+				"evaluation"=>self::makeURL("p", "450x200", "Dozent%20Allgemein", $marks, $colors)
+		);
+	
+		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);
+	
+	}
+	
+	public static function evaluateDocentLecture() {
+		$marks = array();
+		$colors = array("00CD00","7FFF00","FFD700","FF6347","FF3030");
+		$ratings = Rating::findByDocentLecture(1); // dl ID muss mitgegeben werden
+	
+		foreach($ratings as $rating) {
+			$mark = $rating->getValue("mark");
+			if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
+			$marks[$mark]++;
+		}
+	
+	
+		$variables = array(
+				"evaluation"=>self::makeURL("p", "450x200", "Dozent%20 pro Vorlesung", $marks, $colors)
+		);
+	
+		T::render(self::$CTR."/default.php", self::$CTR."/nav.php", $variables);
+	
+	}
+	
 	
 	
 	
