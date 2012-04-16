@@ -1,0 +1,2 @@
+04.16.2012 13:05:29: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
+04.16.2012 13:05:29: SELECT id,mark,created,o_id,dl_id,comment FROM `rating`
