@@ -17,7 +17,7 @@
 	</div>
 
 
-	<div class="right">
+	<div class="right" style="max-width: 400px";>
 		<table style="vertical-align: top;">
 
 			<tr>
