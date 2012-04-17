@@ -156,8 +156,10 @@ class T {
 
 	public static function button($type, $text) {
 		$typeText = "type=\"submit\"";
-		if ($type == T::CANCEL)
-			$typeText = "type=\"button\" onclick=\"history.back();\"";
+		if ($type == T::CANCEL) {
+			$href = T::href("navigation", "back");
+			$typeText = "type=\"button\" onclick=\"window.location='$href';\"";
+		}
 		return "<button $typeText name=\"$type\" value=\"$type\" class=\"button text $type\">$text</button>";
 	}
 	
