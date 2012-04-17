@@ -4,7 +4,7 @@ require_once(realpath(dirname(__FILE__) . "/../config.php"));
 class EvaluationController extends AbstractController {
 
 	private static $CTR = "evaluation";
-	private static $TXT = "Evaluation";
+	private static $TXT = "Auswertung";
 	private static $URL_BASIS = "http://chart.apis.google.com/chart?";
 
 	public static function index() {
@@ -44,7 +44,14 @@ class EvaluationController extends AbstractController {
 		$yaxis = "chxr=0,0," . $maxCount . "," . $step;
 
 
-		$URL = self::$URL_BASIS . $yaxis . "&chxt=y,y,x,x&chxl=1:||Anzahl|3:|||||Note" . "&" . $chartTypeURL . "&" . $chartSizeURL . "&" . $chartDataURL . "&" . $chartLabelsURL . "&" . $chartColorsURL . "&" . $chartBackgroundURL;
+		$URL = self::$URL_BASIS . $yaxis
+		. "&chxt=y,y,x,x&chxl=1:||Anzahl|3:|||||Note"
+		. "&" . $chartTypeURL
+		. "&" . $chartSizeURL
+		. "&" . $chartDataURL
+		. "&" . $chartLabelsURL
+		. "&" . $chartColorsURL
+		. "&" . $chartBackgroundURL;
 		return $URL;
 	}
 
@@ -77,7 +84,7 @@ class EvaluationController extends AbstractController {
 		$content = array("Mittelwert"=>round($mittelwert,2));
 
 		$variables = array(
-				"heading"=>"DHBW",
+				"heading"=>self::$TXT." DHBW",
 				"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors),
 				"content"=>$content,
 				"comments"=>$comments
@@ -122,7 +129,7 @@ class EvaluationController extends AbstractController {
 			$content = array("Mittelwert"=>round($mittelwert,2));
 
 			$variables = array(
-					"heading"=>"Dozent",
+					"heading"=>self::$TXT." Dozent: ".$model->toString(),
 					"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors),
 					"content"=>$content,
 					"comments"=>$comments
@@ -174,7 +181,7 @@ class EvaluationController extends AbstractController {
 			$content = array("Mittelwert"=>round($mittelwert,2));
 
 			$variables = array(
-					"heading"=>"Dozent hält Vorlesung",
+					"heading"=>self::$TXT." Dozent hält Vorlesung: ".$model->toString(),
 					"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors),
 					"content"=>$content,
 					"comments"=>$comments
@@ -221,7 +228,7 @@ class EvaluationController extends AbstractController {
 
 			$content = array("Mittelwert"=>round($mittelwert,2));
 			$variables = array(
-					"heading"=>"Vorlesung",
+					"heading"=>self::$TXT." Vorlesung: ".$model->toString(),
 					"evaluation"=>self::makeURL("bvg", "250x250", $marks, $colors),
 					"content"=>$content,
 					"comments"=>$comments
