@@ -6,7 +6,7 @@ class ClasssController extends AbstractController {
 	private static $TXT = "Kurs";
 	
 	public static function index() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$models = Classs::findAll();
 		$advisors = array();
@@ -23,7 +23,7 @@ class ClasssController extends AbstractController {
 	}
 	
 	public static function view() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		if ($id = self::get($_GET, "id"))
 				if ($model = Classs::findById($id)) {
@@ -40,7 +40,7 @@ class ClasssController extends AbstractController {
 	}
 	
 	public static function create() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$model = new Classs();
 		
@@ -70,7 +70,7 @@ class ClasssController extends AbstractController {
 	}
 	
 	public static function edit() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$model = false;
 		
@@ -107,7 +107,7 @@ class ClasssController extends AbstractController {
 	}
 	
 	public static function delete() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		if ($id = get($_GET, "id", false)) {
 			$model = Classs::findById($id);

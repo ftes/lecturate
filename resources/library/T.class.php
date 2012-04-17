@@ -13,6 +13,7 @@ class T {
 	const RATE = "rate";
 	const LOGIN = "login";
 	const LOGOUT = "logout";
+	const HOME = "home";
 	
 	const FLASH_POS = "positive";
 	const FLASH_NEG = "negative";
@@ -91,8 +92,17 @@ class T {
 				$min = "min=\"{$attribute->getMin()}\"";
 				$max = "max=\"{$attribute->getMax()}\"";
 				$value = "value=\"{$attribute->getMin()}\"";
-				$html = "<input $id type=\"range\" $name $min $max $readonly $value step=\"1\" onchange=\"document.getElementById('$valueUid').innerHTML = document.getElementById('$inputUid').value;\" />";
+				$html = "<span class=\"range\"  style=\"background-color: #00CD00;\">";
+				$html .= "<input $id type=\"range\" $name $min $max $readonly $value step=\"1\"
+					onchange=\"
+						var value = document.getElementById('$inputUid').value;
+						var input = document.getElementById('$valueUid');
+						input.innerHTML = value
+						var colors = new Array('#00CD00','#7FFF00','#FFD700','#FF6347','#FF3030');
+						input.parentNode.style.backgroundColor = colors[parseInt(value)-1];
+					\" />";
 				$html .= "<span id=\"$valueUid\" >{$attribute->getMin()}</span>";
+				$html .= "</span>";
 			}
 		}
 	
@@ -163,7 +173,7 @@ class T {
 		return "<button $typeText name=\"$type\" value=\"$type\" class=\"button text $type\">$text</button>";
 	}
 	
-	public static function href($controller, $action="index", $array=array()) {
+	public static function href($controller="welcome", $action="index", $array=array()) {
 		$string = "";
 		foreach ($array as $key => $value)
 			$string .= "&$key=$value";

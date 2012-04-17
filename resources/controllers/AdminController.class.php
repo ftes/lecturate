@@ -10,7 +10,7 @@ class AdminController extends AbstractController {
 	}
 	
 	public static function initdb() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		global $config;
 		

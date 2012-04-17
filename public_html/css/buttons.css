@@ -120,9 +120,13 @@
 }
 
 .button.text.login:before,.button.notext.login:after {
-	content: "\1F50F";
+	content: "\2771";
 }
 
 .button.text.logout:before,.button.notext.logout:after {
-	content: "\1F50F";
+	content: "\2770";
+}
+
+.button.text.home:before,.button.notext.home:after {
+	content: "\2302";
 }

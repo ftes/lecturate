@@ -7,7 +7,7 @@ class DocentController extends AbstractController {
 	
 	
 	public static function index() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$variables = array(
 				"models" => Docent::findAll());
@@ -15,7 +15,7 @@ class DocentController extends AbstractController {
 	}
 	
 	public static function view() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		if ($id = self::get($_GET, "id"))
 				if ($model = Docent::findById($id)) {
@@ -30,7 +30,7 @@ class DocentController extends AbstractController {
 	}
 	
 	public static function create() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$model = new Docent();
 
@@ -55,7 +55,7 @@ class DocentController extends AbstractController {
 	}
 	
 	public static function edit() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$model = false;
 		
@@ -88,7 +88,7 @@ class DocentController extends AbstractController {
 	}
 	
 	public static function delete() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		if ($id = get($_GET, "id", false)) {
 			$model = Docent::findById($id);

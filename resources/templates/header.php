@@ -6,8 +6,8 @@
 	</div>
 	<div id="background"></div>
 </div>
-<div id="navbar">
-	<div id="left">
+<div id="navbar" class="leftRight">
+	<div class="left">
 		<?php
 		if (array_key_exists("login", $_SESSION)) {
 			echo T::iconButton(false, "Admin", "admin");
@@ -25,13 +25,16 @@
 		}
 		?>
 	</div>
-	<div id="right">
+	<div class="right">
 		<?php 
 		if (array_key_exists("login", $_SESSION))
-			echo T::iconButton(false, "Abmelden", "advisor", "logout");
+			echo T::iconButton(T::LOGOUT, "Abmelden", "login", "logout");
 		else
-			echo T::iconButton(false, "Anmelden", "advisor", "login");
+			echo T::iconButton(T::LOGIN, "Anmelden", "login", "login");
 		?>
+		<br>
+		<?=T::iconButton(T::HOME, "Start", "welcome"); ?>
+		<br>
 	</div>
 </div>
 

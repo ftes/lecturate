@@ -7,7 +7,7 @@ class OtpwController extends AbstractController {
 	
 	
 	public static function index() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$models = Otpw::findAll();
 		$docentLectures = array();
@@ -24,7 +24,7 @@ class OtpwController extends AbstractController {
 	}
 	
 	public static function view() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		if ($id = self::get($_GET, "id"))
 				if ($model = Otpw::findById($id)) {
@@ -42,7 +42,7 @@ class OtpwController extends AbstractController {
 	}
 	
 	public static function create() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$model = new Otpw();
 
@@ -71,7 +71,7 @@ class OtpwController extends AbstractController {
 	}
 	
 	public static function delete() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		if ($id = get($_GET, "id", false)) {
 			$model = Otpw::findById($id);
@@ -84,7 +84,7 @@ class OtpwController extends AbstractController {
 	}
 	
 	public static function generate() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 		
 		$classs = new Classs();
 		$classses = Classs::findAll();

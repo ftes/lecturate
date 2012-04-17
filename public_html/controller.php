@@ -6,7 +6,7 @@ function get(array $array, $key, $default) {
 	return $default;
 }
 
-$controller = Util::camelCase(get($_GET, "controller", "student"));
+$controller = Util::camelCase(get($_GET, "controller", "welcome"));
 $action = strtolower(get($_GET, "action", "index"));
 
 if (! isset($_SESSION["history"])) $_SESSION["history"] = array();

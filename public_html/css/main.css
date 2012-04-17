@@ -104,7 +104,7 @@
 }
 
 #navbar .right {
-	width: 150px;
+	width: auto;
 	text-align: right;
 }
 
@@ -250,4 +250,13 @@ html {
 	padding: 0 0.2em;
 	margin: 0;
 	background-color: rgb(240, 240, 240);
+}
+
+.range {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.range span {
+	padding: 1em;
 }

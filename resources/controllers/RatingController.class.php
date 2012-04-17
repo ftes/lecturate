@@ -7,7 +7,7 @@ class RatingController extends AbstractController {
 
 
 	public static function index() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 
 		$models = Rating::findAll();
 		$otpws = array();
@@ -27,7 +27,7 @@ class RatingController extends AbstractController {
 	}
 
 	public static function view() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 
 		if ($id = self::get($_GET, "id"))
 			if ($model = Rating::findById($id)) {
@@ -92,7 +92,7 @@ class RatingController extends AbstractController {
 	}
 
 	public static function delete() {
-		AdvisorController::login(T::href(self::$CTR, __FUNCTION__));
+		LoginController::login(T::href(self::$CTR, __FUNCTION__));
 
 		if ($id = get($_GET, "id", false)) {
 			$model = Rating::findById($id);
