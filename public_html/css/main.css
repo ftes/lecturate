@@ -26,6 +26,7 @@
 /* 	background-color: grey; */
 /* } */
 #topbar {
+	position:fixed;
 	text-shadow: 1px 1px 2px #999;
 	margin: 0;
 	width: 960px;
@@ -33,6 +34,7 @@
 	height: 100px;
 	background: url(../img/banner.jpg);
 	border-radius: 7px 7px 0 0;
+	z-index: 2;
 }
 
 #topbar h1 {
@@ -77,11 +79,16 @@
 /* 	padding: 5px; */
 /* } */
 #navbar {
+	position:fixed;
+	top: 120px;
 	width: auto;
-	/* 	height: 24px; */
+	height: 80px;
+	display: block;
 	background-color: rgb(50, 50, 50);
 	padding: 5px;
 	border-radius: 0px 0px 0 0;
+	overflow: hidden;
+	z-index: 2;
 }
 
 #navbar div {
@@ -115,6 +122,9 @@
 /* 	padding: 0px; */
 /* } */
 #main {
+	position:relative;
+	z-index: 1;
+	top: 210px;
 	width: auto;
 	display: block;
 	overflow: hidden;
