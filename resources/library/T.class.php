@@ -1,10 +1,19 @@
 <?php  
 require_once(realpath(dirname(__FILE__) . "/../config.php"));
 
+/**
+ * Template class
+ * @author lecturate
+ * Functions for rendering and displaying views
+ */
+
 class T {
 	const CANCEL = "cancel";
 	const SUBMIT = "submit";
 	
+	/*
+	 * Icon buttons
+	 */
 	const VIEW = "view";
 	const EDIT = "edit";
 	const DELETE = "delete";
@@ -15,6 +24,9 @@ class T {
 	const LOGOUT = "logout";
 	const HOME = "home";
 	
+	/*
+	 * Flash message types
+	 */
 	const FLASH_POS = "positive";
 	const FLASH_NEG = "negative";
 	
@@ -23,6 +35,10 @@ class T {
 	private static $editable = true;
 	private static $uids = array();
 
+	/*
+	 * Renders a content view together with a navigation view (for the right column)
+	 * $variables are accessible in the view!
+	 */
 	public static function render($contentFile, $navFile, $variables = array()) {
 		$contentFileFullPath = VIEWS_PATH . "/" . $contentFile;
 		$navFileFullPath = VIEWS_PATH . "/" . $navFile;
@@ -39,10 +55,17 @@ class T {
 		die();
 	}
 
+	/**
+	 * Should input fields be editable?
+	 * @param boolean $bool
+	 */
 	public static function setEditable($bool) {
 		self::$editable = $bool;
 	}
 	
+	/**
+	 * Generate a unique id for use in HTML tags
+	 */
 	public static function uid() {
 		$length = 10;
 		$characters = "0123456789abcdefghijklmnopqrstuvwxyz";
@@ -56,6 +79,11 @@ class T {
 		return $uid;
 	}
 
+	/**
+	 * Generate an input element based on a model attribute
+	 * Type of input-element is automatically determined
+	 * @param Attribute $attribute
+	 */
 	public static function input(Attribute $attribute){
 		$name = "name=\"model[{$attribute->getName()}]\"";
 		$nullable = $attribute->getNullable();
@@ -70,6 +98,9 @@ class T {
 				
 		$html = "";
 
+		/*
+		 * Varchar
+		 */
 		if ($attribute instanceof Varchar) {
 			$min = $attribute->getMinLength();
 			$max = $attribute->getMaxLength();
@@ -81,6 +112,9 @@ class T {
 
 			$html = "<input $id type=\"text\" $name $maxlength $readonly $onchange $value>";
 
+		/*
+		 * Int
+		 */
 		} elseif ($attribute instanceof  Int) {
 			$valueUid = self::uid();
 			
@@ -118,15 +152,14 @@ class T {
 		return $html;
 	}
 	
-
-
-
-	
 	/**
-	 * 
+	 * Generate a select dropdown. Used for value lists or Foreign Keys
 	 * @param Attribute $attribute
-	 * @param array $options
-	 * @param unknown_type $array Array with id -> text
+	 * @param array $options options the user can choose from
+	 * @param boolean $optionsSimpleArray TRUE: $options contains text, FALSE: $options contains model objects
+	 * @param unknown_type $alternativeName use an alternative name (e.g. name="model[alternative]")
+	 * @param unknown_type $js array with javascript that should be put into element
+	 * @return string
 	 */
 	public static function select(Attribute $attribute, array $options, $optionsSimpleArray=false, $alternativeName=false, $js=false) {
 		$name = $alternativeName ? "name=\"model[$alternativeName]\"" : "name=\"model[{$attribute->getName()}]\"";
@@ -157,6 +190,10 @@ class T {
 		return $html;
 	}
 	
+	/**
+	 * generate field for displaying JS-generated and PHP-generated error messages
+	 * @return string
+	 */
 	public static function error() {
 		$errorHTML = self::$errorHTML;
 		self::$errorHTML = "";
@@ -164,6 +201,11 @@ class T {
 		
 	}
 
+	/**
+	 * Generate form button
+	 * @param unknown_type $type Cancel or Submit
+	 * @param unknown_type $text text to display on button
+	 */
 	public static function button($type, $text) {
 		$typeText = "type=\"submit\"";
 		if ($type == T::CANCEL) {
@@ -173,6 +215,12 @@ class T {
 		return "<button $typeText name=\"$type\" value=\"$type\" class=\"button text $type\">$text</button>";
 	}
 	
+	/**
+	 * generate a hyperlink to a certain action on a controller
+	 * @param unknown_type $controller
+	 * @param unknown_type $action
+	 * @param unknown_type $array addition GET parameters
+	 */
 	public static function href($controller="welcome", $action="index", $array=array()) {
 		$string = "";
 		foreach ($array as $key => $value)
@@ -181,6 +229,14 @@ class T {
 		return "controller.php?controller=$controller&action=$action" . $string;
 	}
 	
+	/**
+	 * generate a button with an icon
+	 * @param unknown_type $icon icon name (see T::constants), FALSE: no icon
+	 * @param unknown_type $text text to display on button
+	 * @param unknown_type $controller
+	 * @param unknown_type $action
+	 * @param unknown_type $array additional GET parameters
+	 */
 	public static function iconButton($icon, $text, $controller, $action="index", $array=array()) {
 		$type = $text == false ? "notext" : "text";
 		return "<a href=\"" . self::href($controller, $action, $array) . "\" class=\"button $type $icon\">$text</a>";

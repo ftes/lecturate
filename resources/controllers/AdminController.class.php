@@ -1,6 +1,11 @@
 <?php
 require_once(dirname(__FILE__) . "/../config.php");
 
+/**
+ * Admin functionality, e.g. reset the DB
+ * @author lecturate
+ *
+ */
 class AdminController extends AbstractController {
 	private static $CTR = "admin";
 	private static $TXT = "Admin";

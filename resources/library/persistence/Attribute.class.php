@@ -1,12 +1,58 @@
 <?php
+
+/**
+ * Abstract class for attributes
+ * Handles data validation, data storage, SQL generation etc.
+ * @author lecturate
+ *
+ */
 abstract class Attribute {
+	/**
+	 * name of the attribute (column name)
+	 * @var string
+	 */
 	protected $name;
+	
+	/**
+	 * current value
+	 * @var unknown_type
+	 */
 	protected $value = null;
+	
+	/**
+	 * old value: used for resetting, if check fails
+	 * @var unknown_type
+	 */
 	protected $oldValue = null;
+	
+	/**
+	 * has value been altered since reading from DB?
+	 * @var boolean
+	 */
 	protected $altered = false;
+	
+	/**
+	 * error messages
+	 * @var array
+	 */
 	protected $errors = array();
+	
+	/**
+	 * what is the corresponding data type in MYSQL
+	 * @var string
+	 */
 	protected $sqlType;
+	
+	/**
+	 * is this attribute nullable?
+	 * @var boolean
+	 */
 	protected $nullable;
+	
+	/**
+	 * should the attribute get auto incremented
+	 * @var boolean
+	 */
 	protected $autoIncrement;
 	
 	public function __construct($name, $sqlType, $nullable=true, $autoIncrement=false) {
@@ -66,12 +112,18 @@ abstract class Attribute {
 		return $this->errors;
 	}
 	
+	/**
+	 * used in SELECT, UPDATE, DELETE and INSERT statements
+	 */
 	public function getComparator() {
 		return "`$this->name`='" . $this->getFormatter() . "'";
 	}
 	
+	/**
+	 * get printf-Formatter (%s, %d etc)
+	 */
 	public abstract function getFormatter();
-	
+	 
 	protected function getNullableSql() {
 		if ($this->nullable)
 			return "";

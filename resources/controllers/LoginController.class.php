@@ -1,6 +1,11 @@
 <?php
 require_once(dirname(__FILE__) . "/../config.php");
 
+/**
+ * Provides login/logout functionality, based on the Advisor model
+ * @author dev
+ *
+ */
 class LoginController extends AbstractController {
 	private static $CTR = "login";
 	private static $TXT = "SGL";
