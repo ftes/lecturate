@@ -13,7 +13,7 @@
 		</tr>
 		<tr>
 			<th>Einmal-PW</th>
-			<td><input type="text" name="model[otpw]" <?="value=\"$otpw\""; ?>"></td>
+			<td><input type="text" name="model[otpw]" <?="value=\"$otpw\""; ?>></td>
 			<td></td>
 		</tr>
 		<tr>
