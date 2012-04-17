@@ -9,7 +9,7 @@ class StudentController extends AbstractController {
 
 		$classs = new Classs();
 		$classsDocentLecture = new ClasssDocentLecture();
-
+		
 		if (get($_POST, "submit", false)) {
 			if (isset($_POST["model"]["otpw"])) {
 				$otpw = $_POST["model"]["otpw"];
@@ -24,26 +24,26 @@ class StudentController extends AbstractController {
 				} else {
 					$_SESSION["flash"] = array(T::FLASH_NEG, "Einmal-PW nicht gefunden");
 				}
-			} else {
+			}
+		} else {
+			if (isset($_POST["model"]["c_id"])) {
+				$classs->setValue("id", $_POST["model"]["c_id"]);
+				$classsDocentLectures = ClasssDocentLecture::findByClass($_POST["model"]["c_id"]);
+			}
 
-				if (isset($_POST["model"]["c_id"])) {
-					$classs->setValue("id", $_POST["model"]["c_id"]);
-					$classsDocentLectures = ClasssDocentLecture::findByClass($_POST["model"]["c_id"]);
-				}
+			if (isset($_POST["model"]["cdl_id"])) {
+				$classsDocentLecture->setValue("id", $_POST["model"]["cdl_id"]);
+				$cDLObject = ClasssDocentLecture::findById($_POST["model"]["cdl_id"]);
+				if ($cDLObject) {
+					$dlId = $cDLObject->getValue("dl_id");
+					$docentLecture = DocentLecture::findById($dlId);
 
-				if (isset($_POST["model"]["cdl_id"])) {
-					$classsDocentLecture->setValue("id", $_POST["model"]["cdl_id"]);
-					$cDLObject = ClasssDocentLecture::findById($_POST["model"]["cdl_id"]);
-					if ($cDLObject) {
-						$dlId = $cDLObject->getValue("dl_id");
-						$docentLecture = DocentLecture::findById($dlId);
-
-						$_SESSION["model"]["dl_id"] = $dlId;
-						Util::redirect(T::href("rating", "create"));
-					}
+					$_SESSION["model"]["dl_id"] = $dlId;
+					Util::redirect(T::href("rating", "create"));
 				}
 			}
 		}
+
 
 		$variables = array(
 				"classs" => $classs,
