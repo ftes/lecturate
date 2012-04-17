@@ -1,3 +1,9 @@
+/*
+	Styling of buttons, optionally with icon
+	Uses CSS3 :after pseudo-element and gradient fills, shadows (for various browsers)
+	Icons are embedded UTF8-characters via the CSS3 content tag
+*/
+
 @CHARSET "UTF-8";
 
 .button {

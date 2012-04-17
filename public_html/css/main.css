@@ -1,8 +1,20 @@
-/* #container { */
-/* 	width: 780px; */
-/* 	margin: 0 auto; */
-/* 	padding: 0px; */
-/* } */
+/*********************************************
+	General page layout and classes for re-use
+**********************************************/
+
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+html {
+	height: 100%;
+}
+
+/*
+	Container contains the whole page
+*/
 #container {
 	font-family: Arial;
 	min-height: 100%;
@@ -19,14 +31,11 @@
 	-webkit-box-shadow: 3px 2px 5px #aaa;
 }
 
-/* #topbar { */
-/* 	width: auto; */
-/* 	display: block; */
-/* 	height: 80px; */
-/* 	background-color: grey; */
-/* } */
+
+/*
+	Topbar contains the title and logo
+*/
 #topbar {
-/* 	position:fixed; */
 	text-shadow: 1px 1px 2px #999;
 	margin: 0;
 	width: 960px;
@@ -35,6 +44,18 @@
 	background: url(../img/banner.jpg);
 	border-radius: 7px 7px 0 0;
 	z-index: 2;
+}
+
+#background {
+	position: absolute;
+	top: 10px;
+	z-index: 1;
+	width: 940px;
+	background: white;
+	opacity: 0.8;
+	display: run-in;
+	height: 80px;
+	border-radius: 7px 7px 7px 7px;
 }
 
 #topbar h1 {
@@ -59,27 +80,10 @@
 	margin-top: 7px;
 }
 
-#background {
-	position: absolute;
-	top: 10px;
-	z-index: 1;
-	width: 940px;
-	background: white;
-	opacity: 0.8;
-	display: run-in;
-	height: 80px;
-	border-radius: 7px 7px 7px 7px;
-}
-
-/* #navbar { */
-/* 	width: auto; */
-/* 	display: block; */
-/* 	height: 24px; */
-/* 	background-color: lightgrey; */
-/* 	padding: 5px; */
-/* } */
+/*
+	Navbar
+*/
 #navbar {
-/* 	position:fixed; */
 	top: 120px;
 	width: auto;
 	height: 80px;
@@ -96,17 +100,6 @@
 	padding: 0;
 }
 
-.leftRight {
-	overflow: hidden;
-	
-	display: block;
-}
-
-.left, .right {
-	float: left;
-	width: auto;
-}
-
 #navbar .left {
 	width: 800px;
 }
@@ -115,89 +108,9 @@
 	text-align: right;
 }
 
-/* #main { */
-/* 	width: auto; */
-/* 	display: block; */
-/* 	overflow: hidden; */
-/* 	padding: 0px; */
-/* } */
-#main {
-/* 	position:relative; */
-	z-index: 1;
-/* 	top: 210px; */
-	width: auto;
-	display: block;
-	overflow: hidden;
-	padding: 0 0 60px 0;
-	margin-bottom: 0px;
-}
-
-/* #content { */
-/* 	width: 520px; */
-/* 	margin-right: 20px; */
-/* 	float: left; */
-/* } */
-#content {
-	width: 720px;
-	margin-left: 10px;
-	margin-right: 20px;
-	float: left;
-}
-#content h1 {
-	font-size: 16pt;
-} 
-
-/* #column_right { */
-/* 	background-color: lightgrey; */
-/* 	float: right; */
-/* 	width: 180px; */
-/* 	overflow: hidden; */
-/* 	padding: 10px */
-/* } */
-#column_right { /*     text-shadow: 1px 1px 2px #999; */
-	background-color: rgb(50, 50, 50);
-	float: right;
-	width: 180px;
-	overflow: hidden;
-	padding: 5px;
-	border-radius: 0 0 7px 7px;
-}
-
-#column_right .button {
-	display: block;
-}
-
-/* 
-div.spacer, solve an issue with #container height
-in css 2 column layout. 
+/*
+	Flash shows confirmation and error messages
 */
-div.spacer {
-	clear: both;
-	height: 10px;
-	display: block;
-}
-
-/* #footer { */
-/* 	width: 780px; */
-/* 	position: fixed; */
-/* 	bottom: 0px; */
-/* 	display: block; */
-/* 	height: 50px; */
-/* 	background-color: grey; */
-/* } */
-#footer {
-	color: lightgrey;
-	font-size: 10px;
-	text-align: right;
-	width: 960px;
-	position: fixed;
-	bottom: 0px;
-	display: run-in;
-	height: 30px;
-	background-color: rgb(50, 50, 50);
-	border-radius: 0 0 7px 7px;
-}
-
 #flash {
 	font-weight: bold;
 	padding: 0px 10px;
@@ -211,8 +124,95 @@ div.spacer {
 	background-color: rgb(255, 100, 100);
 }
 
+/*
+	Main contains both the content and the additional side navigation bar
+*/
+#main {
+	z-index: 1;
+	width: auto;
+	display: block;
+	overflow: hidden;
+	padding: 0 0 60px 0;
+	margin-bottom: 0px;
+}
+
+
+/*
+	Actual page content
+*/
+#content {
+	width: 720px;
+	margin-left: 10px;
+	margin-right: 20px;
+	float: left;
+}
+
+#content h1 {
+	font-size: 16pt;
+} 
+
+/*
+	Additional side navigation bar
+*/
+#column_right {
+	background-color: rgb(50, 50, 50);
+	float: right;
+	width: 180px;
+	overflow: hidden;
+	padding: 5px;
+	border-radius: 0 0 7px 7px;
+}
+
+#column_right .button {
+	display: block;
+}
+
+/*
+	Footer
+*/
+#footer {
+	color: lightgrey;
+	font-size: 10px;
+	text-align: right;
+	width: 960px;
+	position: fixed;
+	bottom: 0px;
+	display: run-in;
+	height: 30px;
+	background-color: rgb(50, 50, 50);
+	border-radius: 0 0 7px 7px;
+}
+
+
+/*********************************************
+	Styling of additional layout elements
+**********************************************/
+
+div.spacer {
+	clear: both;
+	height: 10px;
+	display: block;
+}
+
+/*
+	Error messages next to input elements
+*/
 .error {
 	color: rgb(200, 0, 0);
+}
+
+/*
+	Divs to display data in two columns
+*/
+.leftRight {
+	overflow: hidden;
+	
+	display: block;
+}
+
+.left, .right {
+	float: left;
+	width: auto;
 }
 
 table {
@@ -225,7 +225,10 @@ td,th {
 	text-align: left;
 }
 
-tr:nth-child(even) { /* 	background-color: lightgrey; */
+/*
+	Alternating row background color
+*/
+tr:nth-child(even) {
 	background-color: rgb(80, 80, 80);
 	color: white;
 }
@@ -234,16 +237,9 @@ div {
 	padding: 10px;
 }
 
-body {
-	margin: 0;
-	padding: 0;
-	height: 100%;
-}
-
-html {
-	height: 100%;
-}
-
+/*
+	Visually group elements and use h2 as title
+*/
 .group {
 	border: 1px solid black;
 	border-radius: 7px;
@@ -262,6 +258,9 @@ html {
 	background-color: rgb(240, 240, 240);
 }
 
+/*
+	Format the range slider
+*/
 .range {
 	display: inline-block;
 	vertical-align: middle;
