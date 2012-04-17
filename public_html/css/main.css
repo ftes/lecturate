@@ -1,6 +1,6 @@
-html {
-	height: 100%;
-}
+/*********************************************
+	General page layout and classes for re-use
+**********************************************/
 
 body {
 	margin: 0;
@@ -8,42 +8,13 @@ body {
 	height: 100%;
 }
 
-div {
-	padding: 10px;
+html {
+	height: 100%;
 }
 
-/* 
-div.spacer, solve an issue with #container height
-in css 2 column layout. 
+/*
+	Container contains the whole page
 */
-div.spacer {
-	clear: both;
-	height: 10px;
-	display: block;
-}
-
-/* Tabelle */
-table {
-	border-collapse: collapse;
-}
-
-/* Tabelleninhalt */
-td,th {
-	border: 0px solid black;
-	padding: 2px 5px;
-	text-align: left;
-}
-
-tr:nth-child(even) {
-	background-color: rgb(80, 80, 80);
-	color: white;
-}
-
-div {
-	padding: 10px;
-}
-
-/* beinhaltet alle Elemente */
 #container {
 	font-family: Arial;
 	min-height: 100%;
@@ -60,6 +31,10 @@ div {
 	-webkit-box-shadow: 3px 2px 5px #aaa;
 }
 
+
+/*
+	Topbar contains the title and logo
+*/
 #topbar {
 	text-shadow: 1px 1px 2px #999;
 	margin: 0;
@@ -69,31 +44,6 @@ div {
 	background: url(../img/banner.jpg);
 	border-radius: 7px 7px 0 0;
 	z-index: 2;
-}
-
-/* Header */
-#topbar h1 {
-	margin-bottom: 0px;
-}
-
-/* DHBW-Logo auf dem Header */
-#logo {
-	position: absolute;
-	top: 20px;
-	right: 10px;
-	height: 80px;
-}
-
-/* Inhalt des Header */
-#contentTopBar {
-	position: absolute;
-	top: 0px;
-	width: 940px;
-	z-index: 2;
-}
-
-#contentTopBar p {
-	margin-top: 7px;
 }
 
 #background {
@@ -108,7 +58,31 @@ div {
 	border-radius: 7px 7px 7px 7px;
 }
 
-/* beinhaltet Navigationsbuttons unter dem Header */
+#topbar h1 {
+	margin-bottom: 0px;
+}
+
+#logo {
+	position: absolute;
+	top: 20px;
+	right: 10px;
+	height: 80px;
+}
+
+#contentTopBar {
+	position: absolute;
+	top: 0px;
+	width: 940px;
+	z-index: 2;
+}
+
+#contentTopBar p {
+	margin-top: 7px;
+}
+
+/*
+	Navbar
+*/
 #navbar {
 	top: 120px;
 	width: auto;
@@ -134,17 +108,25 @@ div {
 	text-align: right;
 }
 
-.leftRight {
-	overflow: hidden;
-	display: block;
+/*
+	Flash shows confirmation and error messages
+*/
+#flash {
+	font-weight: bold;
+	padding: 0px 10px;
 }
 
-.left,.right {
-	float: left;
-	width: auto;
+#flash.positive {
+	background-color: rgb(100, 255, 100);
 }
 
-/* beinhaltet Elemente zwischen Header und Footer */
+#flash.negative {
+	background-color: rgb(255, 100, 100);
+}
+
+/*
+	Main contains both the content and the additional side navigation bar
+*/
 #main {
 	z-index: 1;
 	width: auto;
@@ -154,6 +136,10 @@ div {
 	margin-bottom: 0px;
 }
 
+
+/*
+	Actual page content
+*/
 #content {
 	width: 720px;
 	margin-left: 10px;
@@ -163,8 +149,11 @@ div {
 
 #content h1 {
 	font-size: 16pt;
-}
+} 
 
+/*
+	Additional side navigation bar
+*/
 #column_right {
 	background-color: rgb(50, 50, 50);
 	float: right;
@@ -178,6 +167,9 @@ div {
 	display: block;
 }
 
+/*
+	Footer
+*/
 #footer {
 	color: lightgrey;
 	font-size: 10px;
@@ -191,26 +183,63 @@ div {
 	border-radius: 0 0 7px 7px;
 }
 
-/* Flash-Leiste für Informationen für den Benutzer */
-#flash {
-	font-weight: bold;
-	padding: 0px 10px;
+
+/*********************************************
+	Styling of additional layout elements
+**********************************************/
+
+div.spacer {
+	clear: both;
+	height: 10px;
+	display: block;
 }
 
-/* Bestätigung */
-#flash.positive {
-	background-color: rgb(100, 255, 100);
-}
-
-/* Fehlermeldung */
-#flash.negative {
-	background-color: rgb(255, 100, 100);
-}
-
+/*
+	Error messages next to input elements
+*/
 .error {
 	color: rgb(200, 0, 0);
 }
 
+/*
+	Divs to display data in two columns
+*/
+.leftRight {
+	overflow: hidden;
+	
+	display: block;
+}
+
+.left, .right {
+	float: left;
+	width: auto;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+td,th {
+	border: 0px solid black;
+	padding: 2px 5px;
+	text-align: left;
+}
+
+/*
+	Alternating row background color
+*/
+tr:nth-child(even) {
+	background-color: rgb(80, 80, 80);
+	color: white;
+}
+
+div {
+	padding: 10px;
+}
+
+/*
+	Visually group elements and use h2 as title
+*/
 .group {
 	border: 1px solid black;
 	border-radius: 7px;
@@ -229,6 +258,9 @@ div {
 	background-color: rgb(240, 240, 240);
 }
 
+/*
+	Format the range slider
+*/
 .range {
 	display: inline-block;
 	vertical-align: middle;

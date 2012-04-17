@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * Model constraint, based on MYSQL constraints
+ * @author lecturate
+ *
+ */
 abstract class Constraint {
 	protected $name;
 	protected $attributes;

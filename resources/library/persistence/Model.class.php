@@ -1,4 +1,11 @@
 <?php
+/**
+ * Data Model, corresponds to TABLE in MYSQL
+ * constists of attributes and constraints
+ * provides ORM-functionality: persist, delete and findBy...
+ * @author lecturate
+ *
+ */
 abstract class Model {
 	private $name;
 	protected $attributes = array();

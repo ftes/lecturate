@@ -1,6 +1,11 @@
 <?php
 require_once(dirname(__FILE__) . "/../config.php");
 
+/**
+ * allows backward navigation in history via PHP
+ * @author lecturate
+ *
+ */
 class NavigationController extends AbstractController {
 	public static function back() {
 		//Remove navigation:back and current site
