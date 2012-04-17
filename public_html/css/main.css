@@ -8,7 +8,7 @@
 	min-height: 100%;
 	width: 980px;
 	background: #ddd;
-	padding: 0 0 60px 0;
+	padding: 0;
 	margin: 0 auto 0 auto;
 	-webkit-box-shadow: 3px 2px 5px #aaa;
 	-moz-box-shadow: 3px 2px 5px #aaa;
@@ -78,26 +78,33 @@
 /* } */
 #navbar {
 	width: auto;
-	display: block;
 	/* 	height: 24px; */
 	background-color: rgb(50, 50, 50);
 	padding: 5px;
 	border-radius: 0px 0px 0 0;
-	overflow: hidden;
 }
 
 #navbar div {
 	margin: 0;
 	padding: 0;
+}
+
+.leftRight {
+	overflow: hidden;
+	
+	display: block;
+}
+
+.left, .right {
 	float: left;
 }
 
-#navbar #left {
-	width: 830px;
+#navbar .left {
+	width: 800px;
 }
 
-#navbar #right {
-	width: 140px;
+#navbar .right {
+	width: 150px;
 	text-align: right;
 }
 
@@ -111,7 +118,7 @@
 	width: auto;
 	display: block;
 	overflow: hidden;
-	padding: 0px;
+	padding: 0 0 60px 0;
 	margin-bottom: 0px;
 }
 
