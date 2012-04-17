@@ -26,7 +26,7 @@
 /* 	background-color: grey; */
 /* } */
 #topbar {
-	position:fixed;
+/* 	position:fixed; */
 	text-shadow: 1px 1px 2px #999;
 	margin: 0;
 	width: 960px;
@@ -79,7 +79,7 @@
 /* 	padding: 5px; */
 /* } */
 #navbar {
-	position:fixed;
+/* 	position:fixed; */
 	top: 120px;
 	width: auto;
 	height: 80px;
@@ -122,9 +122,9 @@
 /* 	padding: 0px; */
 /* } */
 #main {
-	position:relative;
+/* 	position:relative; */
 	z-index: 1;
-	top: 210px;
+/* 	top: 210px; */
 	width: auto;
 	display: block;
 	overflow: hidden;
