@@ -3,7 +3,7 @@
 <h1>Studiengangsleiter anzeigen</h1>
 
 <form method="POST">
-<table>
+	<table>
 		<tr>
 			<th>ID</th>
 			<td><?=T::input($model->getAttribute("id")); ?>
@@ -29,7 +29,9 @@
 			<td><?=T::input($model->getAttribute("lastname")); ?>
 			</td>
 		</tr>
-</table>
-<?=T::iconButton(T::EDIT, "Bearbeiten", "advisor", "edit", array("id"=>$model->getValue("id"))); ?>
-<?=T::iconButton(T::DELETE, "Löschen", "advisor", "delete", array("id"=>$model->getValue("id"))); ?>
+	</table>
+	<?=T::iconButton(T::EDIT, "Bearbeiten", "advisor", "edit", 
+			array("id"=>$model->getValue("id"))); ?>
+	<?=T::iconButton(T::DELETE, "Löschen", "advisor", "delete", 
+			array("id"=>$model->getValue("id"))); ?>
 </form>

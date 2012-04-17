@@ -4,11 +4,15 @@
 	<h2>
 		Einstieg für Studenten
 		</h1>
-		<p><span style="text">Sie sind Student?</span><br>Bewerten Sie hier Ihre Vorlesungen profitieren
-			Sie selbst durch die gesteigerte Vorlesungsqualität!</p>
+		<p>
+			<span style="">Sie sind Student?</span><br>Bewerten Sie hier Ihre
+			Vorlesungen profitieren Sie selbst durch die gesteigerte
+			Vorlesungsqualität!
+		</p>
 		<p>
 			<?=T::iconButton(T::RATE, "Vorlesung bewerten", "student"); ?>
 		</p>
+
 </div>
 
 <div class="group">

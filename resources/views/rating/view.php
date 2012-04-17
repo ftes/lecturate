@@ -20,11 +20,13 @@
 		</tr>
 		<tr>
 			<th>Einmal-PW</th>
-			<td><?=T::select($model->getAttribute("o_id"), array($otpw)); ?></td>
+			<td><?=T::select($model->getAttribute("o_id"), 
+					array($otpw)); ?></td>
 		</tr>
 		<tr>
 			<th>Dozent hält Vorlesung</th>
-			<td><?=T::select($model->getAttribute("dl_id"), array($docentLecture)); ?>
+			<td><?=T::select($model->getAttribute("dl_id"), 
+					array($docentLecture)); ?>
 			</td>
 		</tr>
 		<tr>
@@ -33,5 +35,6 @@
 			</td>
 		</tr>
 	</table>
-	<?=T::iconButton(T::DELETE, "Löschen", "otpw", "delete", array("id"=>$model->getValue("id"))); ?>
+	<?=T::iconButton(T::DELETE, "Löschen", "otpw", "delete", 
+			array("id"=>$model->getValue("id"))); ?>
 </form>

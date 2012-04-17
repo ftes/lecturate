@@ -41,7 +41,8 @@ class RatingController extends AbstractController {
 			die();
 		}
 
-		$_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gefunden werden");
+		$_SESSION["flash"] = array(T::FLASH_NEG,
+				self::$TXT." konnte nicht gefunden werden");
 		Util::redirect(T::href(self::$CTR, "index"));
 	}
 
@@ -61,21 +62,23 @@ class RatingController extends AbstractController {
 		if (get($_POST, T::SUBMIT, false)) {
 			foreach ($_POST["model"] as $key => $value)
 				$model->setValue($key, $value);
-				
+
 			$otpw = $_POST["model"]["otpw"];
 			if ($otpw = Otpw::findByOtpw($otpw))
 				$model->setValue("o_id", $otpw->getValue("id"));
-				
+
 
 
 			$otpw = Otpw::findById($model->getValue("o_id"));
 			if ($model->persist()) {
 				$otpw->setUsed();
 				$otpw->persist();
-				$_SESSION["flash"] = array(T::FLASH_POS, self::$TXT." \"{$model->toString()}\" wurde gespeichert");
+				$_SESSION["flash"] = array(T::FLASH_POS,
+						self::$TXT." \"{$model->toString()}\" wurde gespeichert");
 				Util::redirect(T::href("rating", "create"));
 			} else {
-				$_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gespeichert werden");
+				$_SESSION["flash"] = array(T::FLASH_NEG,
+						self::$TXT." konnte nicht gespeichert werden");
 				foreach ($model->getErrors() as $name => $error)
 					$_SESSION["flash"][1] .= "<br> - $name: $error";
 			}
@@ -97,7 +100,8 @@ class RatingController extends AbstractController {
 		if ($id = get($_GET, "id", false)) {
 			$model = Rating::findById($id);
 			if ($model && $model->delete())
-				$_SESSION["flash"] = array(T::FLASH_POS, self::$TXT." {$model->toString()} wurde gelöscht");
+				$_SESSION["flash"] = array(T::FLASH_POS,
+						self::$TXT." {$model->toString()} wurde gelöscht");
 		}
 
 		Util::redirect(T::href(self::$CTR, "index"));

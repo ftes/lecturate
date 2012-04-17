@@ -15,20 +15,24 @@ class ClasssDocentLecture extends Model {
 		$this->addAttribute($dlId);
 
 		$this->addConstraint(new PrimaryKey(array($id)));
-		$this->addConstraint(new Unique("Kurs hört gehaltene Vorlesung", array($cId, $dlId)));
+		$this->addConstraint(new Unique("Kurs hört gehaltene Vorlesung",
+				array($cId, $dlId)));
 		$classs = new Classs();
 		$docentLecture = new DocentLecture();
-		$this->addConstraint(new ForeignKey(array($cId), $classs, array($classs->getAttribute("id"))));
-		$this->addConstraint(new ForeignKey(array($dlId), $docentLecture, array($docentLecture->getAttribute("id"))));
+		$this->addConstraint(new ForeignKey(array($cId), $classs,
+				array($classs->getAttribute("id"))));
+		$this->addConstraint(new ForeignKey(array($dlId), $docentLecture,
+				array($docentLecture->getAttribute("id"))));
 	}
 
 	public static function findById($id) {
 		$class = Util::camelCase(self::$name);
 		$model = new $class;
 
-		$query = "SELECT {$model->getAttrList()} FROM `" . self::$name . "` WHERE `id`='%d'";
+		$query = "SELECT {$model->getAttrList()} FROM `" .
+		self::$name . "` WHERE `id`='%d'";
 		$values = array($id);
-		
+
 		$result = self::findBy($query, $values, self::$name);
 		return count($result) == 0 ? false : $result[0];
 	}
@@ -37,12 +41,13 @@ class ClasssDocentLecture extends Model {
 		$class = Util::camelCase(self::$name);
 		$model = new $class;
 
-		$query = "SELECT {$model->getAttrList()} FROM `" . self::$name . "` WHERE `c_id`='%d'";
+		$query = "SELECT {$model->getAttrList()} FROM `" .
+		self::$name . "` WHERE `c_id`='%d'";
 		$values = array($cId);
-		
+
 		return self::findBy($query, $values, self::$name);
 	}
-	
+
 	public function toString() {
 		$classs = Classs::findById($this->getValue("c_id"))->toString();
 		$docentLecture = DocentLecture::findById($this->getValue("dl_id"))->toString();

@@ -13,11 +13,11 @@ function __autoload($class) {
 session_start();
 
 /*
- The important thing to realize is that the config file should be included in every
-page of your project, or at least any page you want access to these settings.
-This allows you to confidently use these settings throughout a project because
-if something changes such as your database credentials, or a path to a specific resource,
-you'll only need to update it here.
+ The important thing to realize is that the config file should be included 
+in every page of your project, or at least any page you want access to 
+these settings. This allows you to confidently use these settings throughout a 
+project because if something changes such as your database credentials, 
+or a path to a specific resource, you'll only need to update it here.
 */
 
 $config = array(
@@ -38,22 +38,24 @@ $config = array(
 						"layout" => $_SERVER["DOCUMENT_ROOT"] . "/img"
 				)
 		)
-	);
+);
 
 final class Util {
-	private function __construct() {}
-	
-	public static function enum(array $array, $function, $space=",", $left="", $right="", $blanks=true) {
+	private function __construct() {
+	}
+
+	public static function enum(array $array, $function, $space=",", $left="", 
+			$right="", $blanks=true) {
 		$string = "";
 		foreach ($array as $element) {
 			$result = call_user_func(array($element, $function));
-			if ($result != "" || $blanks) 
+			if ($result != "" || $blanks)
 				$string .= $left . $result . $right . $space;
 		}
 		$string = substr($string, 0, strlen($string) - strlen($space));
 		return $string;
 	}
-	
+
 	public static function getArray(array $array, $function) {
 		$arr = array();
 		foreach ($array as $element) {
@@ -61,7 +63,7 @@ final class Util {
 		}
 		return $arr;
 	}
-	
+
 	public static function camelCase($string) {
 		$string = ucfirst($string);
 		while ($pos = strpos($string, "_")) {
@@ -73,7 +75,7 @@ final class Util {
 		}
 		return $string;
 	}
-	
+
 	public static function redirect($location) {
 		header("Location: $location");
 		die();
@@ -81,9 +83,10 @@ final class Util {
 }
 
 /*
- I will usually place the following in a bootstrap file or some type of environment
-setup file (code that is run at the start of every page request), but they work
-just as well in your config file if it's in php (some alternatives to php are xml or ini files).
+ I will usually place the following in a bootstrap file or some type of 
+environment setup file (code that is run at the start of every page request), 
+but they work just as well in your config file if it's in php 
+(some alternatives to php are xml or ini files).
 */
 
 /*

@@ -24,21 +24,25 @@ class Rating extends Model {
 		$this->addConstraint(new Unique("Einmal-PW", array($oId)));
 		$otpw = new Otpw();
 		$docentLecture = new DocentLecture();
-		$this->addConstraint(new ForeignKey(array($oId), $otpw, array($otpw->getAttribute("id"))));
-		$this->addConstraint(new ForeignRow(array($oId, $dlId), $otpw, array($otpw->getAttribute("id"), $otpw->getAttribute("dl_id"))));
-		$this->addConstraint(new ForeignKey(array($dlId), $docentLecture, array($docentLecture->getAttribute("id"))));
+		$this->addConstraint(new ForeignKey(array($oId), $otpw,
+				array($otpw->getAttribute("id"))));
+		$this->addConstraint(new ForeignRow(array($oId, $dlId), $otpw,
+				array($otpw->getAttribute("id"), $otpw->getAttribute("dl_id"))));
+		$this->addConstraint(new ForeignKey(array($dlId), $docentLecture,
+				array($docentLecture->getAttribute("id"))));
 	}
 
 	public static function findById($id) {
 		$model = new self::$name;
 
-		$query = "SELECT {$model->getAttrList()} FROM `" . self::$name . "` WHERE `id`='%d'";
+		$query = "SELECT {$model->getAttrList()} FROM `" .
+		self::$name . "` WHERE `id`='%d'";
 		$values = array($id);
-		
+
 		$result = self::findBy($query, $values, self::$name);
 		return count($result) == 0 ? false : $result[0];
 	}
-	
+
 	public function toString() {
 		$otpw = Otpw::findById($this->getValue("o_id"))->toString();
 		$docentLecture = DocentLecture::findById($this->getValue("dl_id"))->toString();
@@ -53,55 +57,59 @@ class Rating extends Model {
 
 		return self::findBy($query, $values, self::$name);
 	}
-	
+
 	public static function findNumberOfMarks($mark) {
 		$model = new self::$name;
-		
-		$query = "SELECT COUNT(*) FROM `" . self::$name . "` WHERE `mark`='%d' GROUP BY mark";
+
+		$query = "SELECT COUNT(*) FROM `" .
+				self::$name . "` WHERE `mark`='%d' GROUP BY mark";
 		$values = array($mark);
-		
-		
+
+
 		$sql = Sql::execute($query, $values);
 		$result = $sql->getResult();
-		
+
 		$row = $result->fetch_assoc();
 		return $row["COUNT(*)"];
 	}
-	
+
 	public static function findByDocent ($docentID) {
 		$model = new self::$name;
-		
-		$query = "SELECT {$model->getAttrList("r")} FROM `" . self::$name . "` r INNER JOIN docent_lecture dl ON r.`dl_id`=dl.`id` WHERE dl.`d_id`='%d'";
-		
+
+		$query = "SELECT {$model->getAttrList("r")} FROM `" .
+		self::$name . "` r INNER JOIN docent_lecture dl ON r.`dl_id`=dl.`id` WHERE dl.`d_id`='%d'";
+
 		$values = array($docentID);
-		
+
 		return self::findBy($query, $values, self::$name);
 	}
-	
+
 	public static function findByDocentLecture ($docentID) {
 		$model = new self::$name;
-	
-		$query = "SELECT {$model->getAttrList("r")} FROM `" . self::$name . "` r  WHERE r.`dl_id`='%d'";
-	
+
+		$query = "SELECT {$model->getAttrList("r")} FROM `" .
+		self::$name . "` r  WHERE r.`dl_id`='%d'";
+
 		$values = array($docentID);
-	
+
 		return self::findBy($query, $values, self::$name);
 	}
-	
+
 	public static function findByLecture($lectureID) {
 		$model = new self::$name;
-		
-		$query = "SELECT {$model->getAttrList("r")} FROM `" . self::$name . "` r INNER JOIN docent_lecture dl ON r.`dl_id`=dl.`id` WHERE dl.`l_id`='%d'";
-		
+
+		$query = "SELECT {$model->getAttrList("r")} FROM `" .
+		self::$name . "` r INNER JOIN docent_lecture dl ON r.`dl_id`=dl.`id` WHERE dl.`l_id`='%d'";
+
 		$values = array($lectureID);
-		
+
 		return self::findBy($query, $values, self::$name);
-	
+
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }
 ?>

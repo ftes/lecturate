@@ -1,9 +1,9 @@
 <?php T::setEditable(true); ?>
 
 <h1>Vorlesung bearbeiten</h1>
-	
+
 <form method="POST">
-<table>
+	<table>
 		<tr>
 			<th>ID</th>
 			<td><?=T::input($model->getAttribute("id")); ?>
@@ -25,7 +25,7 @@
 			<td><?=T::error(); ?>
 			</td>
 		</tr>
-</table>
+	</table>
 	<?=T::button(T::CANCEL, "Abbrechen"); ?>
 	<?=T::button(T::SUBMIT, "Speichern"); ?>
 </form>

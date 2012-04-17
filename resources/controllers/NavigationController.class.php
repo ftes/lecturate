@@ -6,7 +6,7 @@ class NavigationController extends AbstractController {
 		//Remove navigation:back and current site
 		array_pop($_SESSION["history"]);
 		array_pop($_SESSION["history"]);
-		
+
 		if (count($_SESSION["history"]) > 0) {
 			$last = array_pop($_SESSION["history"]);
 			Util::redirect($last);

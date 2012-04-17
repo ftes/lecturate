@@ -22,11 +22,13 @@ class AdvisorController extends AbstractController {
 				if ($model = Advisor::findById($id)) {
 			$variables = array(
 					"model" => $model);
-			T::render(self::$CTR."/view.php", self::$CTR."/nav.php", $variables);
+			T::render(self::$CTR."/view.php", self::$CTR."/nav.php", 
+					$variables);
 			die();
 		}
 	
-		$_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gefunden werden");
+		$_SESSION["flash"] = array(T::FLASH_NEG, 
+				self::$TXT." konnte nicht gefunden werden");
 		Util::redirect(T::href(self::$CTR."", "index"));
 	}
 	
@@ -40,10 +42,12 @@ class AdvisorController extends AbstractController {
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				$_SESSION["flash"] = array(T::FLASH_POS, self::$TXT." \"{$model->toString()}\" wurde gespeichert");
+				$_SESSION["flash"] = array(T::FLASH_POS, 
+						self::$TXT." \"{$model->toString()}\" wurde gespeichert");
 				Util::redirect(T::href(self::$CTR."", "index"));
 			} else {
-				$_SESSION["flash"] = array(T::FLASH_NEG, array(T::FLASH_POS, self::$TXT." konnte nicht gespeichert werden"));
+				$_SESSION["flash"] = array(T::FLASH_NEG, array(T::FLASH_POS, 
+						self::$TXT." konnte nicht gespeichert werden"));
 				foreach ($model->getErrors() as $name => $error)
 					$_SESSION["flash"][1] .= "<br> - $name: $error";
 			}			
@@ -67,10 +71,12 @@ class AdvisorController extends AbstractController {
 				$model->setValue($key, $value);
 			
 			if ($model->persist()) {
-				$_SESSION["flash"] = array(T::FLASH_POS, self::$TXT." \"{$model->toString()}\" wurde gespeichert");
+				$_SESSION["flash"] = array(T::FLASH_POS, 
+						self::$TXT." \"{$model->toString()}\" wurde gespeichert");
 				Util::redirect(T::href(self::$CTR."", "index"));
 			} else {
-				$_SESSION["flash"] = array(T::FLASH_POS, array(T::FLASH_NEG, self::$TXT." konnte nicht gespeichert werden"));
+				$_SESSION["flash"] = array(T::FLASH_POS, array(T::FLASH_NEG, 
+						self::$TXT." konnte nicht gespeichert werden"));
 				foreach ($model->getErrors() as $name => $error)
 					$_SESSION["flash"][1] .= "<br> - $name: $error";
 			}			
@@ -80,7 +86,8 @@ class AdvisorController extends AbstractController {
 			$model = Advisor::findById($id);
 		
 		if (! $model) {
-			$_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gefunden werden");
+			$_SESSION["flash"] = array(T::FLASH_NEG, 
+					self::$TXT." konnte nicht gefunden werden");
 			Util::redirect(T::href(self::$CTR."", "index"));
 		}
 		$variables = array(
@@ -94,8 +101,10 @@ class AdvisorController extends AbstractController {
 		if ($id = get($_GET, "id", false)) {
 			$model = Advisor::findById($id);
 			if ($model && $model->delete())
-				$_SESSION["flash"] = array(T::FLASH_POS, self::$TXT." {$model->toString()} wurde gelöscht");
-			else $_SESSION["flash"] = array(T::FLASH_NEG, self::$TXT." konnte nicht gelöscht werden");
+				$_SESSION["flash"] = array(T::FLASH_POS, 
+						self::$TXT." {$model->toString()} wurde gelöscht");
+			else $_SESSION["flash"] = array(T::FLASH_NEG, 
+					self::$TXT." konnte nicht gelöscht werden");
 		}
 		
 		Util::redirect(T::href(self::$CTR."", "index"));

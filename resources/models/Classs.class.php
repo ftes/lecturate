@@ -19,9 +19,10 @@ class Classs extends Model {
 		$this->addConstraint(new PrimaryKey(array($id)));
 		$this->addConstraint(new Unique("Kürzel", array($token)));
 		$advisor = new Advisor();
-		$this->addConstraint(new ForeignKey(array($aId), $advisor, array($advisor->getAttribute("id"))));
+		$this->addConstraint(new ForeignKey(array($aId), $advisor,
+				array($advisor->getAttribute("id"))));
 	}
-	
+
 	public static function getAdvisor() {
 		return Advisor::findById(self::getValue("a_id"));
 	}
@@ -29,22 +30,24 @@ class Classs extends Model {
 	public static function findByAdvisor($a_id) {
 		$model = new self::$name;
 
-		$query = "SELECT {$model->getAttrList()} FROM `" . self::$name . "` WHERE `a_id`='%d'";
+		$query = "SELECT {$model->getAttrList()} FROM `" .
+		self::$name . "` WHERE `a_id`='%d'";
 		$values = array($a_id);
-		
+
 		return self::findBy($query, $values, self::$name);
 	}
 
 	public static function findById($id) {
 		$model = new self::$name;
 
-		$query = "SELECT {$model->getAttrList()} FROM `" . self::$name . "` WHERE `id`='%d'";
+		$query = "SELECT {$model->getAttrList()} FROM `" .
+		self::$name . "` WHERE `id`='%d'";
 		$values = array($id);
-		
+
 		$result = self::findBy($query, $values, self::$name);
 		return count($result) == 0 ? false : $result[0];
 	}
-	
+
 	public function toString() {
 		return $this->getValue("token");
 	}

@@ -2,24 +2,25 @@
 class Bool extends Attribute {
 	const F = 0;
 	const T = 1;
-	
+
 	private $default;
 	private $defaultValue;
-	
-	public function __construct($name, $nullable=true, $default=false, $defaultValue=false) {
+
+	public function __construct($name, $nullable=true, $default=false,
+			$defaultValue=false) {
 		parent::__construct($name, "TINYINT", $nullable, false);
-		
+
 		$this->default = $default;
 		$this->defaultValue = $defaultValue;
-		
+
 		if ($default) $this->value = $defaultValue;
 	}
-	
+
 	public function getSql() {
 		$default = $this->default ? " DEFAULT $this->defaultValue" : "";
 		return "`$this->name` $this->sqlType" . $this->getNullableSql() . $default;
 	}
-	
+
 	public function generateErrors() {
 		$this->errors = array();
 		if (is_null($this->value)) {
@@ -30,11 +31,12 @@ class Bool extends Attribute {
 				array_push($this->errors, "Weder wahr noch falsch");
 			} else {
 				$value = intval($this->value);
-				if ($this->value != 0 && $this->value != 1) array_push($this->errors, "Weder wahr noch falsch");
+				if ($this->value != 0 && $this->value != 1)
+					array_push($this->errors, "Weder wahr noch falsch");
 			}
 		}
 	}
-	
+
 	public function getFormatter() {
 		return "%d";
 	}

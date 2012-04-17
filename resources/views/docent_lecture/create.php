@@ -3,16 +3,16 @@
 <h1>Dozent hält Vorlesung anlegen</h1>
 
 <form method="POST">
-<table>
+	<table>
 		<tr>
 			<th>Dozent</th>
 			<td><?=T::select($model->getAttribute("d_id"), $docents); ?></td>
-		</tr>		
+		</tr>
 		<tr>
 			<th>Vorlesung</th>
 			<td><?=T::select($model->getAttribute("l_id"), $lectures); ?></td>
 		</tr>
-</table>
+	</table>
 	<?=T::button(T::CANCEL, "Abbrechen"); ?>
 	<?=T::button(T::SUBMIT, "Speichern"); ?>
 </form>

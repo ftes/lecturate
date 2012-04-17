@@ -23,7 +23,8 @@ class Otpw extends Model {
 		$this->addConstraint(new PrimaryKey(array($id)));
 		$this->addConstraint(new Unique("Einmal-PW", array($otpw)));
 		$docentLecture = new DocentLecture();
-		$this->addConstraint(new ForeignKey(array($dlId), $docentLecture, array($docentLecture->getAttribute("id"))));
+		$this->addConstraint(new ForeignKey(array($dlId), $docentLecture,
+				array($docentLecture->getAttribute("id"))));
 	}
 
 	public function generateOtpw() {
@@ -47,7 +48,8 @@ class Otpw extends Model {
 	public static function findByOtpw($otpw) {
 		$model = new self::$name;
 
-		$query = "SELECT {$model->getAttrList()} FROM `" . self::$name . "` WHERE `otpw`='%s'";
+		$query = "SELECT {$model->getAttrList()} FROM `" .
+		self::$name . "` WHERE `otpw`='%s'";
 		$values = array($otpw);
 
 		$result = self::findBy($query, $values, self::$name);
@@ -57,7 +59,8 @@ class Otpw extends Model {
 	public static function findById($id) {
 		$model = new self::$name;
 
-		$query = "SELECT {$model->getAttrList()} FROM `" . self::$name . "` WHERE `id`='%d'";
+		$query = "SELECT {$model->getAttrList()} FROM `" .
+		self::$name . "` WHERE `id`='%d'";
 		$values = array($id);
 
 		$result = self::findBy($query, $values, self::$name);

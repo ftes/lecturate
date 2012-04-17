@@ -13,28 +13,30 @@ abstract class Model {
 
 		$this->name = $name;
 	}
-	
+
 	public static function getModels() {
 		return self::$models;
 	}
 
 	public function addAttribute(Attribute $attribute) {
 		if (array_key_exists($attribute->getName(), $this->attributes))
-			throw new Exception("Model->addAttribute: attribute name already exists");
+			throw new Exception
+			("Model->addAttribute: attribute name already exists");
 
 		$this->attributes[$attribute->getName()] = $attribute;
 	}
 
 	public function addConstraint(Constraint $constraint) {
 		if (array_key_exists($constraint->getName(), $this->constraints))
-			throw new Exception("Model->addConstraint: constraint name already exists");
-		
+			throw new Exception
+			("Model->addConstraint: constraint name already exists");
+
 		if ($constraint instanceof PrimaryKey)
 			$this->primaryKey = $constraint;
 
 		$this->constraints[$constraint->getName()] = $constraint;
 	}
-	
+
 	public abstract function toString();
 
 	public function getSql() {
@@ -54,12 +56,12 @@ abstract class Model {
 	public function getAttributes() {
 		return $this->attributes;
 	}
-	
+
 	public function getAttribute($name) {
 		if (! array_key_exists($name, $this->attributes)) return false;
 		return $this->attributes[$name];
 	}
-	
+
 	public function getErrors() {
 		return $this->errors;
 	}
@@ -85,23 +87,23 @@ abstract class Model {
 	}
 
 	public function getAttrList($acronym="") {
-	if ($acronym != "")	
-		return Util::enum($this->attributes, "getName", ",", $acronym.".");
+		if ($acronym != "")
+			return Util::enum($this->attributes, "getName", ",", $acronym.".");
 		return Util::enum($this->attributes, "getName");
 	}
-	
+
 	private function inSync() {
 		foreach ($this->attributes as $attribute)
 			$attribute->unalter();
-		$this->new = false; 
+		$this->new = false;
 	}
 
 	public function persist() {
 		$this->errors = array();
 		$attrError = false;
-		
+
 		foreach ($this->attributes as $attribute)
-			if (! $attribute->isValid()) $attrError = true;			
+			if (! $attribute->isValid()) $attrError = true;
 		foreach ($this->constraints as $constraint) {
 			$error = $constraint->getError($this->name);
 			if ($error) $this->errors[$constraint->getName()] = $error;
@@ -117,7 +119,8 @@ abstract class Model {
 			$names = Util::enum($attrs, "getName");
 			$formatters = Util::enum($attrs, "getFormatter", ",", "'", "'");
 
-			$sql = Sql::execute("INSERT INTO `$this->name` ($names) VALUES ($formatters)", $values);
+			$sql = Sql::execute("INSERT INTO `$this->name` ($names)
+					VALUES ($formatters)", $values);
 
 			if ($sql->getResult() == false) {
 				$this->errors["Persistance"] = "Fehler beim Speichern";
@@ -148,7 +151,7 @@ abstract class Model {
 		$this->inSync();
 		return true;
 	}
-	
+
 	public function getPrimaryKey() {
 		return $this->primaryKey;
 	}
@@ -171,18 +174,18 @@ abstract class Model {
 		$result = $sql->getResult();
 
 		if ($result == false) throw new Exception("Error in Finder");
-// 		if ($result->num_rows == 0) return array();
+		// 		if ($result->num_rows == 0) return array();
 
 		$arr = array();
 		$type = Util::camelCase($type);
 		while (($row = $result->fetch_assoc()) != null) {
 			$model = new $type;
-				
+
 			foreach($row as $key => $value)
 				$model->setValue($key, $value);
-			
-			$model->inSync();
 				
+			$model->inSync();
+
 			array_push($arr, $model);
 		}
 

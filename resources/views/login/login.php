@@ -11,7 +11,7 @@
 		</tr>
 		<tr>
 			<th>Passwort</th>
-			<td><input type="password" name="model[password]"/>
+			<td><input type="password" name="model[password]" />
 			</td>
 		</tr>
 	</table>

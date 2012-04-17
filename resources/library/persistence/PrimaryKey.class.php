@@ -5,7 +5,7 @@ class PrimaryKey extends Unique{
 		foreach ($attributes as $attribute)
 			$attribute->setNullable(false);
 	}
-	
+
 	public function getSql() {
 		$attrs = Util::enum($this->attributes, "getName", ",", "`", "`");
 		return "PRIMARY KEY ($attrs)";

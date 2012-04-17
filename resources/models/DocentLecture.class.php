@@ -15,20 +15,24 @@ class DocentLecture extends Model {
 		$this->addAttribute($lId);
 
 		$this->addConstraint(new PrimaryKey(array($id)));
-		$this->addConstraint(new Unique("Dozent hält Vorlesung", array($dId, $lId)));
+		$this->addConstraint(new Unique("Dozent hält Vorlesung",
+				array($dId, $lId)));
 		$docent = new Docent();
 		$lecture = new Lecture();
-		$this->addConstraint(new ForeignKey(array($dId), $docent, array($docent->getAttribute("id"))));
-		$this->addConstraint(new ForeignKey(array($lId), $lecture, array($lecture->getAttribute("id"))));
+		$this->addConstraint(new ForeignKey(array($dId), $docent,
+				array($docent->getAttribute("id"))));
+		$this->addConstraint(new ForeignKey(array($lId), $lecture,
+				array($lecture->getAttribute("id"))));
 	}
-	
+
 	public static function findByOtpw($otpw) {
 		$class = Util::camelCase(self::$name);
 		$model = new $class;
-	
-		$query = "SELECT {$model->getAttrList("dl")} FROM `" . self::$name . "` dl INNER JOIN `otpw` o ON dl.`id`=o.`dl_id`  WHERE o.`otpw`='%s'";
+
+		$query = "SELECT {$model->getAttrList("dl")} FROM `" .
+		self::$name . "` dl INNER JOIN `otpw` o ON dl.`id`=o.`dl_id`  WHERE o.`otpw`='%s'";
 		$values = array($otpw);
-	
+
 		$result = self::findBy($query, $values, self::$name);
 
 		return count($result) == 0 ? false : $result[0];
@@ -38,13 +42,14 @@ class DocentLecture extends Model {
 		$class = Util::camelCase(self::$name);
 		$model = new $class;
 
-		$query = "SELECT {$model->getAttrList()} FROM `" . self::$name . "` WHERE `id`='%d'";
+		$query = "SELECT {$model->getAttrList()} FROM `" .
+		self::$name . "` WHERE `id`='%d'";
 		$values = array($id);
-		
+
 		$result = self::findBy($query, $values, self::$name);
 		return count($result) == 0 ? false : $result[0];
 	}
-	
+
 	public function toString() {
 		$docent = Docent::findById($this->getValue("d_id"))->toString();
 		$lecture = Lecture::findById($this->getValue("l_id"))->toString();

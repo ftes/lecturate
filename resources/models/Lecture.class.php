@@ -21,13 +21,14 @@ class Lecture extends Model {
 	public static function findById($id) {
 		$model = new self::$name;
 
-		$query = "SELECT {$model->getAttrList()} FROM `" . self::$name . "` WHERE `id`='%d'";
+		$query = "SELECT {$model->getAttrList()} FROM `" .
+		self::$name . "` WHERE `id`='%d'";
 		$values = array($id);
-		
+
 		$result = self::findBy($query, $values, self::$name);
 		return count($result) == 0 ? false : $result[0];
 	}
-	
+
 	public function toString() {
 		return $this->getValue("token");
 	}

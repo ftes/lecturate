@@ -1,8 +1,49 @@
-/* #container { */
-/* 	width: 780px; */
-/* 	margin: 0 auto; */
-/* 	padding: 0px; */
-/* } */
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+div {
+	padding: 10px;
+}
+
+/* 
+div.spacer, solve an issue with #container height
+in css 2 column layout. 
+*/
+div.spacer {
+	clear: both;
+	height: 10px;
+	display: block;
+}
+
+/* Tabelle */
+table {
+	border-collapse: collapse;
+}
+
+/* Tabelleninhalt */
+td,th {
+	border: 0px solid black;
+	padding: 2px 5px;
+	text-align: left;
+}
+
+tr:nth-child(even) {
+	background-color: rgb(80, 80, 80);
+	color: white;
+}
+
+div {
+	padding: 10px;
+}
+
+/* beinhaltet alle Elemente */
 #container {
 	font-family: Arial;
 	min-height: 100%;
@@ -19,14 +60,7 @@
 	-webkit-box-shadow: 3px 2px 5px #aaa;
 }
 
-/* #topbar { */
-/* 	width: auto; */
-/* 	display: block; */
-/* 	height: 80px; */
-/* 	background-color: grey; */
-/* } */
 #topbar {
-/* 	position:fixed; */
 	text-shadow: 1px 1px 2px #999;
 	margin: 0;
 	width: 960px;
@@ -37,10 +71,12 @@
 	z-index: 2;
 }
 
+/* Header */
 #topbar h1 {
 	margin-bottom: 0px;
 }
 
+/* DHBW-Logo auf dem Header */
 #logo {
 	position: absolute;
 	top: 20px;
@@ -48,6 +84,7 @@
 	height: 80px;
 }
 
+/* Inhalt des Header */
 #contentTopBar {
 	position: absolute;
 	top: 0px;
@@ -71,15 +108,8 @@
 	border-radius: 7px 7px 7px 7px;
 }
 
-/* #navbar { */
-/* 	width: auto; */
-/* 	display: block; */
-/* 	height: 24px; */
-/* 	background-color: lightgrey; */
-/* 	padding: 5px; */
-/* } */
+/* beinhaltet Navigationsbuttons unter dem Header */
 #navbar {
-/* 	position:fixed; */
 	top: 120px;
 	width: auto;
 	height: 80px;
@@ -96,17 +126,6 @@
 	padding: 0;
 }
 
-.leftRight {
-	overflow: hidden;
-	
-	display: block;
-}
-
-.left, .right {
-	float: left;
-	width: auto;
-}
-
 #navbar .left {
 	width: 800px;
 }
@@ -115,16 +134,19 @@
 	text-align: right;
 }
 
-/* #main { */
-/* 	width: auto; */
-/* 	display: block; */
-/* 	overflow: hidden; */
-/* 	padding: 0px; */
-/* } */
+.leftRight {
+	overflow: hidden;
+	display: block;
+}
+
+.left,.right {
+	float: left;
+	width: auto;
+}
+
+/* beinhaltet Elemente zwischen Header und Footer */
 #main {
-/* 	position:relative; */
 	z-index: 1;
-/* 	top: 210px; */
 	width: auto;
 	display: block;
 	overflow: hidden;
@@ -132,29 +154,18 @@
 	margin-bottom: 0px;
 }
 
-/* #content { */
-/* 	width: 520px; */
-/* 	margin-right: 20px; */
-/* 	float: left; */
-/* } */
 #content {
 	width: 720px;
 	margin-left: 10px;
 	margin-right: 20px;
 	float: left;
 }
+
 #content h1 {
 	font-size: 16pt;
-} 
+}
 
-/* #column_right { */
-/* 	background-color: lightgrey; */
-/* 	float: right; */
-/* 	width: 180px; */
-/* 	overflow: hidden; */
-/* 	padding: 10px */
-/* } */
-#column_right { /*     text-shadow: 1px 1px 2px #999; */
+#column_right {
 	background-color: rgb(50, 50, 50);
 	float: right;
 	width: 180px;
@@ -167,24 +178,6 @@
 	display: block;
 }
 
-/* 
-div.spacer, solve an issue with #container height
-in css 2 column layout. 
-*/
-div.spacer {
-	clear: both;
-	height: 10px;
-	display: block;
-}
-
-/* #footer { */
-/* 	width: 780px; */
-/* 	position: fixed; */
-/* 	bottom: 0px; */
-/* 	display: block; */
-/* 	height: 50px; */
-/* 	background-color: grey; */
-/* } */
 #footer {
 	color: lightgrey;
 	font-size: 10px;
@@ -198,50 +191,24 @@ div.spacer {
 	border-radius: 0 0 7px 7px;
 }
 
+/* Flash-Leiste für Informationen für den Benutzer */
 #flash {
 	font-weight: bold;
 	padding: 0px 10px;
 }
 
+/* Bestätigung */
 #flash.positive {
 	background-color: rgb(100, 255, 100);
 }
 
+/* Fehlermeldung */
 #flash.negative {
 	background-color: rgb(255, 100, 100);
 }
 
 .error {
 	color: rgb(200, 0, 0);
-}
-
-table {
-	border-collapse: collapse;
-}
-
-td,th {
-	border: 0px solid black;
-	padding: 2px 5px;
-	text-align: left;
-}
-
-tr:nth-child(even) { /* 	background-color: lightgrey; */
-	background-color: rgb(80, 80, 80);
-	color: white;
-}
-
-div {
-	padding: 10px;
-}
-
-body {
-	margin: 0;
-	padding: 0;
-	height: 100%;
-}
-
-html {
-	height: 100%;
 }
 
 .group {
