@@ -43,7 +43,7 @@ class EvaluationController extends AbstractController {
 		$yaxis = "chxr=0,0," . $maxCount . "," . $step;
 		
 		
-		$URL = self::$URL_BASIS . $yaxis . "&chxt=y,x" . "&" . $chartTypeURL . "&" . $chartSizeURL . "&" . $chartDataURL . "&" . $chartLabelsURL . "&" . $chartColorsURL . "&" . $chartBackgroundURL;
+		$URL = self::$URL_BASIS . $yaxis . "&chxt=y,y,x,x&chxl=1:||Anzahl|3:|||||Note" . "&" . $chartTypeURL . "&" . $chartSizeURL . "&" . $chartDataURL . "&" . $chartLabelsURL . "&" . $chartColorsURL . "&" . $chartBackgroundURL;
 		return $URL;
 	}
 	
@@ -56,9 +56,11 @@ class EvaluationController extends AbstractController {
 		$comments = array();
 		$mittelwert = 0;
 		
+		for ($i=1; $i<=5; $i++)
+			$marks[$i] = 0;
+		
 		foreach($ratings as $rating) {
 			$mark = $rating->getValue("mark");
-			if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
 			$marks[$mark]++;
 			$mittelwert = $mittelwert + $mark;
 			if($rating->getValue("comment") != "")
@@ -100,9 +102,12 @@ class EvaluationController extends AbstractController {
 				Util::redirect(T::href("docent", "index"));
 			}
 			$mittelwert = 0;
+			
+			for ($i=1; $i<=5; $i++)
+				$marks[$i] = 0;
+			
 			foreach($ratings as $rating) {
 				$mark = $rating->getValue("mark");
-				if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
 				$marks[$mark]++;
 				$mittelwert = $mittelwert + $mark;
 				if($rating->getValue("comment") != "")
@@ -148,9 +153,11 @@ class EvaluationController extends AbstractController {
 				Util::redirect(T::href("docent_lecture", "index"));
 			}
 			$mittelwert = 0;
+			
+			for ($i=1; $i<=5; $i++)
+				$marks[$i] = 0;
 			foreach($ratings as $rating) {
 				$mark = $rating->getValue("mark");
-				if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
 				$marks[$mark]++;
 				$mittelwert = $mittelwert + $mark;
 				if($rating->getValue("comment") != "")
@@ -192,9 +199,11 @@ class EvaluationController extends AbstractController {
 				Util::redirect(T::href("lecture", "index"));
 			}
 			$mittelwert = 0;
+			for ($i=1; $i<=5; $i++)
+				$marks[$i] = 0;
 			foreach($ratings as $rating) {
 				$mark = $rating->getValue("mark");
-				if (! array_key_exists($mark, $marks)) $marks[$mark] = 0;
+				
 				$marks[$mark]++;
 				$mittelwert = $mittelwert + $mark;
 				if($rating->getValue("comment") != "")
