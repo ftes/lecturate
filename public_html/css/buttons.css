@@ -88,45 +88,45 @@
 
 /* Hexadecimal entities for the icons */
 .button.text.create:before,.button.notext.create:after {
-	content: "\271A";
+	content: "\2B";
 }
 
 .button.text.edit:before,.button.notext.edit:after {
-	content: "\270E";
+	content: "\45";
 }
 
 .button.text.delete:before,.button.notext.delete:after {
-	content: "\2718";
+	content: "\58";
 }
 
 .button.text.submit:before,.button.notext.submit:after {
-	content: "\2714";
+	content: "\3E";
 }
 
 .button.text.cancel:before,.button.notext.cancel:after {
-	content: "\2718";
+	content: "\58";
 }
 
 .button.text.view:before,.button.notext.view:after {
-	content: "\2139";
+	content: "\69";
 }
 
 .button.text.index:before,.button.notext.index:after {
-	content: "\2261";
+	content: "\3D";
 }
 
 .button.text.rate:before,.button.notext.rate:after {
-	content: "\00B1";
+	content: "\23";
 }
 
 .button.text.login:before,.button.notext.login:after {
-	content: "\2771";
+	content: "\3E";
 }
 
 .button.text.logout:before,.button.notext.logout:after {
-	content: "\2770";
+	content: "\3C";
 }
 
 .button.text.home:before,.button.notext.home:after {
-	content: "\2302";
+	content: "\40";
 }
