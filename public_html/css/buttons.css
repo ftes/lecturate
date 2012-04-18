@@ -92,7 +92,7 @@
 }
 
 .button.text.edit:before,.button.notext.edit:after {
-	content: "\45";
+	content: "\5C";
 }
 
 .button.text.delete:before,.button.notext.delete:after {
